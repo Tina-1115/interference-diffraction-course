@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>頁面標題｜干涉與繞射線上教材</title>
+<!-- 複製本檔到站台根目錄（與 index.html 同層）後改名。CSS/JS 路徑為相對路徑，勿改成絕對路徑，才能 file:// 開啟。 -->
+<link rel="stylesheet" href="assets/css/site.css">
+<script defer src="assets/js/site.js"></script>
+</head>
+<!--
+  <body> 屬性：
+  data-page="unit1"      本頁代碼（必填；= 檔名不含 .html；用於導覽標示與進度記錄）
+  data-prev="pretest.html"  上一步連結（省略則不顯示）。頁尾按鈕由 site.js 自動渲染
+  data-next="unit2.html"    下一步連結
+  site.js 會自動插入：頂部導覽列(#iod-nav，含所有頁面與當前頁 aria-current)、進度條(#iod-progress)、頁尾上/下一步(#iod-pager)。
+  不需自行寫這三者。若要指定位置，可預先放 <div id="iod-pager"></div>。
+  順序（藍圖）：index → pretest → unit1 → unit2 → unit3 → posttest → resources；輔助頁：misconceptions、assessment、teacher。
+-->
+<body data-page="PAGE_ID" data-prev="prev.html" data-next="next.html">
+<a class="skip" href="#main">跳到主要內容</a>
+
+<main id="main">
+  <h1>頁面標題</h1>
+
+  <!-- 橋接語：承接前頁一句話（.bridge-in 自動前綴「承接前頁」）；頁尾預告下頁（.bridge-out 前綴「下頁預告」） -->
+  <p class="bridge-in">上一頁我們……，這一頁要……。</p>
+
+  <h2>內容區塊</h2>
+  <p>正文。<!-- 素材序號標籤：class="asset-tag"，內容寫序號，如 T01 / M02 / 07A-12（自動前綴「素材」） -->
+     圖片說明處放 <span class="asset-tag">T01</span>。</p>
+
+  <!-- 圖／示意圖容器 -->
+  <figure class="asset">
+    <svg viewBox="0 0 400 120" role="img" aria-label="原創示意圖說明"><rect x="1" y="1" width="398" height="118" fill="none" stroke="#999"/></svg>
+    <figcaption>圖 1　說明文字 <span class="asset-tag">07A-01</span></figcaption>
+  </figure>
+
+  <!-- 整合者補充（非原文件內容）：行內徽章 .badge-add（文字自動為「整合補充」）；整段用 .add-block -->
+  <div class="add-block"><span class="badge-add"></span>這段是整合者補充，不來自原文件。</div>
+
+  <!--
+    題卡 .qcard：
+    data-qid  題目代碼（頁內唯一，如 Q4 或 POE-1）。必填才會儲存。
+    data-act  活動編號（可選，如 ACT01），會寫入匯出檔 activity 欄。
+    卡內任何 input / textarea / select 只要有 name 屬性，就會自動：載入舊值、輸入即儲存（欄位名 = name）、計入頁面完成度。
+    radio 同一組用相同 name；.saved 會顯示「已儲存 時間」。
+    答案要素 .answer-key 與規準 .rubric 建議放在作答後（可用 <details> 包起來）。
+  -->
+  <section class="qcard" data-qid="Q1" data-act="ACT00">
+    <div class="q-head"><span class="q-no">Q1</span><span class="q-goal">對應目標：目標1／節點01</span></div>
+    <p class="q-stem">題幹文字。</p>
+    <label class="opt"><input type="radio" name="choice" value="A"> (A) 選項</label>
+    <label class="opt"><input type="radio" name="choice" value="B"> (B) 選項</label>
+    <label for="Q1-why">一句解釋</label>
+    <textarea id="Q1-why" name="reason" placeholder="用自己的話寫下理由"></textarea>
+    <div class="saved" aria-live="polite"></div>
+
+    <!-- 折疊提示 L1→L3：details 的 class 必須含 L1 / L2 / L3；展開時會記錄 hint_L1 等欄位（供教師看提示使用歷程） -->
+    <div class="hints">
+      <details class="L1"><summary>L1 提示：引導回觀察</summary><div>提示內容。</div></details>
+      <details class="L2"><summary>L2 提示：指出關鍵概念</summary><div>提示內容。</div></details>
+      <details class="L3"><summary>L3 提示：給出部分作法</summary><div>提示內容。</div></details>
+    </div>
+
+    <details>
+      <summary>看答案要素並自評</summary>
+      <div class="answer-key"><strong>答案要素：</strong>要素 1、要素 2。</div>
+      <!-- 三級自評規準：每個 radio 的 name 必須是 rubric，value 為 1/2/3；自動儲存為欄位 rubric -->
+      <div class="rubric">
+        <h4>自評規準（選一個最接近你的答案）</h4>
+        <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">三級</span><span>完整：……</span></label>
+        <label class="lv"><input type="radio" name="rubric" value="2"><span class="lv-name">二級</span><span>部分：……</span></label>
+        <label class="lv"><input type="radio" name="rubric" value="1"><span class="lv-name">一級</span><span>需再想：……</span></label>
+      </div>
+    </details>
+  </section>
+
+  <!-- 完成按鈕（可選）：data-iod-complete 點擊後標記本頁完成（導覽列顯示綠點）。按「下一步」也會自動標記完成 -->
+  <p><button class="btn" type="button" data-iod-complete>我完成本頁了</button></p>
+
+  <!-- 匯出／清除（可選，通常在 index 或單元末頁）：data-iod-export="csv|json"、data-iod-clear；data-iod-student 內嵌學生代碼 -->
+  <p class="small muted">學生代碼：<span data-iod-student></span>
+    <button class="btn ghost" type="button" data-iod-export="csv">下載 CSV</button>
+    <button class="btn ghost" type="button" data-iod-export="json">下載 JSON</button>
+    <button class="btn danger" type="button" data-iod-clear>清除本機資料</button></p>
+
+  <p class="bridge-out">下一頁我們將……。</p>
+</main>
+
+<!--
+  JS API（window.IOD，皆可在頁內 <script> 於 DOMContentLoaded 後呼叫）：
+  IOD.store.get(key, default) / set(key, val) / remove(key) / keys()   localStorage 封裝（key 自動加 iod: 前綴；失敗退回記憶體）
+  IOD.studentId()                                      匿名學生代碼 S-XXXXXX（首次自動產生）
+  IOD.saveAnswer(page, qid, field, value, activity)    寫入作答（自動保留修訂歷程）
+  IOD.getAnswer(page, qid, field)                      讀取最新值，無則 null
+  IOD.logEvent(page, qid, field, value, activity)      記錄操作事件（例如模擬器操作、切換素材）
+  IOD.allAnswers()                                     所有紀錄陣列
+  IOD.getProgress(page) / setProgress(page, pct, done) / markDone(page) / overall()
+  IOD.exportCSV() / exportJSON() / toCSV() / toJSON() / download(name, text, mime)
+  IOD.clearAll()                                       確認後清除全部本機資料
+  IOD.toast(msg)                                       下方短暫提示
+  匯出欄位：student_id, activity, page, qid, field, value, timestamp, revisions, version
+-->
+<footer class="site-footer">干涉與繞射（雙狹縫）線上教材｜資料僅存於本機瀏覽器，不收集個資</footer>
+</body>
+</html>

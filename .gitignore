@@ -1,0 +1,15 @@
+# macOS / editor
+.DS_Store
+._*
+.vscode/
+.idea/
+*.swp
+*~
+
+# 測試與匯出產物（教材本身不產生這些檔案）
+node_modules/
+*.log
+iod_*.csv
+iod_*.json
+screenshots/
+test-output/

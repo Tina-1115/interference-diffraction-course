@@ -1,0 +1,20 @@
+/* 學習地圖頁樣式 */
+.hero{background:linear-gradient(135deg,#eaf3fc,#fff);border:1px solid var(--c-line);border-radius:var(--r);padding:14px 18px;margin:12px 0}
+.hero .core{font-size:1.05rem;font-weight:700;color:var(--c-primary-d)}
+.route{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:12px 0;counter-reset:st}
+.route li{flex:1 1 130px;min-width:130px;position:relative}
+.route a{display:block;height:100%;text-decoration:none;color:var(--c-text);background:var(--c-surface);border:1px solid var(--c-line);border-top:4px solid var(--c-primary);border-radius:var(--r);padding:8px 10px;font-size:.88rem;line-height:1.5}
+.route a:hover{background:#f1f6fc}
+.route a b{display:block;color:var(--c-primary-d);font-size:.95rem}
+.route a small{color:var(--c-muted)}
+.route a .st{display:inline-block;margin-top:4px;font-size:.75rem;border-radius:999px;padding:0 .6em;background:var(--c-tag);color:var(--c-muted)}
+.route a.done{border-top-color:var(--c-ok)} .route a.done .st{background:#e1f4e8;color:var(--c-ok);font-weight:700}
+.route li.test a{border-top-color:var(--c-accent)}
+.timebar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:6px 0;border:1px solid var(--c-line)}
+.timebar span{display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#fff;overflow:hidden;white-space:nowrap;border-right:1px solid rgba(255,255,255,.7)}
+.timebar span:nth-child(5n+1){background:#1f5fa8}.timebar span:nth-child(5n+2){background:#3b86c9}.timebar span:nth-child(5n+3){background:#2a8a4a}.timebar span:nth-child(5n+4){background:#c46b12}.timebar span:nth-child(5n+5){background:#7a5ea8}
+.goal-tag{display:inline-block;font-size:.75rem;background:#e8f0fb;color:var(--c-primary-d);border-radius:999px;padding:0 .6em;font-weight:700;margin-right:3px}
+.steps-list{counter-reset:s;list-style:none;padding:0}
+.steps-list li{counter-increment:s;position:relative;padding:6px 10px 6px 42px;margin:6px 0;background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r)}
+.steps-list li::before{content:counter(s);position:absolute;left:10px;top:7px;width:24px;height:24px;border-radius:50%;background:var(--c-primary);color:#fff;text-align:center;line-height:24px;font-weight:700;font-size:.85rem}
+.store-box{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}

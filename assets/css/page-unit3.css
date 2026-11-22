@@ -1,0 +1,55 @@
+/* unit3 專屬樣式（不修改 site.css） */
+.u3-tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.u3-tag{font-size:.8rem;border-radius:999px;padding:1px 10px;background:#e4effa;color:var(--c-primary-d);border:1px solid #b9d2ee}
+.u3-tag.k4{background:#fdebd9;color:#8a4a0c;border-color:#efc79c}
+.u3-toc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.u3-toc a{font-size:.88rem;text-decoration:none;border:1px solid var(--c-line);background:#fff;border-radius:8px;padding:2px 10px}
+.u3-toc a:hover{background:#eef4fb}
+.u3-time{display:inline-block;background:var(--c-primary-d);color:#fff;border-radius:6px;font-size:.78rem;padding:0 8px;margin-left:8px;vertical-align:middle;font-weight:400}
+.sim{background:#fff;border:1px solid var(--c-line);border-radius:var(--r);padding:10px;margin:12px 0;position:relative}
+.sim canvas{display:block;width:100%;height:auto;border-radius:6px;background:#0b0f18}
+.sim .ctrl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 16px;margin:10px 0 4px;font-size:.92rem}
+.sim .ctrl label{display:block}
+.sim .ctrl input[type=range]{width:100%}
+.sim .ctrl output{font-family:var(--mono);font-weight:700;color:var(--c-primary-d)}
+.sim .readout{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;background:#f4f7fb;border-radius:8px;padding:6px 10px;margin-top:6px}
+.sim .readout b{font-family:var(--mono)}
+.sim .gate{position:absolute;inset:0;background:rgba(247,249,252,.93);z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px;border-radius:var(--r)}
+.sim .gate[hidden]{display:none}
+.modes{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0}
+.modes label{border:1px solid var(--c-line);border-radius:8px;padding:3px 12px;cursor:pointer;background:#fff}
+.cmp td,.cmp th{min-width:9em}
+.cmp input[type=text]{width:100%;font:inherit;padding:5px;border:1px solid #b7c3d2;border-radius:6px}
+.gal{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.gal figure.asset{margin:0}
+.mech{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:10px 0}
+.mech .item{border:1px solid var(--c-line);border-radius:var(--r);padding:8px;background:#fff}
+.mech .item canvas{width:100%;height:auto;border-radius:6px;background:#10131c;display:block}
+.mech .item select{width:100%;margin-top:6px}
+.mech .fb{font-size:.84rem;margin-top:6px;min-height:1.4em}
+.fb.ok{color:var(--c-ok)} .fb.no{color:#b03a2e}
+.qz-score{font-size:1.05rem;background:#eef8f1;border:1px solid #bfe0c8;border-radius:8px;padding:8px 12px;margin:8px 0}
+.qz-fb{font-size:.9rem;margin-top:6px}
+.qz-fb.ok{color:var(--c-ok)} .qz-fb.no{color:#b03a2e}
+.pts{font-size:.78rem;background:#eef0f4;border-radius:4px;padding:0 6px;margin-left:6px;color:var(--c-muted)}
+.recap li{margin:.3em 0}
+details.ext>summary{cursor:pointer;font-weight:700;padding:6px 0}
+.lic{font-size:.8rem;color:var(--c-muted)}
+.warn-note{border-left:5px solid var(--c-warn);background:#fff9e6;padding:8px 12px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.93rem}
+.evid{border-left:5px solid var(--c-ok);background:#eef8f1;padding:6px 12px;border-radius:0 8px 8px 0;font-size:.9rem}
+.model{border-left:5px solid #7a4fb5;background:#f4eefb;padding:6px 12px;border-radius:0 8px 8px 0;font-size:.9rem}
+/* POE 步驟 */
+.poe-steps{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 10px}
+.poe-steps span{font-size:.8rem;padding:1px 10px;border-radius:999px;background:#eef0f4;color:var(--c-muted);border:1px solid var(--c-line)}
+.poe-steps span.on{background:#e4effa;color:var(--c-primary-d);border-color:#b9d2ee}
+.poe-steps span.cur{background:var(--c-primary);color:#fff;border-color:var(--c-primary)}
+.poe fieldset{border:0;padding:0;margin:12px 0;min-width:0}
+.poe fieldset>legend{font-weight:700;color:var(--c-primary-d);padding:0;margin-bottom:4px}
+.poe fieldset[disabled]{opacity:.55}
+.poe fieldset[disabled] .gated{display:none}
+.poe .lock-msg{background:#fff9e6;border:1px dashed #e6c36f;border-radius:8px;padding:6px 12px;font-size:.88rem;margin:8px 0}
+.poe fieldset:not([disabled]) .gate-hint{display:none}
+.poe fieldset[disabled] .gate-hint{display:block;font-size:.88rem;color:var(--c-muted)}
+.sim-off .ctrl,.sim-off canvas{pointer-events:none;opacity:.45}
+.step-s{font-size:.85rem;color:var(--c-muted);margin:0 0 4px}
+.poe textarea:disabled,.poe input:disabled{background:#f1f3f6}

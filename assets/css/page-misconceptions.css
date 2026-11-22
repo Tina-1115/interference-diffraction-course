@@ -1,0 +1,15 @@
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.filter-bar button{font:inherit;border:1px solid var(--c-primary);background:#fff;color:var(--c-primary);border-radius:999px;padding:4px 14px;cursor:pointer}
+.filter-bar button[aria-pressed="true"]{background:var(--c-primary);color:#fff}
+.mis{scroll-margin-top:70px}
+.mis h3{margin-top:0}
+.mis .meta{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px;font-size:.85rem}
+.mis .meta span{background:var(--c-tag);border:1px solid var(--c-line);border-radius:4px;padding:0 .5em}
+.step{border-left:4px solid var(--c-line);padding:2px 0 2px 12px;margin:12px 0}
+.step h4{margin:.2em 0;font-size:1rem}
+.step.s0{border-color:var(--c-accent)} .step.s4{border-color:var(--c-ok)}
+.chk{display:block;padding:3px 0}
+.missing{background:#fdecea;border:1px dashed #d98880;border-radius:8px;padding:8px 12px;font-size:.92rem;margin:8px 0}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.hidden-m{display:none}
+.hints .tbl-ref{font-size:.85rem;color:var(--c-muted)}
