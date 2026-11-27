@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>專案報告｜干涉與繞射線上教材</title>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/textbook.css">
+<style>.report h2{margin-top:1.8em}.report code,.report pre{font-family:var(--mono);font-size:.88em}.report pre{background:var(--tb-note-bg);padding:.8rem 1rem;border-radius:10px;overflow-x:auto}.report li{margin:.25em 0}.report table th{text-align:left}</style>
+<script defer src="assets/js/site.js"></script>
+</head>
+<body data-page="report" data-prev="resources.html">
+<a class="skip" href="#main">跳到主要內容</a>
+<main id="main" class="report">
+<header class="tb-section-head"><span class="tb-secno">附錄</span><h1>干涉與繞射線上教材 專案報告</h1></header>
+<p class="small muted">本頁由 docs/專案報告.md 產生；原始檔在 GitHub repo 的 docs 資料夾。</p>
+<ul>
+<li>公開網站：https://tina-1115.github.io/interference-diffraction-course/</li>
+<li>GitHub：https://github.com/Tina-1115/interference-diffraction-course</li>
+<li>報告日期：2026-11-27</li>
+<li>範圍：把 <code>02_已填寫參考範例/</code> 的 10 份 docx，整合為一套有整體性的高一物理「干涉與繞射」線上教材。</li>
+</ul>
+<h2>1. 摘要</h2>
+<p>網站為純前端（HTML／CSS／JS，不需建置工具），學生作答存在瀏覽器 localStorage，可匯出 CSV／JSON。本輪在既有網站上補強，沒有重做：</p>
+<ol>
+<li>學生版與教師版顯示分離。</li>
+<li>有來源可比對的文字還原為原文，不改寫。</li>
+<li>全站統一編號（LO、題號、迷思），迷思→提示→題目有深連結。</li>
+<li>新增後端（Python，Vercel 執行環境）與教師後台。</li>
+<li>教師專區新增文件矛盾清單、編號對照表、草擬待確認清單。</li>
+</ol>
+<p><strong>目前線上的是靜態部分（GitHub Pages）。後端與教師登入在線上不會運作</strong>（見第 8 節）。</p>
+<h2>2. 來源文件分類與用途</h2>
+<p>依你指定的三類整理：</p>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>類別</th>
+<th>文件</th>
+<th>用途</th>
+<th>在網站的落點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 教材文本（含素材）</td>
+<td>01 核心教材文本開發表</td>
+<td>4 個知識節點的教材正文</td>
+<td>各節頁首正文、節點說明</td>
+</tr>
+<tr>
+<td></td>
+<td>04 延伸學習資源教材公版</td>
+<td>三階段進程與 5 項延伸資源</td>
+<td><code>resources.html</code></td>
+</tr>
+<tr>
+<td></td>
+<td>07A 多模態輔助教材素材清單</td>
+<td>既有素材（模擬、圖片）登錄</td>
+<td>各節素材庫、教師專區素材目錄</td>
+</tr>
+<tr>
+<td></td>
+<td>07B 多模態輔助教材需求腳本</td>
+<td>疊加的靜態圖、動畫、模擬規格</td>
+<td>第 1 節比較圖、36 秒動畫、脈衝模擬（網頁重現）</td>
+</tr>
+<tr>
+<td>② 學習活動</td>
+<td>02 單元教案與教學指引</td>
+<td>3 節課流程、目標、評量對應</td>
+<td>學習地圖、各節時間流程、教師專區</td>
+</tr>
+<tr>
+<td></td>
+<td>03 紙本學習單開發表</td>
+<td>雙狹縫學習單 Q1–Q6</td>
+<td>第 2 節活動一至三</td>
+</tr>
+<tr>
+<td></td>
+<td>10 常見學習困難與引導策略</td>
+<td>5 項迷思與 L1–L3 提示</td>
+<td><code>misconceptions.html</code>、各題卡提示</td>
+</tr>
+<tr>
+<td>③ 試題評量</td>
+<td>05 核心教學題目</td>
+<td>7 張建構反應題卡</td>
+<td>分散在第 1–3 節題卡（C1–C7）</td>
+</tr>
+<tr>
+<td></td>
+<td>06 評量雙向細目表</td>
+<td>前測、隨堂、後測細目</td>
+<td><code>assessment.html</code>、前後測</td>
+</tr>
+<tr>
+<td></td>
+<td>08 數位教材整合規劃表</td>
+<td>第 2 節 ACT01 數位規格</td>
+<td>第 2 節 ACT01、教師後台設計</td>
+</tr>
+</tbody>
+</table></div>
+<p>三類之間的銜接：教材文本先建立概念 → 學習活動以「預測→觀察→解釋→修正」處理該概念 → 作答時偵測迷思並連到提示 → 試題評量把答錯的選項對回迷思卡與單元題卡。</p>
+<h2>3. 做法</h2>
+<ul>
+<li><strong>逐項決策（grilling）</strong>：先找出設計樹，分輪向你提問並給建議答案，你全部確認後才動手。已定案的決定：在現有網站上補強、不重構；原文不改寫；3 節課為路徑；薄膜納入本單元；以 02 為準處理第 2 節時間；統一編號；缺的題幹草擬並標示；教師後台需要後端；AI 追問維持規則式示範。</li>
+<li><strong>子代理</strong>：先用 3 個子代理分組讀完 10 份 docx（教材文本／學習活動／評量與整合），再用 1 個子代理稽核既有網站對 10 份文件的涵蓋度；施工階段 6 個子代理按檔案分工（第 1、2、3 節頁面，測驗與迷思速查，後端與後台，教師專區），各自只改被指派的檔案。</li>
+<li><strong>驗證</strong>：全站 14 支 JS 用 JavaScriptCore 通過語法檢查；靜態錨點檢查無壞連結（前後測 <code>#q1–q14</code> 為執行期產生）；用瀏覽器實測學生／教師顯示分離、前測作答與迷思記錄、同步、教師後台載入。</li>
+</ul>
+<h2>4. 既有網站的稽核發現（施工前）</h2>
+<p>10 份文件幾乎都有落點，連結無壞，但有五個弱點：
+1. 學生端洩漏題目來源，並混入 74 處整合者註記。
+2. 站內沒有任何原始素材檔，全為重繪。
+3. 35 題前後測與第 1、3 節學習單題幹是整合者自編。
+4. 迷思、提示、題目的串接只到頁級連結。
+5. AI 追問是規則式示範。</p>
+<h2>5. 本輪變更</h2>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>項目</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>學生／教師分離</td>
+<td><code>site.js</code> 新增教師模式；<code>site.css</code> 規定學生端隱藏 <code>.t-only</code>、<code>.badge-add</code>、<code>.badge-draft</code>、<code>.add-block</code>、<code>.missing</code>、<code>.editor-note</code>、題目來源；作答前不洩漏答案線索</td>
+</tr>
+<tr>
+<td>原文還原</td>
+<td>例如 01 ④、02 第 2、3 節時間表、03 活動 01–04、05 C1–C7 預期證據與答案要素、10 範例 1–3 的 L1–L3；節點 04 漏掉的第 4 段補回</td>
+</tr>
+<tr>
+<td>編號</td>
+<td><code>LO1–LO4</code>、<code>U1-S{節}-Q{題}</code>、<code>PRE-Q</code>／<code>POST-Q</code>／<code>S3-QZ</code>、<code>C1–C7</code>、<code>M1–M5</code></td>
+</tr>
+<tr>
+<td>迷思串接</td>
+<td>作答存 <code>mis</code> 欄位；答錯回饋有迷思深連結；迷思卡列「出現於」</td>
+</tr>
+<tr>
+<td>後端</td>
+<td><code>api/</code>（submit、teacher verify／classes／class／delete）、<code>devserver.py</code>、<code>sync.js</code>（離線佇列補傳、班級代碼）</td>
+</tr>
+<tr>
+<td>教師後台</td>
+<td><code>dashboard.html</code>：各節進度、迷思 M1–M5 出現率、前後測增益、單一學生檢視、CSV／JSON 匯出、刪除</td>
+</tr>
+<tr>
+<td>教師專區</td>
+<td>文件納入對照重寫；新增文件矛盾清單、編號對照表、草擬待確認清單、部署前待辦</td>
+</tr>
+</tbody>
+</table></div>
+<h2>6. 十份文件的納入程度（如實）</h2>
+<div class="tbl-wrap"><table class="tbl">
+<thead>
+<tr>
+<th>文件</th>
+<th>程度</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>完整</td>
+<td>節點 03、04 併入第 3 節</td>
+</tr>
+<tr>
+<td>04</td>
+<td>完整</td>
+<td>第一進階第 1 項原文沒有網址</td>
+</tr>
+<tr>
+<td>05</td>
+<td>形式完整</td>
+<td>7 題卡分散各節；原文無題號，站內暫編 C1–C7；Q5 無對應題卡</td>
+</tr>
+<tr>
+<td>06</td>
+<td>結構完整、題幹草擬</td>
+<td>06 只有題號與主題，35 題題幹為整合者草擬</td>
+</tr>
+<tr>
+<td>07A</td>
+<td>僅目錄與重繪</td>
+<td>站內沒有原始圖檔與 4 個模擬 HTML</td>
+</tr>
+<tr>
+<td>07B</td>
+<td>網頁重現</td>
+<td>沒有實際 MP4／PNG</td>
+</tr>
+<tr>
+<td>02</td>
+<td>完整</td>
+<td>課綱代碼只在教師專區</td>
+</tr>
+<tr>
+<td>03</td>
+<td>完整</td>
+<td>只有第 2 節題目；第 1、3 節題幹原文件沒有</td>
+</tr>
+<tr>
+<td>08</td>
+<td>規格完整，AI 為規則式</td>
+<td>只示範 ACT01；A01 規範文件不在這 10 份內</td>
+</tr>
+<tr>
+<td>10</td>
+<td>完整（限原文範圍）</td>
+<td>單狹縫、薄膜無迷思條目（原文缺）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>7. 文件間矛盾（保留原文，不統一；各頁有編者註，教師可見）</h2>
+<ol>
+<li>03 把雙狹縫寫成「第 3 節」，03 教材來源與 02 皆為第 2 節。</li>
+<li>時間切分：02 第 2 節為 8/7/17/13/5 分，03 為 8/12/15/15 分。</li>
+<li>第 1 節 Q1 與第 2 節 Q1 同名不同義；10 範例 2、3 的引用在 02、03 找不到。</li>
+<li>02 目標 2 的證據欄漏列 Q3。</li>
+<li>06「三節共 21 題／45 分」，實際為前測 14＋隨堂 7＋後測 14＝35 題／75 分。</li>
+<li>04 把薄膜放進階，01、05、06、07A 納入本單元。</li>
+<li>01 為 4 個知識節點，其餘為 3 節。</li>
+<li>03 活動 04「不新增公式」與本站模擬的差異。</li>
+<li>術語：電場疊加／相位／光強；相干／同調。</li>
+<li>05 勾選「師生共用」但答案要素僅供教師；卡片無題號。</li>
+<li>02／05 寫「3D 及俯視」，第 1 節頁面只有 2D；Q2 為畫圖，頁面以讀數記錄取代。</li>
+<li>07A 重複登錄、新舊版重疊、無素材流水號、授權缺漏。</li>
+<li>08 引用的 A01 規範不在 10 份內。</li>
+</ol>
+<h2>8. 限制與風險（請務必閱讀）</h2>
+<ul>
+<li><strong>線上只有靜態部分</strong>：GitHub Pages 無法執行後端。線上的教師登入會顯示「無法連線到伺服器」，教師專區與後台在線上打不開，學生作答也不會同步到伺服器（只存在各自瀏覽器）。若要啟用，需另行部署到 Vercel（尚未做，未經你同意不會做）。</li>
+<li><strong>Vercel Blob 完全沒測</strong>：官方文件只有 SDK，沒有公開的 REST 規格；後端使用官方 Python SDK，本機沒有 token，只測了沒有 token 時寫本機資料夾的路徑。<code>vercel.json</code> 的 <code>includeFiles</code> 與 Python 版本也未驗證。</li>
+<li><strong>部署前待辦</strong>：建立 <strong>Private</strong> Blob store；設定 <code>TEACHER_PASSCODE</code>、<code>TOKEN_SECRET</code>；在 Vercel 防火牆對 <code>/api/teacher/verify</code> 設速率限制；<code>/api/submit</code> 無驗證可被灌垃圾資料；資料無自動過期，只能教師手動刪除。</li>
+<li><strong>靜態網站無法保密</strong>：repo 是公開的，教師專區頁面與答案相關屬性（<code>data-correct</code>、<code>data-mis</code>）在原始碼裡，任何人都能讀。教師模式只是顯示分離，不是存取控制。若不希望答案公開，請改為私有 repo 或不要公開教師專區內容。</li>
+<li><strong>內容待教師確認</strong>：迷思選項對應（10 沒有選項級對應）、前後測 35 題、第 1 節 Q1–Q8、第 3 節部分題幹，皆為整合者草擬或推定，已標「草擬待教師確認」。</li>
+<li><strong>素材</strong>：站內全為 SVG／canvas 重繪，沒有原始圖檔、影片與 4 個原模擬；外部連結與授權未驗證；S1-1、S3-4、S3-18 授權待補。</li>
+<li><strong>AI</strong>：「AI 追問」是規則式示範，非真實 AI。</li>
+<li><strong>未實測</strong>：手機版細節、深色模式、CSV 匯出與刪除按鈕的點擊、外部連結、真實通行碼部署流程。僅以 Chrome 做過測試。</li>
+</ul>
+<h2>9. 後續建議（依優先序）</h2>
+<ol>
+<li>教師覆核「草擬待確認清單」與迷思選項對應。</li>
+<li>決定是否部署後端（Vercel）；部署前先處理第 8 節待辦。</li>
+<li>提供原始素材檔（圖片、4 個模擬 HTML、前後測原卷），替換重繪版。</li>
+<li>決定教師專區與答案要素是否要公開，必要時改私有 repo。</li>
+<li>補第 1、3 節學習單的正式題幹，並請教師審題 35 題前後測。</li>
+<li>實測手機與深色模式。</li>
+</ol>
+<h2>10. 檔案結構</h2>
+<pre><code>index.html / pretest.html / unit1–3.html / posttest.html / resources.html   學習路徑
+misconceptions.html / assessment.html                                       迷思速查、評量地圖
+teacher.html / dashboard.html                                               教師專區、教師後台（教師模式）
+assets/css、assets/js                                                        樣式與腳本（sync.js、quiz-engine.js 等）
+api/ / devserver.py / vercel.json                                           後端與本機測試伺服器
+docs/專案報告.md                                                             本報告
+</code></pre>
+<h2>11. 教科書版面改版（第二輪）</h2>
+<ul>
+<li><strong>參考資料的限制</strong>：翰林、南一、龍騰的高一物理課本內文沒有公開，查不到。版面規格改依公開的課本慣例，並參考資料夾中的翰林國中生物七下 PDF（科目與年級不同，只學版面，不抄內文）。另外，搜尋結果提到干涉與繞射在 108 課綱可能屬選修物理（高三），我沒能查證。</li>
+<li><strong>做法</strong>：新增共用樣式 <code>assets/css/textbook.css</code>，整站改成課本版面，不另留舊版。全教材視為「第 1 章 干涉與繞射」，三節為 1-1 波的疊加、1-2 雙狹縫干涉、1-3 繞射與應用。</li>
+<li><strong>版面元素</strong>：章首頁（章號方塊、三節清單、探究提問）、目次、學習目標框、課本式小節頁首與 ①②③ 小標、探究活動框（活動 1-1…1-3f）、想一想（迷思提示 L1–L3）、邊欄註記、圖號與表號（CSS 自動產生，如「圖 1-2-3」）、注意便利貼、自我評量框（前測、後測、隨堂測）、延伸閱讀、重點整理、列印樣式、深色模式。</li>
+<li><strong>不編造</strong>：例題、計算習題、解答、名詞索引、圖片來源、小百科等在資料中沒有來源，一律沒做。學習目標與導言只搬 02、01 的原文；index 的學習目標與核心理解因此被還原成 02 逐字（原頁是縮寫版）。</li>
+<li><strong>已知限制</strong>：</li>
+<li>子代理改版後只做了標籤配對與重複 id 檢查，我另外在瀏覽器看過首頁與第 2 節；第 1、3 節、手機寬度、列印樣式沒有逐頁實測。</li>
+<li>素材編號（M01、T01）與自動圖號並存。</li>
+<li><code>assessment.html</code> 的「四個學習目標」卡片仍是縮寫版，未還原為 02 逐字。</li>
+<li>第 3 節的「這一節你要做到」是整合者草擬，沒有套成學習目標框。</li>
+<li>各節末的 <code>tb-nav</code> 與 site.js 的上一步／下一步重複，已隱藏 <code>tb-nav</code>。</li>
+</ul>
+<h3>逐頁檢查與修正（第三輪）</h3>
+<p>用瀏覽器檢查了首頁、前測、1-1、1-2、1-3、後測、延伸閱讀、迷思速查、評量地圖、教師專區，涵蓋手機寬度、1280 寬度、深色模式；並用程式掃描文字與背景對比。</p>
+<p>已修正：
+- 手機寬度：小節號與活動號（如「1-3」「活動 1-1」）不再被折成兩行；表格欄位加最小寬度，在表格容器內橫向捲動，整頁無橫向捲動。
+- 寬螢幕：右側「注意」邊欄註記原本會壓到下方活動框的文字，現已包住浮動元素，不再重疊。
+- 深色模式：章色徽章（章號、小節號、活動標題、步驟數字）改用深色字，對比由 2.67 提升到可讀；圖片區塊在深色模式維持淺色紙面（圖解以深色線條繪製，之前變成黑底黑線）；承接下頁的提示底色改為跟隨主題；活動標題列的時間標籤不再與章色底糊在一起。
+- 標題統一：目錄的「延伸學習」改為「延伸閱讀」；1-3 的網頁標題改為 1-3。
+- 與 site.js 的上一步／下一步重複的各節末導覽（tb-nav）已隱藏。</p>
+<p>沒有修、也沒有檢查到的：
+- 停用狀態的按鈕（如「送出預測並鎖定」）對比約 3.9，因為是停用控制項，未處理。
+- 後測、評量地圖、儀表板、教師專區各分頁在手機寬度與深色模式只做了抽查，沒有每個分頁逐一看。
+- 列印樣式、Safari／Firefox 沒測。</p>
+</main>
+<footer class="site-footer"></footer>
+</body>
+</html>

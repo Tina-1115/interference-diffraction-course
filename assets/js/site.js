@@ -15,6 +15,7 @@
     { id: 'resources', href: 'resources.html', title: '延伸閱讀', group: 'main' },
     { id: 'misconceptions', href: 'misconceptions.html', title: '迷思速查', group: 'aux' },
     { id: 'assessment', href: 'assessment.html', title: '評量地圖', group: 'aux' },
+    { id: 'report', href: 'report.html', title: '專案報告', group: 'aux' },
     { id: 'teacher', href: 'teacher.html', title: '教師專區', group: 'aux', teacherOnly: true },
     { id: 'dashboard', href: 'dashboard.html', title: '教師後台', group: 'aux', teacherOnly: true }
   ];
@@ -254,7 +255,7 @@
     { label: '開始', ids: ['index', 'pretest'] },
     { label: '第1章 干涉與繞射', ids: ['unit1', 'unit2', 'unit3'] },
     { label: '評量與延伸', ids: ['posttest', 'resources'] },
-    { label: '輔助', ids: ['misconceptions', 'assessment', 'teacher', 'dashboard'] }
+    { label: '輔助', ids: ['misconceptions', 'assessment', 'report', 'teacher', 'dashboard'] }
   ];
   function groupOf(id) { var g = GROUPS.filter(function (x) { return x.ids.indexOf(id) >= 0; })[0]; return g ? g.label : ''; }
   function shortTitle(p) { return p.title; }

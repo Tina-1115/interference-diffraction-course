@@ -29,4 +29,4 @@ assets/PAGE-TEMPLATE.html、assets/README-components.md   新增頁面的範本�
 - 僅以 Chrome（桌面與手機尺寸模擬）做過自動化測試；其他瀏覽器未逐項驗證。
 
 ## 專案報告
-完整的專案報告（來源文件整合、做法、限制與後續建議）：[docs/專案報告.md](docs/專案報告.md)
+完整的專案報告（來源文件整合、做法、限制與後續建議）：網站內頁 [report.html](https://tina-1115.github.io/interference-diffraction-course/report.html)，原始檔 [docs/專案報告.md](docs/專案報告.md)
