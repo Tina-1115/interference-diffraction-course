@@ -12,7 +12,7 @@
     { id: 'unit2', href: 'unit2.html', title: '1-2 雙狹縫干涉', group: 'main' },
     { id: 'unit3', href: 'unit3.html', title: '1-3 繞射與應用', group: 'main' },
     { id: 'posttest', href: 'posttest.html', title: '後測', group: 'main' },
-    { id: 'resources', href: 'resources.html', title: '延伸學習', group: 'main' },
+    { id: 'resources', href: 'resources.html', title: '延伸閱讀', group: 'main' },
     { id: 'misconceptions', href: 'misconceptions.html', title: '迷思速查', group: 'aux' },
     { id: 'assessment', href: 'assessment.html', title: '評量地圖', group: 'aux' },
     { id: 'teacher', href: 'teacher.html', title: '教師專區', group: 'aux', teacherOnly: true },
