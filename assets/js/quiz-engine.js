@@ -14,11 +14,23 @@
     4: '提示 L1：這個說法的證據是什麼？來源可以回查嗎？它是實拍、還是模型／類比？'
   };
   var PN = ['a', 'b', 'c', 'd', 'e'];
+  /* 迷思編號（順序依 misconceptions.html 的 m1–m5；名稱取自 10 速查表「學習困難」欄） */
+  var MIS = { M1: '波像物體碰撞', M2: '位移等於振幅', M3: '暗紋等於無光', M4: '模型當成實拍', M5: '干涉繞射無關' };
+  var CHIP = C.mode === 'pre' ? 'PRE-Q' : 'POST-Q';
   var PRE = C.mode === 'pre';
   function $(s, r) { return (r || document).querySelector(s); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function r1(x) { return Math.round(x * 10) / 10; }
   function ptsOf(it) { return it.parts.reduce(function (s, p) { return s + (p.pts || 1); }, 0); }
+
+  /* ---------- 迷思對應：C.mis[題號][小題索引][選項索引] = 'M3' ---------- */
+  function misCode(it, pi, oi) { var m = C.mis && C.mis[it.no] && C.mis[it.no][pi]; return (m && m[oi]) || ''; }
+  function misOf(it) { // 目前所選選項對應的迷思編號（跨小題去重、排序、逗號分隔）；沒有則為空字串
+    var sel = chosen(it), out = [];
+    it.parts.forEach(function (p, i) { var c = sel[i] === null ? '' : misCode(it, i, sel[i]); if (c && out.indexOf(c) < 0) out.push(c); });
+    return out.sort().join(',');
+  }
+  function mlink(code) { return '<a class="mlink" href="misconceptions.html#' + code.toLowerCase() + '">迷思' + code + '</a>'; }
 
   /* ---------- 圖 ---------- */
   function pulseFig(f) {
@@ -65,7 +77,7 @@
   function fig(f) {
     if (!f) return '';
     var s = f.type === 'pulse' ? pulseFig(f) : f.type === 'disp' ? dispFig() : intFig(f);
-    return '<figure class="qfig">' + s + '<figcaption>示意圖<span class="badge-add"></span>整合者依題意自繪（理想化模型，非實拍、非 07A 素材）。</figcaption></figure>';
+    return '<figure class="qfig">' + s + '<figcaption>示意圖<span class="t-only"><span class="badge-add"></span>整合者依題意自繪（理想化模型，非實拍、非 07A 素材）。</span></figcaption></figure>';
   }
 
   /* ---------- 渲染題目 ---------- */
@@ -73,16 +85,16 @@
     var box = $('#quiz-items'), html = '';
     C.items.forEach(function (it) {
       var h = '<section class="qcard quiz-item" id="q' + it.no + '" data-qid="Q' + it.no + '" data-act="' + C.act + '">' +
-        '<div class="q-head"><span class="q-no">第 ' + it.no + ' 題</span></div>' +
+        '<div class="q-head"><span class="q-no">第 ' + it.no + ' 題</span><span class="id-chip">' + CHIP + it.no + '</span><span class="badge-draft"></span></div>' +
         '<div class="chips"><span class="chip lv">認知層次：' + it.level + '</span><span class="chip">' + NODES[it.node] + (it.node2 ? '、節點' + it.node2 : '') + '</span><span class="chip">' + GSHORT[it.goal] + '</span><span class="chip pts">' + ptsOf(it) + ' 分</span></div>' +
         '<p class="q-stem">' + it.stem + '</p>' + fig(it.fig) + '<form onsubmit="return false">';
       it.parts.forEach(function (p, i) {
         var nm = PN[i], inline = p.opts.every(function (o) { return o.length <= 6; });
         h += '<div class="part" data-part="' + nm + '">' + (p.lead ? '<p class="lead">' + p.lead + (it.parts.length > 1 && (p.pts || 1) > 1 ? '（' + p.pts + ' 分）' : '') + '</p>' : '') + '<div class="opts' + (inline ? ' inline' : '') + '">';
-        p.opts.forEach(function (o, j) { h += '<label class="opt" data-v="' + j + '"><input type="radio" name="' + nm + '" value="' + j + '"> ' + (inline ? '' : '(' + 'ABCDE'.charAt(j) + ') ') + o + '</label>'; });
+        p.opts.forEach(function (o, j) { var mc = misCode(it, i, j); h += '<label class="opt" data-v="' + j + '"><input type="radio" name="' + nm + '" value="' + j + '"> ' + (inline ? '' : '(' + 'ABCDE'.charAt(j) + ') ') + o + (mc ? '<span class="t-only id-chip" title="教師可見：此選項對應迷思">' + mc + '</span>' : '') + '</label>'; });
         h += '</div><div class="fb"></div></div>';
       });
-      h += '</form><div class="score"></div><div class="saved" aria-live="polite"></div><p class="src">題目來源：' + it.src + (it.added ? '<span class="badge-add"></span>整合補充題' : '') + '</p></section>';
+      h += '</form><div class="score"></div><div class="saved" aria-live="polite"></div><p class="src t-only">題目來源：' + it.src + (it.added ? '<span class="badge-add"></span>整合補充題' : '') + '</p></section>';
       html += h;
     });
     box.innerHTML = html;
@@ -99,6 +111,7 @@
       var sel = chosen(it), got = 0, max = 0, ps = [];
       it.parts.forEach(function (p, i) { var pt = p.pts || 1; max += pt; var ok = sel[i] === p.ans; if (ok) got += pt; ps.push(sel[i] === null ? -1 : (ok ? 1 : 0)); });
       res.items[it.no] = { got: got, max: max, parts: ps };
+      var ms = misOf(it); if (ms) res.items[it.no].mis = ms; // 新增欄位：提交當下所選選項對應的迷思（僅有時才寫）
       res.total += got; res.max += max;
     });
     return res;
@@ -130,9 +143,10 @@
           else if (!PRE && v === p.ans && st !== 1) l.classList.add('key');
         });
         fb.className = 'fb ' + (st === 1 ? 'ok' : 'no');
+        var mc = st === 0 ? misCode(it, i, sel) : '', mtxt = mc ? ' 你選的選項常見於「' + MIS[mc] + '」的想法：' + mlink(mc) + '。' : '';
         if (st === 1) fb.innerHTML = '答對了。' + (PRE ? '' : p.why || '');
-        else if (PRE) fb.innerHTML = (st === -1 ? '尚未作答。' : '這一小題還不太對。') + (it.l1 || L1[it.goal]) + ' 回看：<a href="' + UNIT[it.goal][0] + '">' + UNIT[it.goal][1] + '</a>。（前測不顯示正解，學完後在後測再試。）';
-        else fb.innerHTML = (st === -1 ? '尚未作答。' : '修正回饋：') + '正確答案是 ' + '(' + 'ABCDE'.charAt(p.ans) + ') ' + esc(p.opts[p.ans]) + '。' + (p.why || '') + ' 想複習：<a href="' + UNIT[it.goal][0] + '">' + UNIT[it.goal][1] + '</a>；迷思可查 <a href="misconceptions.html">迷思速查</a>。';
+        else if (PRE) fb.innerHTML = (st === -1 ? '尚未作答。' : '這一小題還不太對。') + (it.l1 || L1[it.goal]) + ' 回看：<a href="' + UNIT[it.goal][0] + '">' + UNIT[it.goal][1] + '</a>。（前測不顯示正解，學完後在後測再試。）' + mtxt;
+        else fb.innerHTML = (st === -1 ? '尚未作答。' : '修正回饋：') + '正確答案是 ' + '(' + 'ABCDE'.charAt(p.ans) + ') ' + esc(p.opts[p.ans]) + '。' + (p.why || '') + ' 想複習：<a href="' + UNIT[it.goal][0] + '">' + UNIT[it.goal][1] + '</a>；' + (mc ? mtxt.replace(/^ /, '') : '迷思可查 <a href="misconceptions.html">迷思速查</a>。');
       });
       card.querySelector('.score').textContent = '本題得分：' + r.got + ' / ' + r.max;
     });
@@ -166,6 +180,9 @@
     h += '<h3>依學習目標的分項結果</h3>' + bars(G, [1, 2, 3, 4], function (k) { return GOALS[k]; });
     h += '<h3>依知識節點</h3>' + bars(N, ['01', '02', '03', '04'], function (k) { return NODES[k]; });
     h += '<h3>依認知層次</h3>' + bars(L, LEVELS, function (k) { return k; });
+    var mcount = {}; C.items.forEach(function (it) { var m = res.items[it.no].mis; if (m) m.split(',').forEach(function (c) { mcount[c] = (mcount[c] || 0) + 1; }); });
+    var mkeys = Object.keys(mcount).sort();
+    if (mkeys.length) { h += '<h3>可能還需要釐清的想法</h3><ul class="sug">'; mkeys.forEach(function (c) { h += '<li>「' + MIS[c] + '」：有 ' + mcount[c] + ' 題選到對應的選項。 ' + mlink(c) + '</li>'; }); h += '</ul>'; }
     var weak = [1, 2, 3, 4].filter(function (k) { return G[k] && pct(G[k]) < 70; });
     h += '<h3>' + (PRE ? '接下來建議' : '還想加強的地方') + '</h3>';
     if (weak.length) { h += '<ul class="sug">'; weak.forEach(function (k) { h += '<li>' + GOALS[k] + '（' + pct(G[k]) + '%）：' + (PRE ? '上課時特別留意' : '回頭複習') + ' <a href="' + UNIT[k][0] + '">' + UNIT[k][1] + '</a>。</li>'; }); h += '</ul>'; }
@@ -211,12 +228,13 @@
   }
   function retry() {
     if (!window.confirm('要清除這次選擇、重新作答嗎？（首次提交的紀錄仍會保留，用於前後測比較。）')) return;
-    C.items.forEach(function (it) { it.parts.forEach(function (p, i) { IOD.saveAnswer(C.page, 'Q' + it.no, PN[i], '', C.act); }); });
+    C.items.forEach(function (it) { it.parts.forEach(function (p, i) { IOD.saveAnswer(C.page, 'Q' + it.no, PN[i], '', C.act); });
+      if (IOD.getAnswer(C.page, 'Q' + it.no, 'mis') !== null) IOD.saveAnswer(C.page, 'Q' + it.no, 'mis', '', C.act); });
     IOD.saveAnswer(C.page, '_meta', 'submitted', '0', C.act);
     location.reload();
   }
   function bpTable() {
-    var b = C.blueprint, h = '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>學習目標與知識節點（06 列名）</th>' + LEVELS.map(function (l) { return '<th class="c">' + l + '</th>'; }).join('') + '<th class="c">題數</th><th class="c">配分</th><th class="c">占分比</th></tr></thead><tbody>';
+    var b = C.blueprint, h = '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>學習目標與知識節點</th>' + LEVELS.map(function (l) { return '<th class="c">' + l + '</th>'; }).join('') + '<th class="c">題數</th><th class="c">配分</th><th class="c">占分比</th></tr></thead><tbody>';
     b.rows.forEach(function (r) { h += '<tr><td>' + r[0] + '</td>' + [1, 2, 3, 4, 5, 6].map(function (i) { return '<td class="c">' + (r[1][i - 1] || '---') + '</td>'; }).join('') + '<td class="c">' + r[2] + '</td><td class="c">' + r[3] + '</td><td class="c">' + r[4] + '</td></tr>'; });
     h += '<tr><th>合計</th>' + b.sum.map(function (s) { return '<th class="c">' + s + '</th>'; }).join('') + '<th class="c">14</th><th class="c">30</th><th class="c">100%</th></tr></tbody></table></div>';
     var el = $('#blueprint'); if (el) el.innerHTML = h;
@@ -227,6 +245,14 @@
     a.querySelector('[data-act-submit]').addEventListener('click', submit);
     a.querySelector('[data-act-retry]').addEventListener('click', retry);
     a.querySelector('[data-act-retry]').style.display = 'none';
+    C.items.forEach(function (it) { // 迷思對應：選項改變時存 mis 欄（與 site.js 自動儲存的 a/b/c… 欄互不干擾）
+      if (!(C.mis && C.mis[it.no])) return;
+      $('[data-qid="Q' + it.no + '"]').addEventListener('change', function () {
+        var v = misOf(it), q = 'Q' + it.no;
+        if (v === '' && IOD.getAnswer(C.page, q, 'mis') === null) return;
+        IOD.saveAnswer(C.page, q, 'mis', v, C.act);
+      });
+    });
     C.items.forEach(function (it) { if (ptsOf(it) !== it.pts) console.warn('配分不符', it.no, ptsOf(it), it.pts); });
   }
   init(); // defer 腳本執行時 DOM 已就緒，先渲染，site.js 的 init 之後才綁定自動儲存

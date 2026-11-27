@@ -24,3 +24,12 @@ document.addEventListener('DOMContentLoaded',function(){
   });});
   if(location.hash){var el=document.getElementById(location.hash.slice(1));if(el&&el.closest('.panel'))sel(el.closest('.panel').id);}
 });
+/* 題號編碼（顯示用 id-chip，不改變原文）：前測 PRE-Q{n}、第3節隨堂 S3-QZ{n}、後測 POST-Q{n} */
+document.addEventListener('DOMContentLoaded',function(){
+  var map={pre:'PRE-Q',unit:'S3-QZ',post:'POST-Q'};
+  document.querySelectorAll('tr[id]').forEach(function(tr){
+    var m=/^(pre|unit|post)-(\d+)$/.exec(tr.id);if(!m)return;
+    var td=tr.querySelector('td');if(!td)return;
+    var c=document.createElement('span');c.className='id-chip';c.textContent=map[m[1]]+m[2];td.appendChild(c);
+  });
+});

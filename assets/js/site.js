@@ -15,7 +15,8 @@
     { id: 'resources', href: 'resources.html', title: '延伸學習', group: 'main' },
     { id: 'misconceptions', href: 'misconceptions.html', title: '迷思速查', group: 'aux' },
     { id: 'assessment', href: 'assessment.html', title: '評量地圖', group: 'aux' },
-    { id: 'teacher', href: 'teacher.html', title: '教師專區', group: 'aux' }
+    { id: 'teacher', href: 'teacher.html', title: '教師專區', group: 'aux', teacherOnly: true },
+    { id: 'dashboard', href: 'dashboard.html', title: '教師後台', group: 'aux', teacherOnly: true }
   ];
   var MAIN = PAGES.filter(function (p) { return p.group === 'main'; });
 
@@ -46,6 +47,77 @@
       return out;
     }
   };
+
+  /* ---------- 變更通知（供 sync.js 等模組掛接） ---------- */
+  var listeners = [];
+  function onChange(fn) { if (typeof fn === 'function') listeners.push(fn); }
+  function fire(kind, info) { listeners.forEach(function (fn) { try { fn(kind, info); } catch (e) {} }); }
+
+  /* ---------- 教師模式（通行碼驗證；靜態網站僅為顯示分離，不是加密） ---------- */
+  var TKEY = 'iod-teacher-token';
+  function teacherToken() { try { return window.sessionStorage.getItem(TKEY) || ''; } catch (e) { return mem[TKEY] || ''; } }
+  function setTeacherToken(t) {
+    try { if (t) window.sessionStorage.setItem(TKEY, t); else window.sessionStorage.removeItem(TKEY); } catch (e) { mem[TKEY] = t || ''; }
+    applyTeacherMode();
+  }
+  function isTeacher() { return !!teacherToken(); }
+  function isLocalDev() { return /^(file:|)$/.test(location.protocol) || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname); }
+  function applyTeacherMode() {
+    var on = isTeacher();
+    document.documentElement.classList.toggle('teacher-mode', on);
+    var b = document.querySelector('.tm-btn');
+    if (b) b.textContent = on ? '教師模式：開（點此關閉）' : '教師登入';
+    var g = document.querySelector('.t-gate');
+    var needs = document.body && document.body.hasAttribute('data-teacher-only');
+    if (needs) {
+      var main = document.getElementById('main');
+      if (main) main.hidden = !on;
+      if (!on && !g) {
+        g = document.createElement('div'); g.className = 't-gate';
+        g.innerHTML = '<h1>教師專用頁面</h1><p>這一頁包含教案、答案要素與全班資料，請先登入教師模式。</p><p><button type="button" class="tm-open">教師登入</button></p>';
+        document.body.insertBefore(g, document.getElementById('main') || null);
+        g.querySelector('.tm-open').addEventListener('click', teacherDialog);
+      }
+      if (on && g) g.remove();
+    }
+  }
+  function teacherLogin(code) {
+    return fetch('/api/teacher/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ passcode: code }) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (x) { if (x.ok && x.j.token) { setTeacherToken(x.j.token); return { ok: true }; } return { ok: false, msg: '通行碼不正確' }; })
+      .catch(function () {
+        if (isLocalDev()) { setTeacherToken('local-preview'); return { ok: true, local: true }; }
+        return { ok: false, msg: '無法連線到伺服器，暫時無法驗證' };
+      });
+  }
+  function teacherDialog() {
+    if (isTeacher()) { setTeacherToken(''); toast('已關閉教師模式'); return; }
+    var d = document.querySelector('.tm-dialog');
+    if (!d) {
+      d = document.createElement('dialog'); d.className = 'tm-dialog';
+      d.innerHTML = '<form method="dialog"><h2>教師登入</h2><label>通行碼<br><input type="password" class="tm-code" autocomplete="off"></label><p class="tm-msg small" role="alert"></p><div class="tm-row"><button value="ok" class="tm-ok">登入</button> <button value="cancel" type="button" class="tm-cancel">取消</button></div></form>';
+      document.body.appendChild(d);
+      d.querySelector('.tm-cancel').addEventListener('click', function () { d.close(); });
+      d.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var code = d.querySelector('.tm-code').value, msg = d.querySelector('.tm-msg');
+        msg.textContent = '驗證中…';
+        teacherLogin(code).then(function (r) {
+          if (r.ok) { d.close(); d.querySelector('.tm-code').value = ''; toast(r.local ? '教師模式（本機預覽，未經伺服器驗證）' : '已開啟教師模式'); }
+          else msg.textContent = r.msg;
+        });
+      });
+    }
+    d.querySelector('.tm-msg').textContent = '';
+    if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+    d.querySelector('.tm-code').focus();
+  }
+  function renderTeacherBtn() {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'tm-btn';
+    b.addEventListener('click', teacherDialog);
+    document.body.appendChild(b);
+    applyTeacherMode();
+  }
 
   /* ---------- 學生匿名代碼 ---------- */
   function studentId() {
@@ -83,6 +155,7 @@
     rec.value = value; rec.ts = now(); rec.activity = activity || rec.activity || '';
     store.set(k, rec);
     touchProgress(page);
+    fire('answer', { page: page, qid: qid, field: field });
     return rec;
   }
   function getAnswer(page, qid, field) {
@@ -116,6 +189,7 @@
     if (p.done) p.pct = 100;
     p.ts = now(); store.set('prog:' + page, p);
     renderProgress();
+    fire('progress', { page: page });
     return p;
   }
   function markDone(page) { return setProgress(page || pageId(), 100, true); }
@@ -182,7 +256,7 @@
     { label: '第2節', ids: ['unit2'] },
     { label: '第3節', ids: ['unit3'] },
     { label: '評量與延伸', ids: ['posttest', 'resources'] },
-    { label: '輔助', ids: ['misconceptions', 'assessment', 'teacher'] }
+    { label: '輔助', ids: ['misconceptions', 'assessment', 'teacher', 'dashboard'] }
   ];
   function groupOf(id) { var g = GROUPS.filter(function (x) { return x.ids.indexOf(id) >= 0; })[0]; return g ? g.label : ''; }
   function shortTitle(p) { return p.title.replace(/^第\d節\s*/, ''); }
@@ -303,7 +377,7 @@
       g.ids.forEach(function (id) {
         var p = pageInfo(id); if (!p) return;
         var t = /^unit/.test(id) ? shortTitle(p) : p.title;
-        html += '<li class="s-item' + (id === cur ? ' cur' : '') + '" data-id="' + id + '"><a class="s-link" href="' + p.href + '"' + (id === cur ? ' aria-current="page"' : '') +
+        html += '<li class="s-item' + (p.teacherOnly ? ' t-only' : '') + (id === cur ? ' cur' : '') + '" data-id="' + id + '"><a class="s-link" href="' + p.href + '"' + (id === cur ? ' aria-current="page"' : '') +
           '><span class="s-title">' + esc(t) + '</span><span class="s-stat"></span></a><div class="s-bar"><i></i></div></li>';
       });
       html += '</ul>';
@@ -416,6 +490,16 @@
     document.querySelectorAll('[data-iod-student]').forEach(function (el) { el.textContent = studentId(); });
   }
 
+  /* ---------- 動態載入雲端同步模組（可選；API 不可用時不影響離線使用） ---------- */
+  function loadSync() {
+    if (document.querySelector('script[data-iod-sync]')) return;
+    var base = (document.currentScript && document.currentScript.src) || '';
+    var el = document.createElement('script');
+    el.src = 'assets/js/sync.js'; el.defer = true; el.setAttribute('data-iod-sync', '1');
+    el.onerror = function () { /* sync.js 尚未存在或載入失敗：忽略 */ };
+    document.body.appendChild(el);
+  }
+
   /* ---------- 初始化 ---------- */
   function init() {
     var page = pageId(), p = getProgress(page);
@@ -423,7 +507,7 @@
     root.classList.add('has-side');
     if (uiGet('side', 'open') === 'closed' && isDesktop()) root.classList.add('side-collapsed');
     applyTheme(uiGet('theme', 'auto'));
-    renderNav(); renderProgress(); renderSide(); renderPager(); renderTop(); bindCards(); bindButtons();
+    renderNav(); renderProgress(); renderSide(); renderPager(); renderTop(); bindCards(); bindButtons(); renderTeacherBtn(); loadSync();
     setSide(!root.classList.contains('side-collapsed') && isDesktop());
     updateSpy();
     document.title = (pageInfo(page) ? pageInfo(page).title + '｜' : '') + '干涉與繞射線上教材';
@@ -436,6 +520,7 @@
     saveAnswer: saveAnswer, getAnswer: getAnswer, logEvent: logEvent, allAnswers: allAnswers,
     getProgress: getProgress, setProgress: setProgress, markDone: markDone, overall: overall,
     exportCSV: exportCSV, exportJSON: exportJSON, toCSV: toCSV, toJSON: toJSON, download: download,
-    clearAll: clearAll, toast: toast
+    clearAll: clearAll, toast: toast,
+    onChange: onChange, isTeacher: isTeacher, teacherToken: teacherToken, teacherLogin: teacherLogin, teacherDialog: teacherDialog, isLocalDev: isLocalDev
   };
 })();

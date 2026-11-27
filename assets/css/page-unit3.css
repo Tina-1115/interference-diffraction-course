@@ -53,3 +53,10 @@ details.ext>summary{cursor:pointer;font-weight:700;padding:6px 0}
 .sim-off .ctrl,.sim-off canvas{pointer-events:none;opacity:.45}
 .step-s{font-size:.85rem;color:var(--c-muted);margin:0 0 4px}
 .poe textarea:disabled,.poe input:disabled{background:#f1f3f6}
+
+/* 整合者／迷思串接（U3 補強） */
+.missing{background:#fdecea;border:1px dashed #d98880;border-radius:8px;padding:8px 12px;font-size:.92rem;margin:8px 0}
+.mis-fb{background:#fff4e5;border:1px solid #f0c987;border-radius:8px;padding:6px 12px;font-size:.9rem;margin:8px 0}
+.mis-fb[hidden]{display:none}
+a.mlink{display:inline-block;background:#fdecea;color:#7a1f16;border:1px solid #e3b0aa;border-radius:999px;padding:0 .7em;font-size:.82rem;text-decoration:none;margin:0 .2em}
+a.mlink:hover{background:#f9d6d1}

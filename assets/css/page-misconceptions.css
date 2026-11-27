@@ -13,3 +13,9 @@
 .jump{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 .hidden-m{display:none}
 .hints .tbl-ref{font-size:.85rem;color:var(--c-muted)}
+.appear{display:flex;flex-wrap:wrap;gap:4px 14px;margin:2px 0 10px;font-size:.88rem;align-items:center}
+.appear .ap-g{display:inline-block}
+.appear a.ap-q{text-decoration:none}
+.appear a.ap-q .id-chip{margin:0 .15em;color:var(--c-primary)}
+.draft-hints{margin:8px 0}
+.mis .id-chip{font-size:.8rem;margin:0 .5em 0 0}

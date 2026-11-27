@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教師後台｜干涉與繞射線上教材</title>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/page-dashboard.css">
+<script defer src="assets/js/site.js"></script>
+<script defer src="assets/js/page-dashboard.js"></script>
+</head>
+<body data-page="dashboard" data-prev="teacher.html" data-teacher-only>
+<a class="skip" href="#main">跳到主要內容</a>
+<main id="main">
+  <h1>教師後台</h1>
+  <p class="small muted">本頁為教師用：讀取學生端同步到伺服器的匿名作答，看各節進度、迷思出現率、前後測增益，並可檢視單一學生的作答與提示歷程。學生只有匿名代碼，頁面不含姓名。</p>
+
+  <div class="card dash-bar">
+    <label>班級 <select id="d-class" aria-label="選擇班級"></select></label>
+    <button type="button" class="btn" id="d-reload">重新載入</button>
+    <button type="button" class="btn ghost" id="d-csv" disabled>匯出 CSV</button>
+    <button type="button" class="btn ghost" id="d-json" disabled>匯出 JSON</button>
+    <span class="small muted" id="d-status" role="status" aria-live="polite"></span>
+  </div>
+  <div id="d-msg" class="callout warn" hidden></div>
+
+  <div id="d-body" hidden>
+    <h2>班級概況</h2>
+    <div id="d-summary" class="dash-kpis"></div>
+
+    <h2>各節完成進度</h2>
+    <p class="small muted">完成度＝學生端各頁 <code>prog</code>（作答題卡比例，按「下一步」或「標記完成」視為完成）。同一份快照取自學生最後一次同步。</p>
+    <div id="d-progress"></div>
+    <details class="card"><summary><b>學生 × 頁面 完成度明細</b></summary><div class="tbl-wrap" id="d-matrix"></div></details>
+
+    <h2>迷思 M1–M5 出現率</h2>
+    <p class="small muted">依各題作答時寫入的 <code>mis</code> 欄位統計（值為逗號分隔的 M 編號；學生改選其他選項時會被改寫為空字串）。「目前」＝學生現在的作答仍帶有該迷思；「曾出現」另含修訂歷程中出現過者。<span class="editor-note-inline">只有已接上 <code>mis</code> 欄位的題目才會被計入，尚未接上者不會出現在這裡。</span></p>
+    <div id="d-mis"></div>
+
+    <h2>前後測增益</h2>
+    <p class="small muted">資料取自學生<b>第一次提交</b>的前測、後測紀錄（<code>_meta/first</code>），僅納入前後測都有的學生。依各測驗存檔內的 <code>cfgItems</code> 分組：學習目標與知識節點。各目標的前後測題組不同，分項增益只供參考。</p>
+    <div id="d-gain"></div>
+
+    <h2>單一學生作答與提示歷程</h2>
+    <div class="card dash-bar">
+      <label>學生代碼 <select id="d-student" aria-label="選擇學生"></select></label>
+      <label><input type="checkbox" id="d-hintonly"> 只看提示／迷思欄位</label>
+      <button type="button" class="btn ghost" id="d-flag">標記「教師接手」</button>
+      <button type="button" class="btn danger ghost" id="d-del">刪除此學生資料</button>
+    </div>
+    <p class="small muted">「教師接手」只在此瀏覽器做標記，不會通知學生，也不會傳到伺服器。學生端的 AI 追問仍是規則式示範，不是真實 AI。</p>
+    <div id="d-one"></div>
+  </div>
+</main>
+<footer class="site-footer">教師後台｜資料來自學生端同步的匿名快照，請依老師公告的保存期限處理</footer>
+</body>
+</html>

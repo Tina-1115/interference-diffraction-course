@@ -48,10 +48,16 @@
         if (f3) f3.disabled = !(locked && obs && String(obs.value).trim());
         if (f4) f4.disabled = !(locked && expl && String(expl.value).trim());
         if (msg) msg.hidden = locked;
+        misFb.forEach(function (m) { m.hidden = !(locked && checkedMis() && checkedMis() === m.getAttribute('data-mis')); });
         var n = !locked ? 1 : (f3 && f3.disabled ? 2 : (f4 && f4.disabled ? 3 : 4)); chip(n);
         card.dispatchEvent(new CustomEvent('poe-state', { detail: { locked: locked } }));
       }
       predEls.forEach(function (e) { e.addEventListener('change', refresh); e.addEventListener('input', refresh); });
+      /* 迷思串接：預測選項帶 data-mis 時，改選即寫入 mis 欄（選到迷思選項為 M 編號，改選別項為空字串） */
+      var misRadios = $$('input[type=radio][data-mis]', s1);
+      function checkedMis() { var c = $('input[type=radio]:checked', s1); return c ? (c.getAttribute('data-mis') || '') : ''; }
+      if (misRadios.length) $$('input[type=radio]', s1).forEach(function (r) { r.addEventListener('change', function () { save(qid, 'mis', checkedMis(), act); }); });
+      var misFb = $$('.mis-fb', card);
       if (obs) obs.addEventListener('input', refresh);
       if (expl) expl.addEventListener('input', refresh);
       if (btn) btn.addEventListener('click', function () {
@@ -264,6 +270,9 @@
       var tot = 0, p;
       tot += setfb('Z1', radio('Z1', 'z1') === 'C' ? 1 : 0, 1, '單狹縫遠場圖樣：中央亮紋較寬較亮，兩側旁側亮紋較窄且逐漸變弱，亮紋間有暗紋。');
       tot += setfb('Z2', radio('Z2', 'z2') === 'B' ? 1 : 0, 1, '窄雙縫近似兩個分立次波源；單狹縫內則是連續分布的許多次波源。兩者都用次波疊加。');
+      var z2c = $('[data-qid="Z2"] input[name="z2"]:checked'), z2mis = z2c ? (z2c.getAttribute('data-mis') || '') : '';
+      save('Z2', 'mis', z2mis, 'QUIZ-U3');
+      if (z2mis) { var z2f = $('[data-qid="Z2"] .qz-fb'); z2f.appendChild(document.createTextNode(' ')); var z2a = document.createElement('a'); z2a.className = 'mlink'; z2a.href = 'misconceptions.html#m' + z2mis.replace('M', ''); z2a.textContent = '迷思' + z2mis; z2f.appendChild(z2a); }
       tot += setfb('Z3', radio('Z3', 'z3') === 'A' ? 1 : 0, 1, '上、下表面兩路反射光重疊干涉，不同波長增強或減弱不同，所以出現色彩，不是因為色素。');
       tot += setfb('Z4', radio('Z4', 'z4') === 'B' ? 2 : 0, 2, '單縫＝甲（寬中央峰、無細條紋）；雙縫＝乙（細條紋，高度被單縫包絡限制）。丙（條紋等高）只有縫寬趨近 0 的理想化情況才出現。');
       var a1 = radio('Z5', 'ans1') === 'A' ? 2 : 0;

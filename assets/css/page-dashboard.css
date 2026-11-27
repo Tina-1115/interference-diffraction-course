@@ -1,0 +1,31 @@
+/* 教師後台。色彩一律用 site.css 的 CSS 變數（自動支援深色模式）。 */
+.dash-bar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4)}
+.dash-bar select{font:inherit;padding:6px 8px;min-width:150px;max-width:100%;background:var(--c-surface);color:var(--c-text);border:1px solid var(--c-line-strong);border-radius:var(--r-sm)}
+.dash-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-3)}
+.dash-kpis>div{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r);padding:var(--sp-3) var(--sp-4)}
+.dash-kpis b{display:block;font-size:var(--fs-xl);line-height:1.2}
+.dash-kpis span{font-size:var(--fs-sm);color:var(--c-muted)}
+.drow{display:grid;grid-template-columns:minmax(120px,220px) 1fr 120px;gap:var(--sp-3);align-items:center;padding:6px 0;border-bottom:1px dashed var(--c-line)}
+.drow .lbl{font-size:var(--fs-sm)}
+.drow .num{font-size:var(--fs-sm);text-align:right;font-variant-numeric:tabular-nums}
+.dbar{height:14px;background:var(--c-surface-2);border:1px solid var(--c-line);border-radius:999px;overflow:hidden;position:relative}
+.dbar i{display:block;height:100%;background:var(--c-primary-bg)}
+.dbar i.ok{background:var(--c-ok-bg)}
+.dbar i.mis{background:var(--c-accent-bg)}
+.dbar i.pre{background:var(--c-line-strong)}
+.dbar.two{height:10px;margin:2px 0}
+.dtd-n{font-variant-numeric:tabular-nums;text-align:center}
+.cell-0{color:var(--c-muted)}
+.cell-done{background:var(--c-ok-soft);color:var(--c-ok)}
+.cell-part{background:var(--c-warn-soft);color:var(--c-warn)}
+.delta.up{color:var(--c-ok);font-weight:700}.delta.down{color:var(--c-danger);font-weight:700}.delta.eq{color:var(--c-muted)}
+.mrow{border:1px solid var(--c-line);border-radius:var(--r);background:var(--c-surface);padding:var(--sp-3) var(--sp-4);margin:var(--sp-3) 0}
+.mrow h3{margin:0 0 .3em;border:0;font-size:var(--fs-base)}
+.mrow .ids{font-family:var(--mono);font-size:var(--fs-sm);word-break:break-all}
+.hintcell{color:var(--c-accent);font-weight:700}
+.valcell{max-width:340px;overflow-wrap:anywhere;font-size:var(--fs-sm)}
+.valcell details summary{cursor:pointer;color:var(--c-link)}
+.flagged{color:var(--c-accent);font-weight:700}
+.editor-note-inline{display:none}
+html.teacher-mode .editor-note-inline{display:inline}
+@media (max-width:640px){.drow{grid-template-columns:1fr}.drow .num{text-align:left}}

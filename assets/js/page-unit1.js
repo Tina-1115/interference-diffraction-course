@@ -322,7 +322,27 @@
     function put(f, v) { IOD.saveAnswer(PAGE, qid, f, v, act); }
     function stage() { return get('step4_done') ? 5 : get('step3_done') ? 4 : get('step2_done') ? 3 : get('pred_locked') ? 2 : 1; }
     function fb(panel, msg, ok) { var f = $('.fb', panel); f.textContent = msg; f.className = 'fb ' + (ok === true ? 'ok' : ok === false ? 'no' : ''); }
-    function misList() { try { return JSON.parse(get('mis') || '[]'); } catch (e) { return []; } }
+    /* 提示組（hint set）鍵值改存 hint_keys；舊版曾存於 mis（JSON 陣列），讀取時相容。
+       mis 欄位依全站規約改存迷思編號（如 'M1,M2'，只在該選項被選時才有值）。 */
+    function misList() {
+      var v = get('hint_keys');
+      if (v === null || v === undefined) { v = get('mis'); if (!v || v.charAt(0) !== '[') v = null; }
+      try { return JSON.parse(v || '[]'); } catch (e) { return []; }
+    }
+    function syncM() {
+      var ms = []; $$('input[type=radio]:checked', card).forEach(function (r) { var m = r.getAttribute('data-m'); if (m && ms.indexOf(m) < 0) ms.push(m); });
+      var v = ms.join(','), cur = get('mis');
+      if (cur !== v && !(cur === null && v === '')) put('mis', v);
+      return ms;
+    }
+    function fbm(panel, msg, ok, ms) {
+      fb(panel, msg, ok); var f = $('.fb', panel);
+      if (ms && ms.length) {
+        f.appendChild(document.createTextNode('　相關迷思：'));
+        ms.forEach(function (m) { var a = document.createElement('a'); a.className = 'mlink'; a.href = 'misconceptions.html#' + m.toLowerCase(); a.textContent = '迷思' + m; f.appendChild(a); f.appendChild(document.createTextNode(' ')); });
+      }
+    }
+    on(card, 'change', function (e) { if (e.target && e.target.type === 'radio') syncM(); });
     function setMis(key, openL1) {
       var set = $('.hints-set[data-mis="' + key + '"]', card); if (!set) return null;
       set.hidden = false;
@@ -370,7 +390,7 @@
       });
       if (miss.length) { fb(p, '還有項目沒填：' + miss.join('、') + '。（理由請至少寫幾個字）', false); return; }
       var mis = []; $$('input:checked', p).forEach(function (r) { var m = r.getAttribute('data-mis'); if (m && mis.indexOf(m) < 0) mis.push(m); });
-      put('mis', JSON.stringify(mis)); put('pred_locked', new Date().toISOString());
+      put('hint_keys', JSON.stringify(mis)); syncM(); put('pred_locked', new Date().toISOString());
       fb(p, '預測已送出並鎖定。接下來請觀察。', true); render(); toast('預測已鎖定');
       panels[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -386,9 +406,9 @@
       // 觀察與預測矛盾時，由提問帶出 L1
       var hit = []; $$('input:checked', p).forEach(function (r) { var m = r.getAttribute('data-mis'); if (m && hit.indexOf(m) < 0) hit.push(m); });
       misList().forEach(function (m) { if (hit.indexOf(m) < 0) hit.push(m); });
-      put('mis', JSON.stringify(hit));
+      put('hint_keys', JSON.stringify(hit));
       render(); hit.forEach(function (m) { setMis(m, true); });
-      fb(p, hit.length ? '已記錄。你的預測或觀察裡有需要再想一想的地方，解釋區已出現 L1 提問。' : '已記錄。', true);
+      fbm(p, hit.length ? '已記錄。你的預測或觀察裡有需要再想一想的地方，解釋區已出現 L1 提問。' : '已記錄。', true, syncM());
       panels[2].scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     on($('[data-poe-stuck]', panels[2]), 'click', function () {
@@ -407,7 +427,7 @@
         put('wrong_' + sel.value, new Date().toISOString());
         var n = (levels[key] || 0) + 1; if (n > 3) n = 3;
         if (!levels[key]) { setMis(key, true); n = 1; } else n = nextHint(key) || n;
-        fb(p, '這個說法還不完全對。先看提示 L' + n + '（提示只問問題、不直接給答案），再重新選擇。', false);
+        fbm(p, '這個說法還不完全對。先看提示 L' + n + '（提示只問問題、不直接給答案），再重新選擇。', false, sel.getAttribute('data-m') ? [sel.getAttribute('data-m')] : []);
       }
     });
     on($('[data-poe-finish]', panels[3]), 'click', function () {

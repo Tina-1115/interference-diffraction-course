@@ -173,25 +173,27 @@
 
   /* ================= 活動一：預測圖樣小格、對照 ================= */
   function initCells() {
-    var wrap = $('#cells'), hid = $('#q1_pattern'); if (!wrap || !hid) return;
-    var N = 15, val = (hid.value || '').length === N ? hid.value : new Array(N + 1).join('0');
-    function draw() {
-      wrap.innerHTML = '';
-      for (var i = 0; i < N; i++) (function (i) {
-        var b = document.createElement('button'); b.type = 'button';
-        b.setAttribute('aria-pressed', val.charAt(i) === '1'); b.setAttribute('aria-label', '第' + (i + 1) + '格 ' + (val.charAt(i) === '1' ? '暗' : '亮'));
-        b.disabled = isLocked('q1');
-        b.addEventListener('click', function () {
-          val = val.substr(0, i) + (val.charAt(i) === '1' ? '0' : '1') + val.substr(i + 1);
-          hid.value = val; hid.dispatchEvent(new Event('change', { bubbles: true })); draw();
-        });
-        wrap.appendChild(b);
-      })(i);
-    }
-    draw();
-    document.addEventListener('poe:locked', draw);
-    $('#card-q1').addEventListener('input', function () { /* keep */ });
-    window.__redrawCells = draw;
+    [['#cells', '#q1_pattern', 'q1'], ['#cells2', '#q2_pattern', null]].forEach(function (cfg) {
+      var wrap = $(cfg[0]), hid = $(cfg[1]); if (!wrap || !hid) return;
+      var N = 15, val = (hid.value || '').length === N ? hid.value : new Array(N + 1).join('0');
+      function draw() {
+        if ((hid.value || '').length === N) val = hid.value;
+        wrap.innerHTML = '';
+        for (var i = 0; i < N; i++) (function (i) {
+          var b = document.createElement('button'); b.type = 'button';
+          b.setAttribute('aria-pressed', val.charAt(i) === '1'); b.setAttribute('aria-label', '第' + (i + 1) + '格 ' + (val.charAt(i) === '1' ? '暗' : '亮'));
+          b.disabled = cfg[2] ? isLocked(cfg[2]) : false;
+          b.addEventListener('click', function () {
+            val = val.substr(0, i) + (val.charAt(i) === '1' ? '0' : '1') + val.substr(i + 1);
+            hid.value = val; hid.dispatchEvent(new Event('change', { bubbles: true })); draw();
+          });
+          wrap.appendChild(b);
+        })(i);
+      }
+      draw();
+      document.addEventListener('poe:locked', draw);
+      if (cfg[2] === 'q1') window.__redrawCells = draw; else window.__redrawCells2 = draw;
+    });
   }
   function patHTML(v) {
     var s = '<div class="pat" aria-label="預測圖樣（深色=暗）">';
@@ -208,7 +210,7 @@
     if (G('Q2', 'q2_src_model') === '1') srcs.push('僅理想模型');
     box.innerHTML = '<div class="orig"><h4>原預測（已鎖定，不可改）</h4>' + (locked ?
       '<p class="small">選擇：' + esc(ch || '—') + '</p>' + patHTML(pt) + '<p class="small cmpq">理由：' + esc(rs || '—') + '</p>' : '<p class="muted small">尚未送出預測。</p>') + '</div>' +
-      '<div><h4>我的觀察（Q2）</h4><p class="small">資料來源：' + esc(srcs.join('、') || '—') + '</p><p class="small cmpq">特徵一：' + esc(G('Q2', 'q2_f1') || '—') + '\n特徵二：' + esc(G('Q2', 'q2_f2') || '—') + '</p><p class="small cmpq">我認為預測與觀察的矛盾：' + esc(G('Q3', 'q3_explain') || '—') + '</p></div>';
+      '<div><h4>我的觀察（Q2）</h4><p class="small">資料來源：' + esc(srcs.join('、') || '—') + '</p>' + (G('Q2', 'q2_pattern') ? patHTML(G('Q2', 'q2_pattern')) : '') + '<p class="small cmpq">特徵一：' + esc(G('Q2', 'q2_f1') || '—') + '\n特徵二：' + esc(G('Q2', 'q2_f2') || '—') + '</p><p class="small cmpq">我認為預測與觀察的矛盾：' + esc(G('Q3', 'q3_explain') || '—') + '</p></div>';
   }
 
   /* ================= 活動二 ACT01 ================= */
@@ -236,23 +238,66 @@
   var dlg = [];
   var AI_TXT = {
     ask_answer: ['先從你已有的觀察開始：實拍中哪項亮暗特徵需要解釋？', '再看模型的 B 與 D：兩列波到達時，振動的步調各是什麼樣子？'],
-    no_light: ['你說「沒有光到達 D」，是根據哪項觀察？', '先看模型：兩個狹縫發出的波，都能到達 D 點嗎？'],
-    energy: ['把整個屏幕一起看：暗處變暗的同時，亮處的亮度有什麼變化？', '你說光「不見了」；如果真的不見，屏幕其他位置的亮度應該怎麼變？'],
+    no_light: ['你說「沒有光到達D」，是根據哪項觀察？', '先看模型：兩個狹縫發出的波，都能到達D點嗎？'],
+    energy: ['其他屏幕位置的亮度有何變化？', '你說光「不見了」；如果真的不見，屏幕其他位置的亮度應該怎麼變？'],
     model_real: ['這個畫面是實際紀錄，還是用來解釋的模型？', '請分別指出：哪些線條是肉眼看得到的實拍特徵，哪些是模型幫忙說明的？'],
     conflict: ['你在觀察記錄與初稿的選擇好像不一致，請再看一次模型：它們各自對應到哪一處？', '回到疊加圖，對照你的觀察記錄，初稿裡哪一項需要再確認？'],
     B_wrong: ['請回到模型只看 B：兩條波到達 B 時，波峰是同時到達還是錯開？', '看疊加圖：B 處兩列波加起來，振幅比單列大還是小？'],
     D_wrong: ['請回到模型只看 D：兩條波到達 D 時，波峰是同時到達還是一峰一谷？', '看疊加圖：D 處兩列波加起來，振幅比單列大還是小？'],
-    no_mech: ['你的解釋有提到兩列波到達時的相位關係嗎？請用「因為……所以……」連起相位、疊加與亮暗。', '先寫出：兩個狹縫各自發出什麼，到了屏幕同一點會怎樣？'],
+    no_mech: ['你的解釋有提到兩列波到達時的相位關係嗎？請用『因為……所以……』連起相位、疊加與亮暗。', '先寫出：兩個狹縫各自發出什麼，到了屏幕同一點會怎樣？'],
     refine: ['實際的暗紋常常沒有完全黑；在什麼條件下，暗處才會「理想為零」？', '你的解釋中，哪一句是現象證據、哪一句是模型說明？']
   };
+  var RX_NOLIGHT = /(沒有?光|光沒|沒光|沒到|沒有到|未到達|到不了|不到|被擋|無光|沒有任何光)/;
+  var RX_ENERGY = /能量.{0,4}(消失|不見|沒了|被吃)|光(消失|不見)/;
+  var RX_MODEL = /圓弧|沿著?.{0,3}(弧|圓)|光路|照片.{0,6}(波前|圓)/;
+  var RX_MECH = /(相位|疊加|相消|相加|同相|反相|干涉|增強|減弱|步調)/;
+  var MIS_ACT = { Q2: 'S2-02', Q3: 'S2-02', Q4: 'ACT01', GAL: 'S2-GAL' };
+  /* 迷思串接：mis 欄位存 'M3' 或 'M3,M4'；未觸發時改寫為空字串（原本沒有值就不寫） */
+  function setMis(qid, codes) {
+    var v = codes.join(','), old = G(qid, 'mis');
+    if (!v && !old) return;
+    S(qid, 'mis', v, MIS_ACT[qid] || '');
+  }
+  function showMisFb(qid, codes) {
+    var box = document.querySelector('.mis-fb[data-mis-for="' + qid + '"]'); if (!box) return;
+    if (!codes.length) { box.hidden = true; box.innerHTML = ''; return; }
+    box.hidden = false;
+    box.innerHTML = '想再想想看？可參考：' + codes.map(function (c) { return '<a class="mlink" href="misconceptions.html#' + c.toLowerCase() + '">迷思' + c + '</a>'; }).join('、');
+  }
+  function refreshMisFb() { ['Q2', 'Q3', 'Q4'].forEach(function (q) { var v = G(q, 'mis'); showMisFb(q, v ? String(v).split(',').filter(Boolean) : []); }); }
+  function misQ4() {
+    var ex = ($('#d_explain') ? $('#d_explain').value : '') || '', c = [];
+    if (!ex.trim()) return c;
+    if (RX_NOLIGHT.test(ex) || RX_ENERGY.test(ex)) c.push('M3');
+    if (RX_MODEL.test(ex)) c.push('M4');
+    else if (!c.length && draftComplete() && !RX_MECH.test(ex)) c.push('M3');
+    return c;
+  }
+  function misQ3() { var ex = ($('#q3_explain') ? $('#q3_explain').value : '') || ''; return RX_MODEL.test(ex) ? ['M4'] : []; }
+  function misQ2() {
+    var src = ['q2_src_live', 'q2_src_photo', 'q2_src_model'].some(function (n) { var e = document.querySelector('[name="' + n + '"]'); return e && e.checked; });
+    var f = (($('#q2_f1') || {}).value || '') + ' ' + (($('#q2_f2') || {}).value || '');
+    if (RX_MODEL.test(f)) return ['M4'];
+    if (!src && f.trim()) return ['M4'];
+    return [];
+  }
+  function bindMis() {
+    var defs = [['#card-q2', 'Q2', misQ2], ['#card-q3a', 'Q3', misQ3], ['#card-q4d', 'Q4', misQ4]];
+    defs.forEach(function (d) {
+      var card = $(d[0]); if (!card) return;
+      function upd() { var c = d[2](); showMisFb(d[1], c); debounce('mis' + d[1], function () { setMis(d[1], c); }, 800); }
+      card.addEventListener('input', upd); card.addEventListener('change', upd);
+    });
+    refreshMisFb();
+  }
   function analyze() {
     var ex = ($('#d_explain').value || ''), ob = {
       Bp: G('Q4', 'o_B_peak'), Ba: G('Q4', 'o_B_amp'), Dp: G('Q4', 'o_D_peak'), Da: G('Q4', 'o_D_amp')
     };
     if (/直接.{0,4}(答案|解答)|完整答案|標準答案|給我答案|告訴我答案|幫我寫|替我寫/.test(ex)) return 'ask_answer';
-    if (/(沒有?光|光沒|沒光|沒到|沒有到|未到達|到不了|不到|被擋|無光|沒有任何光)/.test(ex)) return 'no_light';
-    if (/能量.{0,4}(消失|不見|沒了|被吃)|光(消失|不見)/.test(ex)) return 'energy';
-    if (/圓弧|沿著?.{0,3}(弧|圓)|光路|照片.{0,6}(波前|圓)/.test(ex)) return 'model_real';
+    if (RX_NOLIGHT.test(ex)) return 'no_light';
+    if (RX_ENERGY.test(ex)) return 'energy';
+    if (RX_MODEL.test(ex)) return 'model_real';
     var conflict = false;
     function chk(pp, ph, aa, inten) {
       if (pp && ph && ((/同時/.test(pp) && ph === '反相') || (/錯開|一峰一谷/.test(pp) && ph === '同相'))) conflict = true;
@@ -262,14 +307,14 @@
     if (conflict) return 'conflict';
     if (dval('d_B_phase') !== '同相' || dval('d_B_int') !== '建設性' || dval('d_B_inten') !== '較強') return 'B_wrong';
     if (dval('d_D_phase') !== '反相' || dval('d_D_int') !== '破壞性' || dval('d_D_inten') !== '理想下為零') return 'D_wrong';
-    if (!/(相位|疊加|相消|相加|同相|反相|干涉|增強|減弱|步調)/.test(ex)) return 'no_mech';
+    if (!RX_MECH.test(ex)) return 'no_mech';
     return 'refine';
   }
   function renderDlg() {
     var box = $('#ai-log'); box.innerHTML = '';
     dlg.forEach(function (m) {
       var d = document.createElement('div'); d.className = 'ai-bubble ' + m.role;
-      d.innerHTML = '<small>' + (m.role === 'ai' ? '示範 AI（本機規則式，非真實 AI）' : m.role === 'stu' ? '我' : '系統') + (m.ts ? '・' + hhmm(m.ts) : '') + '</small>' + esc(m.text).replace(/\n/g, '<br>') + (m.html || '');
+      d.innerHTML = '<small>' + (m.role === 'ai' ? '規則式示範，非真實 AI' : m.role === 'stu' ? '我' : '系統') + (m.ts ? '・' + hhmm(m.ts) : '') + '</small>' + esc(m.text).replace(/\n/g, '<br>') + (m.html || '');
       box.appendChild(d);
     });
     $('#ai-empty').hidden = dlg.length > 0;
@@ -294,13 +339,13 @@
   }
   function runAI() {
     dlg = dlg.filter(function (m) { return !m.html; });
-    dlg.push({ role: 'sys', text: 'AI 正在思考……', html: '', ts: null, tmp: 1 }); renderDlg();
+    dlg.push({ role: 'sys', text: '規則式示範正在比對你的初稿……', html: '', ts: null, tmp: 1 }); renderDlg();
     $('#ai-ask').disabled = true;
     setTimeout(function () {
       dlg = dlg.filter(function (m) { return !m.tmp; });
       if ($('#ai-timeout').checked) {
         S('Q4', 'ai_status', 'timeout', 'ACT01');
-        dlg.push({ role: 'sys', text: 'AI 沒有回應（逾時／斷網）。你的回答都還在，可以重試，或略過 AI 直接修訂。', html: '<div class="btn-row"><button class="btn ghost" type="button" data-retry>重試</button><button class="btn ghost" type="button" data-skip>略過 AI 繼續</button></div>' });
+        dlg.push({ role: 'sys', text: '規則式示範沒有回應（逾時／斷網）。你的回答都還在，可以重試，或略過 AI 直接修訂。', html: '<div class="btn-row"><button class="btn ghost" type="button" data-retry>重試</button><button class="btn ghost" type="button" data-skip>略過 AI 繼續</button></div>' });
         renderDlg(); updateAIButton(); return;
       }
       S('Q4', 'ai_status', 'ok', 'ACT01');
@@ -551,7 +596,10 @@
         var fb = $('#fb' + s.getAttribute('data-i'));
         if (!s.value) { fb.textContent = ''; return; }
         var ok = s.value === s.getAttribute('data-ans');
-        fb.textContent = ok ? '正確' : '再想想：這是肉眼直接看到的，還是用來解釋的？'; fb.className = 'mini-fb ' + (ok ? 'ok' : 'no');
+        fb.innerHTML = ok ? '正確' : '再想想：這個畫面是實際紀錄，還是用來解釋的模型？ <a class="mlink" href="misconceptions.html#m4">迷思M4</a>'; fb.className = 'mini-fb ' + (ok ? 'ok' : 'no');
+        S('GAL', 'sub_' + s.getAttribute('data-i'), s.value, MIS_ACT.GAL);
+        var bad = $$('#sub-quiz select').some(function (x) { return x.value && x.value !== x.getAttribute('data-ans'); });
+        setMis('GAL', bad ? ['M4'] : []);
       });
     });
   }
@@ -578,9 +626,18 @@
     renderCmpA();
   }
 
+  /* 從迷思速查回連：錨點在摺疊的 details 內時自動展開 */
+  function initHash() {
+    function go() {
+      var id = decodeURIComponent((location.hash || '').slice(1)), el = id && document.getElementById(id); if (!el) return;
+      var d = el.closest('details'); while (d) { d.open = true; d = d.parentElement && d.parentElement.closest('details'); }
+      if (el.scrollIntoView) setTimeout(function () { el.scrollIntoView(); }, 50);
+    }
+    window.addEventListener('hashchange', go); go();
+  }
   function init() {
     if (!window.IOD) { return; }
-    initGallery(); initM01(); initCells(); initLocks(); initLadders(); initCmpA(); initM02(); initQ4(); initSim();
+    initGallery(); initM01(); initCells(); initLocks(); initLadders(); initCmpA(); initM02(); initQ4(); initSim(); bindMis(); initHash();
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeZoom(); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

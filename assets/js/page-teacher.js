@@ -74,11 +74,21 @@
   })();
 
   /* ---------- 勾選清單（交付檢核、待確認事項） ---------- */
-  $$('.checklist').forEach(function (ul) {
+  $$('.checklist, .chk-wrap').forEach(function (ul) {
     var key = 'teacher:chk:' + ul.getAttribute('data-chk'), st = sget(key, {}) || {};
     $$('input[type=checkbox]', ul).forEach(function (cb) {
-      var k = cb.getAttribute('data-k'); cb.checked = !!st[k]; cb.closest('li').classList.toggle('on', cb.checked);
-      cb.addEventListener('change', function () { st[k] = cb.checked; sset(key, st); cb.closest('li').classList.toggle('on', cb.checked); });
+      var k = cb.getAttribute('data-k'); cb.checked = !!st[k]; cb.closest('li, tr').classList.toggle('on', cb.checked);
+      cb.addEventListener('change', function () { st[k] = cb.checked; sset(key, st); cb.closest('li, tr').classList.toggle('on', cb.checked); });
+    });
+  });
+
+  /* ---------- 通用表格篩選：input[data-filter="選擇器"]，篩選符合選擇器的表格列 ---------- */
+  $$('input[data-filter]').forEach(function (inp) {
+    inp.addEventListener('input', function () {
+      var s = (inp.value || '').trim().toLowerCase();
+      $$(inp.getAttribute('data-filter')).forEach(function (tb) {
+        $$('tbody tr', tb).forEach(function (r) { r.classList.toggle('hide', !!s && r.textContent.toLowerCase().indexOf(s) < 0); });
+      });
     });
   });
 

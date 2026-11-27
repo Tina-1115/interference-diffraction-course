@@ -53,3 +53,8 @@
 .legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--c-muted)}
 .legend-row i{display:inline-block;width:14px;height:8px;border-radius:3px;margin-right:4px;vertical-align:middle}
 table.tbl td.c,table.tbl th.c{text-align:center}
+/* 迷思深連結（答錯回饋中的「迷思M#」） */
+a.mlink{display:inline-block;font-weight:700;text-decoration:underline;border:1px solid #e0877d;border-radius:999px;padding:0 .6em;background:#fff3f1;color:#7a1f16;line-height:1.6;font-size:.88em}
+a.mlink:hover,a.mlink:focus{background:#fdecea}
+.quiz-item .q-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.quiz-item label.opt .id-chip{margin-left:.5em}

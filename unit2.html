@@ -16,64 +16,73 @@
   <p class="bridge-in">第1節用水波看到：兩列波疊加時，同相增強、反相減弱，位置固定的波源會形成位置穩定的強弱分布。這節把同樣的想法用在光上——雷射光通過兩條很近的窄縫後，屏幕會出現什麼？為什麼？</p>
 
   <div class="goals" aria-label="本節學習目標標籤">
-    <span class="goal">目標2　解釋雙狹縫亮暗紋（節點02）</span>
-    <span class="goal g4">目標4　引用觀察證據完成論證（Q6，延伸到第3節）</span>
+    <span class="goal"><span class="id-chip">LO2</span>解釋雙狹縫亮暗紋。<span class="t-only">（節點02）</span></span>
+    <span class="goal g4"><span class="id-chip">LO4</span>引用光學證據完成論證，查核回饋並修訂。</span>
   </div>
-  <p class="small muted">本節重點：兩列相干（同調）光波到達屏幕各處的相位差不同，形成穩定的明暗條紋。範圍為定性說明；條紋間距公式只作為模擬中的進階補充。預計 50 分鐘。</p>
+  <div class="editor-note">02 教案「學習目標與評量對應」：目標2 的可觀察證據為「第2節學習單Q2、Q4–Q6」（未列 Q3），達成規準為「以電場疊加解釋亮暗」；目標4 的可觀察證據為「第3節學習單Q5」，達成規準為「證據可回查、推理相連；說明波動模型的界限」。本頁兩項目標標籤保留 02 原文，各題對應目標的標示為整合者所加。</div>
+  <p class="small muted">本節重點：兩列相干光波到達屏幕各處時的相位差不同，形成穩定的明暗條紋。範圍與限制：定性說明；不推公式或掃描參數。授課時間：50分鐘。<span class="badge-add"></span><span class="t-only">活動三的模擬另附條紋間距 Δy＝λL/d 作進階補充，見該處說明。</span></p>
 
-  <h2 id="flow">本節怎麼進行<span class="sect-time">02 教案　第2節時間流程</span></h2>
+  <h2 id="flow">本節怎麼進行<span class="sect-time"><span class="t-only">02 教案　</span>第2節時間流程</span></h2>
   <div class="tbl-wrap"><table class="tbl tl">
-    <tr><th>時間</th><th>教師提問</th><th>你要做的事</th><th>跳到</th></tr>
-    <tr><td>0–8 分</td><td>哪項觀察支持腹線、節線？</td><td>回看並修訂第1節水波 CER（Q7）</td><td><a href="unit1.html">第1節</a></td></tr>
-    <tr><td>8–15 分</td><td>依直進模型會看到什麼？</td><td>Q1：畫出完整屏幕並寫理由，送出後鎖定</td><td><a href="#a1">活動一</a></td></tr>
-    <tr><td>15–32 分</td><td>哪個特徵需要修正？</td><td>Q2：看實拍記錄；Q3：與預測並排比較</td><td><a href="#a1-observe">活動一</a></td></tr>
-    <tr><td>32–45 分</td><td>暗處真的沒有光到達嗎？</td><td>Q4（ACT01）：初稿 → 模型 → AI 追問 → 修訂</td><td><a href="#act01">活動二</a></td></tr>
-    <tr><td>45–50 分</td><td>水波位移與屏幕亮暗相同嗎？</td><td>Q5 比較水波與光；Q6 完成光的解釋</td><td><a href="#a3">活動三</a></td></tr>
+    <tr><th>時間</th><th>教師活動與提問</th><th>學生活動與預期表現</th><th class="t-only">評量／證據</th><th class="t-only">教材／備註</th><th>跳到</th></tr>
+    <tr><td>0-8 分</td><td>呈現匿名水波CER。問：哪項觀察支持腹線、節線？</td><td>檢查證據與推理，修訂第1節Q7。</td><td class="t-only">修訂有明確證據與理由。</td><td class="t-only">水波CER／修訂前後稿</td><td><a href="unit1.html">第1節</a></td></tr>
+    <tr><td>8-15 分</td><td>只呈現裝置，不揭圖樣。問：依直進模型會看到什麼？</td><td>完成Q1：畫完整屏幕並寫理由。</td><td class="t-only">保留個別預測，不只畫狹縫。</td><td class="t-only">Q1／提交後揭圖</td><td><a href="#a1">活動一</a></td></tr>
+    <tr><td>15-32 分</td><td>先看實拍，再用模擬比較。問：哪個特徵需要修正？</td><td>Q2記錄來源與特徵；Q3比較預測。</td><td class="t-only">指出多條明暗紋；如實標示來源。</td><td class="t-only">實拍、模擬／Q2–Q3</td><td><a href="#a1-observe">活動一</a></td></tr>
+    <tr><td>32-45 分</td><td>用惠更斯原理解釋B亮、D暗。問：暗處真的沒有光到達嗎？</td><td>辨認相位與干涉，完成Q4。</td><td class="t-only">相位關係連到電場疊加及光強。</td><td class="t-only">次波模型／Q4</td><td><a href="#act01">活動二</a></td></tr>
+    <tr><td>45-50 分</td><td>問：水波位移與屏幕亮暗相同嗎？檢查CER的證據與推理。</td><td>Q5比較水波與光；Q6完成光CER。</td><td class="t-only">引用屏幕觀察；寫出類比限制。</td><td class="t-only">Q5–Q6／下載紀錄</td><td><a href="#a3">活動三</a></td></tr>
   </table></div>
+  <div class="editor-note">節次與時間切分矛盾（保留原文，未統一）：<br>(1) 02 教案第2節時間流程為 0-8／8-15／15-32／32-45／45-50 分，即 8／7／17／13／5 分（本表照錄）；03 學習單「活動順序」將雙狹縫分為 活動01 先預測 8 分、活動02 觀察與比較 12 分、活動03 解釋亮暗 15 分、活動04 比較與統整 15 分（8／12／15／15，合計 50 分）。兩者切分不同。<br>(2) 03 學習單「基本資料」寫「節次：干涉與繞射第3節」，同檔「教材來源」卻寫「第2節『光的雙狹縫干涉』紙本學習單修訂版」；02 教案則以第2節為雙狹縫、第3節為繞射與薄膜。本頁依 02 稱第2節，並以下列對應處理：活動一＝03 活動01＋02（Q1–Q3）、活動二＝03 活動03（Q4）、活動三＝03 活動04（Q5–Q6）。<br>(3) 本頁各活動標題下標示的分鐘數沿用 02。</div>
 
   <div class="card">
     <strong>每個活動都走同樣四步：</strong>
     <div class="poe-legend" role="list"><span role="listitem" style="background:var(--c-primary-bg)">1 預測（送出後鎖定）</span><span role="listitem" style="background:#1c7c7c">2 觀察（看實拍、操作模擬或動畫）</span><span role="listitem" style="background:#b8650a">3 解釋（用觀察到的現象）</span><span role="listitem" style="background:#6a3fa0">4 修正（原預測與修訂並排）</span></div>
     <p class="small muted">預測鎖定後不能改，目的是保留你原本的想法，讓你看見自己的想法如何改變；答錯不扣分。卡住時，提示會一層一層出現（L1→L2→L3），不會直接給答案。</p>
-    <p class="small"><span class="badge-add"></span>「預測→觀察→解釋→修正」四步編排為整合者依使用者要求加入；各題的題目、答案要素與規準來自 03 學習單與 05 核心題目。</p>
+    <p class="small add-block"><span class="badge-add"></span>「預測→觀察→解釋→修正」四步編排為整合者依使用者要求加入；各題的題目、答案要素與規準來自 03 學習單與 05 核心題目。</p>
   </div>
 
   <!-- ===================== 活動一 ===================== -->
-  <h2 id="a1">活動一　直進模型預測得對嗎？（Q1–Q3）<span class="sect-time">8–32 分・05 題卡第3題</span></h2>
-  <p>一束穩定的紅色雷射光通過相近的雙狹縫，遠方屏幕會出現什麼分布？先預測，再看實際觀察。<span class="badge-add"></span><small>安全：雷射由教師操作，不直視、不指向他人或鏡面（02 教案）。</small></p>
+  <h2 id="a1">活動一　直進模型預測得對嗎？（Q1–Q3）<span class="sect-time">8-32 分・<span class="id-chip">C3</span></span></h2>
+  <h3><span class="id-chip t-only">03 活動01</span>先預測（8分鐘）</h3>
+  <p>一束穩定紅色雷射光通過相近的雙狹縫，遠方屏幕會出現什麼分布？本節先作定性預測。</p>
+  <p class="small">使用紙本與筆；先保留自己的預測與理由，再進行實際觀察。學生尚未完成Q1時，先不展示屏幕結果或開啟模擬。<span class="t-only">（03 活動01「使用材料與操作」原文）</span></p>
+  <div class="editor-note">03 活動01 的「使用紙本與筆」為原文；本頁以螢幕作答（點格子作圖）取代紙本，屬網頁化的整合者調整。</div>
 
   <div class="pstep"><span class="sn">1 預測</span><small>Q1　先不要看實拍；送出後鎖定</small></div>
   <section class="qcard" id="card-q1" data-qid="Q1" data-act="S2-01">
-    <div class="q-head"><span class="q-no">Q1</span><span class="q-goal">對應目標2／節點02・不以預測正誤評分</span></div>
+    <div class="q-head"><span class="q-no">Q1</span><span class="id-chip">U1-S2-Q1</span><span class="q-goal"><span class="id-chip">LO2</span><span class="t-only">對應節點02・不以預測正誤評分</span></span></div>
     <div class="grid">
       <figure class="asset" style="margin:0"><div data-setup-predict></div><figcaption>預測題圖：只畫器材位置，不畫光線 <span class="asset-tag">07A-2-10</span></figcaption></figure>
       <div>
-        <p class="q-stem">你預測屏幕上會看到什麼？先勾選，再畫出中央與左右兩側的明暗分布（深色=暗、留白=亮），並寫出一項理由。</p>
+        <p class="q-stem">Q1　你預測屏幕上會看到什麼？先勾選，再畫出中央與左右兩側的明暗分布，並寫出一項理由。深色代表暗，留白代表亮。</p>
         <label class="opt"><input type="radio" name="q1_choice" value="主要只有兩條亮紋" data-req> 主要只有兩條亮紋</label>
         <label class="opt"><input type="radio" name="q1_choice" value="整片亮度差不多" data-req> 整片亮度差不多</label>
         <label class="opt"><input type="radio" name="q1_choice" value="多條明暗相間的條紋" data-req> 多條明暗相間的條紋</label>
-        <label class="opt"><input type="radio" name="q1_choice" value="其他" data-req> 其他（寫在理由裡）</label>
+        <label class="opt"><input type="radio" name="q1_choice" value="其他" data-req> 其他：<input type="text" name="q1_other" class="inline-other" aria-label="其他：請寫出你的預測"></label>
       </div>
     </div>
-    <p class="small" style="margin-bottom:0">我的屏幕圖樣預測（點格子切換亮／暗，左→右為屏幕左側到右側）：</p>
+    <p class="small" style="margin-bottom:0">我的屏幕圖樣預測（請在下方作圖）：<span class="muted">（網頁版：點格子切換亮／暗，左→右為屏幕左側到右側）</span></p>
     <div id="cells" class="cellrow" role="group" aria-label="預測圖樣格子"></div>
     <div class="cellaxis"><span>左側</span><span>中央</span><span>右側</span></div>
     <input type="hidden" id="q1_pattern" name="q1_pattern" value="">
     <label for="q1_reason">我這樣預測，因為：</label>
-    <textarea id="q1_reason" name="q1_reason" data-req placeholder="寫出至少一項理由（可以是直進模型的想法）"></textarea>
+    <textarea id="q1_reason" name="q1_reason" data-req placeholder="請寫出至少一項理由"></textarea>
     <div class="lockbar"><button class="btn lockbtn" type="button" disabled>送出預測並鎖定</button><span class="lockmsg"></span></div>
     <div class="warn" aria-live="polite"></div>
     <div class="saved" aria-live="polite"></div>
     <div class="hints" data-ladder>
-      <details class="L1"><summary>L1 提示：釐清想法</summary><div>你畫的是狹縫開口的樣子，還是屏幕上看到的樣子？（03 學習單教師提示）</div></details>
-      <details class="L2"><summary>L2 提示：回看條件</summary><div><span class="badge-add"></span>如果光只沿直線前進，通過兩條縫後會在屏幕哪裡出現？把這個想法寫進理由，等一下用觀察檢驗。</div></details>
-      <details class="L3"><summary>L3 提示：連結說明</summary><div><span class="badge-add"></span>預測一送出就會被保留，之後會和觀察並排比較，不會被擦掉；所以請寫下你「現在」真正的想法。</div></details>
+      <details class="L1"><summary>L1 釐清想法</summary><div>這是開口的樣子，還是屏幕上看到的樣子？<span class="t-only">（03 活動01「常見錯誤與引導」原文）</span></div></details>
+      <details class="L2"><summary>L2 回看條件</summary><div><span class="badge-add"></span>如果光只沿直線前進，通過兩條縫後會在屏幕哪裡出現？把這個想法寫進理由，等一下用觀察檢驗。</div></details>
+      <details class="L3"><summary>L3 連結說明</summary><div><span class="badge-add"></span>預測一送出就會被保留，之後會和觀察並排比較，不會被擦掉；所以請寫下你「現在」真正的想法。<br><span class="t-only">（若學生先擦掉預測，03 原文提醒：「請保留初稿，等觀察後再比較。」）</span></div></details>
     </div>
+    <div class="t-only answer-key"><strong>教師專用　參考答案與判讀（03 活動01 原文）：</strong>Q1不以預測正誤評分。完成要素為：畫出面向屏幕的完整分布，並保留至少一項可理解的理由。即使預測兩條亮紋，只要理由清楚，也可進入觀察活動。<br><strong>教師專用　常見錯誤與引導（03 活動01 原文）：</strong>若只畫兩條狹縫，追問：「這是開口的樣子，還是屏幕上看到的樣子？」若先擦掉預測，提醒：「請保留初稿，等觀察後再比較。」</div>
   </section>
 
+  <h3><span class="id-chip t-only">03 活動02</span>觀察與比較（12分鐘）</h3>
+  <p>先記錄屏幕實際亮暗分布，再與Q1的預測比較。</p>
+  <p class="small">教師示範，或提供可回查來源的雙狹縫實拍照片／影片；無設備時使用列印照片。模擬只協助辨認規律。雷射由教師操作，不直視、不指向他人或鏡面。</p>
   <div class="pstep s2" id="a1-observe"><span class="sn">2 觀察</span><small>看有來源的實拍，再填 Q2</small></div>
   <div class="gate" data-gate="q1">
-    <div class="gate-msg"><strong>先完成並送出 Q1 預測。</strong>送出鎖定後，這裡才會顯示屏幕實拍（02 教案：先保留個別預測，提交後才揭圖）。</div>
+    <div class="gate-msg"><strong>先完成並送出 Q1 預測。</strong>送出鎖定後，這裡才會顯示屏幕實拍。<span class="t-only">（02 教案：先保留個別預測，提交後才揭圖）</span></div>
     <div class="gate-body">
       <figure class="asset">
         <div data-m01></div>
@@ -81,74 +90,87 @@
         <br><button class="btn ghost" type="button" data-zoom-m01>放大</button></figcaption>
       </figure>
       <section class="qcard" id="card-q2" data-qid="Q2" data-act="S2-02">
-        <div class="q-head"><span class="q-no">Q2</span><span class="q-goal">對應目標2／節點02</span></div>
-        <p class="q-stem">勾選資料來源，並寫出兩個觀察特徵（只寫看到的，不寫原因）。</p>
+        <div class="q-head"><span class="q-no">Q2</span><span class="id-chip">U1-S2-Q2</span><span class="q-goal"><span class="id-chip">LO2</span></span></div>
+        <p class="q-stem">Q2　勾選資料來源，畫出中央與左右兩側的明暗分布，並寫出兩個觀察特徵。</p>
         <label class="chip"><input type="checkbox" name="q2_src_live" value="1"> 現場示範</label>
         <label class="chip"><input type="checkbox" name="q2_src_photo" value="1"> 有來源的實拍照片／影片</label>
         <label class="chip"><input type="checkbox" name="q2_src_model" value="1"> 僅理想模型</label>
-        <label for="q2_f1">特徵一：</label><input type="text" id="q2_f1" name="q2_f1" placeholder="例如：明暗交替…">
-        <label for="q2_f2">特徵二：</label><input type="text" id="q2_f2" name="q2_f2" placeholder="例如：左右近似對稱…">
+        <p class="small" style="margin-bottom:0">我的觀察（請在下方作圖）：<span class="muted">（網頁版：點格子切換亮／暗）</span></p>
+        <div id="cells2" class="cellrow" role="group" aria-label="觀察圖樣格子"></div>
+        <div class="cellaxis"><span>左側</span><span>中央</span><span>右側</span></div>
+        <input type="hidden" id="q2_pattern" name="q2_pattern" value="">
+        <label for="q2_f1">特徵一：</label><input type="text" id="q2_f1" name="q2_f1">
+        <label for="q2_f2">特徵二：</label><input type="text" id="q2_f2" name="q2_f2">
         <div class="saved" aria-live="polite"></div>
+        <div class="mis-fb" data-mis-for="Q2" hidden></div>
+        <p class="small muted">卡關了？<a class="mlink" href="misconceptions.html#m4">迷思M4</a></p>
+        <div class="t-only answer-key"><strong>教師專用　參考答案與判讀（03 活動02 原文）：</strong>Q2：依所用資料描述兩項特徵，例如明暗交替、左右近似對稱；中央附近亮紋間距近似相等。僅觀看模型時，應標為模型結果。<br><strong>教師專用　常見錯誤與引導（03 活動02 原文）：</strong>若以波面弧線當屏幕實拍，追問：「這個畫面是實際紀錄，還是用來解釋的模型？」</div>
       </section>
     </div>
   </div>
 
   <div class="pstep s3"><span class="sn">3 解釋</span><small>用觀察到的現象說明：原本的模型哪裡不夠</small></div>
   <section class="qcard" id="card-q3a" data-qid="Q3" data-act="S2-02">
-    <div class="q-head"><span class="q-no">Q3-解釋</span><span class="q-goal">對應 05 題卡第3題：比較直進模型的預測與真實屏幕特徵</span></div>
-    <p class="q-stem">如果光只沿直線前進，屏幕應出現什麼？你在實拍中看到的哪個特徵與它矛盾？這個矛盾說明了什麼？</p>
-    <textarea id="q3_explain" name="q3_explain" placeholder="例：直進模型預期……；但實拍看到……；所以需要……的模型"></textarea>
+    <div class="q-head"><span class="q-no">Q3-解釋</span><span class="id-chip">U1-S2-Q3</span><span class="id-chip">C3</span><span class="badge-draft"></span><span class="q-goal"><span class="t-only">題幹取自 05 題卡C3「核心問題」；「Q3-解釋」為整合者拆出的作答欄</span></span></div>
+    <p class="q-stem">如果光只沿直線前進，雙狹縫後的屏幕應出現什麼？實際觀察到的多條規律亮暗紋，如何迫使我們修正原來的模型？</p>
+    <textarea id="q3_explain" name="q3_explain" aria-label="Q3-解釋 作答"></textarea>
     <div class="saved" aria-live="polite"></div>
+    <div class="mis-fb" data-mis-for="Q3" hidden></div>
     <div class="hints" data-ladder>
-      <details class="L1"><summary>L1 提示：釐清想法（模型當成實拍？）</summary><div>這個畫面是實際紀錄，還是用來解釋的模型？（03 學習單教師提示；10 速查「模型當成實拍」）</div></details>
-      <details class="L2"><summary>L2 提示：回看證據</summary><div>並列實拍與波前圖，請你標示各自的來源，以及各圖能說明的事。（10 速查表引導方式）</div></details>
-      <details class="L3"><summary>L3 提示：連結說明</summary><div><span class="badge-add"></span>用一句話比較：哪一項是可以回查的觀察，哪一項是用來解釋觀察的模型？再回頭改寫上面的矛盾說明。</div></details>
+      <details class="L1"><summary>L1 釐清想法</summary><div>這個畫面是實際紀錄，還是用來解釋的模型？<span class="t-only">（03 活動02「常見錯誤與引導」原文）</span><br><a class="mlink" href="misconceptions.html#m4">迷思M4</a></div></details>
+      <details class="L2"><summary>L2 回看證據</summary><div>並列實拍與波前圖，請學生標示來源及各圖能說明的事。<span class="t-only">（10 速查表「模型當成實拍」的引導方式原文；10 對此項沒有 L1–L3 單項引導表，本頁 L1–L3 為整合者依 03／10 組成）</span><br><a class="mlink" href="misconceptions.html#m4">迷思M4</a></div></details>
+      <details class="L3"><summary>L3 連結說明</summary><div><span class="badge-add"></span>用一句話比較：哪一項是可以回查的觀察，哪一項是用來解釋觀察的模型？再回頭改寫上面的矛盾說明。<br><a class="mlink" href="misconceptions.html#m4">迷思M4</a></div></details>
     </div>
   </section>
 
   <div class="pstep s4"><span class="sn">4 修正</span><small>原預測（鎖定）與觀察並排，再決定保留或修正</small></div>
   <div class="compare" id="cmpA" aria-live="polite"></div>
   <section class="qcard" id="card-q3b" data-qid="Q3" data-act="S2-02">
-    <div class="q-head"><span class="q-no">Q3-修正</span><span class="q-goal">對應目標2／節點02</span></div>
-    <p class="q-stem">與 Q1 比較後，你保留或修正哪一點？請引用一項觀察。</p>
+    <div class="q-head"><span class="q-no">Q3-修正</span><span class="id-chip">U1-S2-Q3</span><span class="q-goal"><span class="id-chip">LO2</span></span></div>
+    <p class="q-stem">Q3　與Q1比較後，你保留或修正哪一點？請引用一項觀察。</p>
     <label class="chip"><input type="radio" name="q3_cmp" value="大致相同"> 大致相同</label>
     <label class="chip"><input type="radio" name="q3_cmp" value="部分相同"> 部分相同</label>
     <label class="chip"><input type="radio" name="q3_cmp" value="不同"> 不同</label>
-    <label for="q3_revise">我保留／修正＿＿＿＿；依據是＿＿＿＿。</label>
-    <textarea id="q3_revise" name="q3_revise" placeholder="哪個觀察讓你修改哪一部分？"></textarea>
+    <label for="q3_revise">我保留／修正＿＿＿＿＿＿；依據是＿＿＿＿＿＿＿＿。</label>
+    <textarea id="q3_revise" name="q3_revise"></textarea>
     <div class="saved" aria-live="polite"></div>
-    <details>
-      <summary>看答案要素並自評</summary>
-      <div class="answer-key"><strong>答案要素（05 題卡第3題）：</strong>在近似平行入射與單純直進模型下，預期為兩條狹縫的投影；它無法說明實際屏幕多條明暗交替的分布。要指出可回查的觀察與預測之差異，再引入能描述光波展開、重疊、增強與減弱的模型。Q3 不要求一定改變想法，但要連到觀察。<br><strong>常見錯誤：</strong>把兩條狹縫本身畫成屏幕圖樣；以理想模擬取代真實觀察；只寫「因為光是波」。</div>
-      <div class="rubric">
-        <h4>自評規準（選一個最接近你的答案）</h4>
-        <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">達成</span><span>能分別表達原模型預測與實際屏幕特徵，指出兩者矛盾，並說明為何需引入波動模型。</span></label>
+    <div class="t-only"><details>
+      <summary>教師專用：參考答案與答案要素</summary>
+      <div class="answer-key"><strong>Q3 參考答案與判讀（03 活動02 原文）：</strong>指出保留或修改的內容，且能連到觀察；不要求每人一定改變想法。<br><strong>常見錯誤與引導（03 活動02 原文）：</strong>若只寫「不同」，追問：「哪個觀察讓你修改哪一部分？」<hr><strong>答案要素（05 題卡C3 原文）：</strong>在本活動的近似平行入射及單純幾何直進模型下，預期為兩條狹縫的投影；它無法說明實際屏幕多條明暗交替的分布。指出可回查的觀察與預測之差異，再引入能描述光波展開、重疊、增強與減弱的模型。<br><strong>常見迷思與錯誤（05 題卡C3 原文）：</strong>把兩條狹縫本身畫成屏幕圖樣；以理想模擬取代真實觀察；只寫「因為光是波」而未指出直進模型失效的具體證據。</div>
+      
+    </details></div><details class="self-rubric"><summary>作答後自評：成功規準</summary><form class="rubric-form" onsubmit="return false"><div class="rubric">
+        <h4>成功規準（05 題卡C3 原文；選一個最接近的答案自評）</h4>
+        <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">達成</span><span>能分別表達原模型的預測與實際屏幕特徵，指出兩者矛盾，並說明為何需引入波動模型。</span></label>
         <label class="lv"><input type="radio" name="rubric" value="2"><span class="lv-name">發展中</span><span>知道屏幕有多條亮暗紋，但沒有清楚比較原預測，或未標示證據來源。</span></label>
         <label class="lv"><input type="radio" name="rubric" value="1"><span class="lv-name">待支持</span><span>仍以兩條狹縫影像解釋整個圖樣，或把模擬波前當成肉眼直接看到的證據。</span></label>
-      </div>
-    </details>
+      </div></form></details>
   </section>
 
   <!-- ===================== 閱讀 ===================== -->
-  <h2 id="read">先讀懂模型：次波源與相位<span class="sect-time">進入活動二前閱讀</span></h2>
+  <h2 id="read">先讀懂模型：次波源與相位<span class="sect-time">進入活動二前閱讀　<span class="id-chip">節點02</span></span></h2>
   <div class="card">
     <p>單色光照射兩條相近的窄縫後，屏幕可出現交替排列的明暗條紋。這些條紋是光在不同位置的強度分布，<strong>不能當成兩條狹縫的放大影像</strong>。</p>
-    <p>依<strong>惠更斯原理</strong>，波面上各點可視為發出次波的波源；在窄縫近似下，兩條狹縫可視為兩個次波源。同一穩定單色光適當照明兩縫時，兩者頻率相同並保持固定的相位關係，稱為<strong>相干（同調）波源</strong>。<em>相位</em>描述週期振動進行到哪個階段。</p>
-    <p>兩列光波到達某處時，若相位相同便互相增強；若相位相反便互相減弱。兩列光波在該處振幅相等且反相時，可完全相消。到達時相位相同或相反，取決於兩縫到該處的<strong>路徑差</strong>：兩縫同相發出時，路徑差為 0、λ、2λ…（整數個波長）處同相，形成亮紋；路徑差為 λ/2、3λ/2…（半個波長的奇數倍）處反相，形成暗紋。活動二的模型會在你送出初稿後，讓你讀出 B、D 兩點的路徑差。眼睛無法追蹤光的快速振動，看到的是<strong>時間平均的光強度</strong>，因此形成亮紋與暗紋。</p>
+    <p>依<strong>惠更斯原理</strong>，波面上各點可視為發出次波的波源；在窄縫近似下，兩條狹縫可視為兩個次波源。同一穩定單色光適當照明兩縫時，兩者頻率相同，並保持固定的相位關係，稱為<strong>相干波源</strong>。<em>相位</em>描述週期振動進行到哪個階段。</p>
+    <p>兩列光波到達某處時，若相位相同便互相增強；若相位相反便互相減弱。兩列光波在該處振幅相等且反相時，可完全相消。眼睛無法追蹤光的快速振動，看到的是<strong>時間平均的光強度</strong>，因此形成亮紋與暗紋。</p>
     <p><strong>暗紋不表示兩列光波都未到達。</strong>光波疊加可以解釋這種規律分布，提供光具有波動性的證據。</p>
-    <p class="small muted">成立條件：採同偏振方向、相干單色光的理想模型；完全暗紋還需等振幅，實驗暗紋可能仍有背景光；兩縫都會產生繞射，不能說雙狹縫只有干涉。（01 節點02；依據 OpenStax University Physics Vol. 3 §3.1）</p>
+    <p class="small"><span class="badge-add"></span>補充說明<span class="t-only">（01 節點02 正文未含）</span>：到達時相位相同或相反，取決於兩縫到該處的<strong>路徑差</strong>。兩縫同相發出時，路徑差為 0、λ、2λ…（整數個波長）處同相，形成亮紋；路徑差為 λ/2、3λ/2…（半個波長的奇數倍）處反相，形成暗紋。活動二的模型會在你送出初稿後，讓你讀出 B、D 兩點的路徑差。</p>
+    <p class="small muted">成立條件與易混淆處：此處採同偏振方向、相干單色光的理想模型。完全暗紋還需等振幅；實驗暗紋可能仍有背景光。兩縫都會產生繞射，不能說雙狹縫只有干涉。<br>參考：<a href="https://openstax.org/books/university-physics-volume-3/pages/3-1-youngs-double-slit-interference" target="_blank" rel="noopener">OpenStax University Physics Vol. 3 §3.1</a></p>
+    <div class="editor-note">術語：01 節點02 正文用「相干波源」，02 教案專業說明用「同調次波源」「同調波源」。本頁正文照錄 01，不另加「（同調）」括註。</div>
     <figure class="asset"><div data-huy></div><figcaption>惠更斯原理：窄縫處可視為次波源。圓弧是模型，不是肉眼看到的光路。<span class="asset-tag">07A-2-01</span></figcaption></figure>
     <div class="add-block"><span class="badge-add"></span><strong>進階補充（01 未涵蓋，不列入基礎流程）：</strong>光是電磁波，更完整的說法是兩列光波的電場在屏幕上疊加；02 教案的達成規準提到「以電場疊加解釋亮暗」。本教材只要求定性：同相到達增強、反相到達減弱。</div>
   </div>
 
   <!-- ===================== 活動二 ACT01 ===================== -->
-  <h2 id="act01">活動二（ACT01）　用模型解釋亮暗紋（Q4）<span class="sect-time">32–45 分・05 題卡第4題・T01／M01／M02／A01</span></h2>
-  <p>B 代表亮紋位置，D 代表暗紋位置。以同偏振、相干、在觀察處等振幅的兩列光波作理想化討論。對應 08 的「初稿→AI 追問→修訂」：</p>
+  <h2 id="act01">活動二（ACT01）　用模型解釋亮暗紋（Q4）<span class="sect-time">32-45 分・<span class="id-chip">C4</span>・T01／M01／M02／A01</span></h2>
+  <h3><span class="id-chip t-only">03 活動03</span>解釋亮暗（15分鐘）</h3>
+  <p>B代表亮紋位置，D代表暗紋位置。以同偏振、相干且在觀察處等振幅的兩列光波作理想化討論。</p>
+  <p class="small">使用原教材雙狹縫波面模型或離線模擬。先說明窄縫可視為次波源；「相干」指同頻率且相位關係固定，「相位」描述振動進行的階段。模型用來解釋Q2的觀察。<span class="t-only">（03 活動03「使用材料與操作」原文）</span></p>
+  <p class="t-only small">08 的流程為「初稿→AI 追問→修訂」，對應如下：</p>
   <ul class="small">
-    <li><strong>預測</strong>＝② 我的初稿（送出後鎖定）；<strong>觀察</strong>＝① 模型與觀察記錄；<strong>解釋</strong>＝③ AI 追問（可略過）；<strong>修正</strong>＝④ 我的修訂（與初稿並排）。</li>
+    <li><span class="t-only">對應 08：</span><strong>預測</strong>＝② 我的初稿（送出後鎖定）；<strong>觀察</strong>＝① 模型與觀察記錄；<strong>解釋</strong>＝③ AI 追問（可略過）；<strong>修正</strong>＝④ 我的修訂（與初稿並排）。</li>
     <li>進入條件：已完成活動一（Q1–Q3）並讀過上面的次波源說明。AI 不是完成活動的必要條件。</li>
   </ul>
-  <p class="small" id="resume-note" hidden><span class="badge-add"></span>已載入你先前在這個瀏覽器的作答，可以接續完成。</p>
+  <p class="small" id="resume-note" hidden>已載入你先前在這個瀏覽器的作答，可以接續完成。</p>
   <ol class="stepper" id="act-stepper" aria-label="ACT01 進度"><li>1 預測：我的初稿</li><li>2 觀察：模型與記錄</li><li>3 解釋：AI 追問或略過</li><li>4 修正：我的修訂</li></ol>
 
   <div class="act-grid">
@@ -162,11 +184,10 @@
           <button type="button" role="tab" data-tab="model" aria-selected="false">模型</button>
         </div>
         <div class="tabpanel" id="tp-text">
-          <ul class="small">
-            <li>兩縫可視為<strong>兩個相干次波源</strong>（同頻率、相位差固定）。</li>
-            <li>同相到達 → 增強；反相到達 → 減弱（等振幅時理想為零）。</li>
-            <li>屏幕看到的是<strong>時間平均光強</strong>。暗紋不表示沒有光波到達。</li>
-          </ul>
+          <p class="small">單色光照射兩條相近的窄縫後，屏幕可出現交替排列的明暗條紋。這些條紋是光在不同位置的強度分布，不能當成兩條狹縫的放大影像。</p>
+          <p class="small">依惠更斯原理，波面上各點可視為發出次波的波源；在窄縫近似下，兩條狹縫可視為兩個次波源。同一穩定單色光適當照明兩縫時，兩者頻率相同，並保持固定的相位關係，稱為相干波源。相位描述週期振動進行到哪個階段。</p>
+          <p class="small">兩列光波到達某處時，若相位相同便互相增強；若相位相反便互相減弱。兩列光波在該處振幅相等且反相時，可完全相消。眼睛無法追蹤光的快速振動，看到的是時間平均的光強度，因此形成亮紋與暗紋。</p>
+          <p class="small">暗紋不表示兩列光波都未到達。光波疊加可以解釋這種規律分布，提供光具有波動性的證據。</p>
           <figure class="asset"><div data-t01></div><figcaption>T01　光的雙狹縫實驗架構圖（只呈現器材位置，不畫光線路徑）<span class="asset-tag">T01</span><span class="asset-tag">07A-2-08</span></figcaption></figure>
         </div>
         <div class="tabpanel" id="tp-photo" hidden>
@@ -191,7 +212,7 @@
               <canvas class="sim" id="m02t" aria-label="所選位置兩列波與合成波隨時間的變化" role="img"></canvas>
               <div class="readout" id="m02-read" aria-live="polite"></div>
               <section class="qcard" id="card-obs" data-qid="Q4" data-act="ACT01" style="margin-bottom:0">
-                <div class="q-head"><span class="q-no">觀察記錄</span><span class="q-goal">只記錄在模型看到的</span></div>
+                <div class="q-head"><span class="q-no">觀察記錄</span><span class="badge-add"></span><span class="q-goal">只記錄在模型看到的</span></div>
                 <div class="bd"><strong>B 點</strong>
                   <div class="grp"><label>兩列波的波峰 <select class="sel" name="o_B_peak"><option value="">選擇</option><option>同時到達</option><option>錯開（一峰一谷）</option></select></label>
                   <label>合成振幅 <select class="sel" name="o_B_amp"><option value="">選擇</option><option>比單列大</option><option>比單列小</option><option>為零或幾乎為零</option></select></label></div></div>
@@ -210,45 +231,47 @@
     <!-- 右欄 -->
     <div class="right-col">
       <section class="qcard" id="card-q4d" data-qid="Q4" data-act="ACT01">
-        <div class="q-head"><span class="q-no">Q4</span><span class="q-goal">② 我的初稿（預測）・對應目標2・03 學習單 Q4</span><span class="muted small" id="d-state" style="margin-left:auto"></span></div>
-        <p class="q-stem">依兩個相干次波源的模型，完成 B 與 D 兩處的判斷，再解釋：兩列光波都能到達屏幕，為何仍有亮紋與暗紋？</p>
-        <fieldset class="bd"><legend>B（亮紋位置）</legend>
+        <div class="q-head"><span class="q-no">Q4</span><span class="id-chip">U1-S2-Q4</span><span class="id-chip">C4</span><span class="q-goal">② 我的初稿（預測）・<span class="id-chip">LO2</span></span><span class="muted small" id="d-state" style="margin-left:auto"></span></div>
+        <p class="q-stem">Q4　依兩個相干次波源的模型，完成B與D兩處的判斷。</p>
+        <fieldset class="bd"><legend>B亮紋</legend>
           <div class="grp"><b>相位</b><label class="chip"><input type="radio" name="d_B_phase" value="同相" data-req> 同相</label><label class="chip"><input type="radio" name="d_B_phase" value="反相" data-req> 反相</label></div>
           <div class="grp"><b>干涉</b><label class="chip"><input type="radio" name="d_B_int" value="建設性" data-req> 建設性</label><label class="chip"><input type="radio" name="d_B_int" value="破壞性" data-req> 破壞性</label></div>
           <div class="grp"><b>光強</b><label class="chip"><input type="radio" name="d_B_inten" value="較強" data-req> 較強</label><label class="chip"><input type="radio" name="d_B_inten" value="理想下為零" data-req> 理想下為零</label></div>
         </fieldset>
-        <fieldset class="bd"><legend>D（暗紋位置）</legend>
+        <fieldset class="bd"><legend>D暗紋</legend>
           <div class="grp"><b>相位</b><label class="chip"><input type="radio" name="d_D_phase" value="同相" data-req> 同相</label><label class="chip"><input type="radio" name="d_D_phase" value="反相" data-req> 反相</label></div>
           <div class="grp"><b>干涉</b><label class="chip"><input type="radio" name="d_D_int" value="建設性" data-req> 建設性</label><label class="chip"><input type="radio" name="d_D_int" value="破壞性" data-req> 破壞性</label></div>
           <div class="grp"><b>光強</b><label class="chip"><input type="radio" name="d_D_inten" value="較強" data-req> 較強</label><label class="chip"><input type="radio" name="d_D_inten" value="理想下為零" data-req> 理想下為零</label></div>
         </fieldset>
-        <label for="d_explain">一句解釋（可寫 2–3 句）</label>
-        <textarea id="d_explain" name="d_explain" data-req placeholder="例：暗紋是光沒到 D。（待修正示例）——請寫你自己的想法"></textarea>
+        <label for="d_explain">請用2–3句說明：兩列光波都能到達屏幕，為何仍有亮紋與暗紋？</label>
+        <textarea id="d_explain" name="d_explain" data-req placeholder="請寫你自己的想法"></textarea>
         <div class="lockbar"><button class="btn lockbtn" type="button" disabled>送出初稿並鎖定</button><span class="lockmsg"></span></div>
         <div class="warn" aria-live="polite"></div>
         <div class="saved" aria-live="polite"></div>
+        <div class="mis-fb" data-mis-for="Q4" hidden></div>
         <div class="hints" data-ladder>
-          <details class="L1"><summary>L1 提示：釐清想法（暗紋＝沒有光？）</summary><div>你說「沒有光到達 D」，是根據哪項觀察？<br><span class="muted small">對照：Q4 初稿、雙狹縫紅光實拍（10 迷思・暗紋等於無光）</span></div></details>
-          <details class="L2"><summary>L2 提示：回看證據</summary><div>在模型連出兩狹縫到 D 的路徑；兩路是否都能到達？<br><span class="muted small">對照：第2節次波模型、B 與 D 的位置</span></div></details>
-          <details class="L3"><summary>L3 提示：連結說明</summary><div>D 點兩路光到達時的振動關係，如何影響合成振幅與亮度？<br><span class="muted small">對照：B／D 比較圖、學生修訂稿</span></div></details>
+          <details class="L1"><summary>L1 釐清想法</summary><div>你說「沒有光到達D」，是根據哪項觀察？<br><span class="muted small">對照材料：Q4初稿；雙狹縫紅光實拍</span><br><a class="mlink" href="misconceptions.html#m3">迷思M3</a></div></details>
+          <details class="L2"><summary>L2 回看證據</summary><div>在模型連出兩狹縫到D的路徑；兩路是否都能到達？<br><span class="muted small">對照材料：第2節次波模型；B與D的位置</span><br><a class="mlink" href="misconceptions.html#m3">迷思M3</a></div></details>
+          <details class="L3"><summary>L3 連結說明</summary><div>D點兩路光到達時的振動關係，如何影響合成振幅與亮度？<br><span class="muted small">對照材料：B／D比較圖；學生修訂稿</span><br><a class="mlink" href="misconceptions.html#m3">迷思M3</a></div></details>
         </div>
+        <p class="small t-only">L1–L3 取自 10「範例1　暗紋等於沒有光到達」（第2節／學習單Q4）原文。</p>
       </section>
 
       <div class="pane" id="ai-pane">
-        <h3><span class="no">3</span>AI 追問 <span class="demo-flag">示範・本機規則式模擬・不連外網</span><button class="btn ghost" type="button" id="ai-toggle" style="margin-left:auto;padding:2px 10px">收合 –</button></h3>
+        <h3><span class="no">3</span>AI 追問 <span class="demo-flag">規則式示範，非真實 AI</span><button class="btn ghost" type="button" id="ai-toggle" style="margin-left:auto;padding:2px 10px">收合 –</button></h3>
         <div id="ai-body">
-          <p class="small muted">A01 規範：每次 1 個主問題、最多 3 句，不代答。這不是真實 AI，是用規則比對你的初稿；真實 AI 版（需連網）列為待開發需求。<span class="asset-tag">A01</span></p>
+          <p class="small muted">A01 規範：每次 1 個主問題、最多 3 句，不代答。這是規則式示範，非真實 AI：由本機程式用規則比對你的初稿，不連外網。<span class="asset-tag">A01</span><span class="t-only">真實 AI 版（需連網）列為待開發需求（08）。</span></p>
           <div id="ai-empty" class="small muted">已完成初稿後，按「請 AI 追問」才會顯示。</div>
           <div id="ai-log" aria-live="polite"></div>
           <div class="warn" id="ai-gate-msg"></div>
           <div class="btn-row"><button class="btn" type="button" id="ai-ask" disabled>請 AI 追問</button><button class="btn ghost" type="button" id="ai-skip">略過 AI 繼續</button></div>
-          <label class="small"><input type="checkbox" id="ai-timeout"> 示範：模擬連線逾時（驗收情境4用；取消勾選後按重試）</label>
+          <label class="small t-only"><input type="checkbox" id="ai-timeout"> 示範：模擬連線逾時（驗收情境4用；取消勾選後按重試）</label>
           <div id="handoff" class="add-block" hidden><strong>已標記「請教師接手」</strong>：連續兩層提示後仍卡在同一個地方。你的初稿、對話與提示歷程都已保留，匯出檔的 <code>ai_handoff</code> 欄會是 1。</div>
         </div>
       </div>
 
       <section class="qcard" id="card-q4r" data-qid="Q4" data-act="ACT01">
-        <div class="q-head"><span class="q-no">Q4</span><span class="q-goal">④ 我的修訂（修正）・與初稿分別保存</span></div>
+        <div class="q-head"><span class="q-no">Q4</span><span class="id-chip">U1-S2-Q4</span><span class="id-chip">C4</span><span class="q-goal">④ 我的修訂（修正）・與初稿分別保存</span></div>
         <div class="compare" id="cmpQ4" aria-live="polite"></div>
         <p class="q-stem">用觀察證據修訂你的判斷與解釋。</p>
         <div class="btn-row"><button class="btn ghost" type="button" id="fill-rev">把初稿帶入修訂欄</button></div>
@@ -268,16 +291,16 @@
         <label for="r_reason">修訂理由／保留初稿的理由</label>
         <input type="text" id="r_reason" name="r_reason" placeholder="簡述原因…">
         <div class="saved" aria-live="polite"></div>
-        <details>
-          <summary>看答案要素並自評</summary>
-          <div class="answer-key"><strong>答案要素（03 學習單）：</strong>B：同相、建設性干涉、光強較強。D：反相、破壞性干涉，等振幅理想情況下光強為零。判讀重點：是否以相位關係與疊加解釋明暗，而非只寫亮暗名稱。實際暗紋可能受背景光或振幅不等影響。<br><strong>追問（教師）：</strong>若認為 D 處沒有任何光波到達——從兩條狹縫出發的波能否都到達 D？到達後如何疊加？若說能量消失——其他屏幕位置的亮度有何變化？</div>
-          <div class="rubric">
-            <h4>自評規準（05 題卡第4題）</h4>
-            <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">達成</span><span>完整連結惠更斯原理、兩個相干次波源、相位關係、干涉結果與屏幕亮度，並區分真實證據與模型。</span></label>
+        <div class="t-only"><details>
+          <summary>教師專用：參考答案與答案要素</summary>
+          <div class="answer-key"><strong>Q4 參考答案與判讀（03 活動03 原文）：</strong>B：同相、建設性干涉、光強較強。D：反相、破壞性干涉，等振幅理想情況下光強為零。<br>判讀重點：學生是否以相位關係及疊加解釋明暗，而非只寫亮暗名稱。實際暗紋可能受背景光或振幅不等影響。<br><strong>常見錯誤與引導（03 活動03 原文）：</strong>若認為D處沒有任何光波到達，追問：「從兩條狹縫出發的波能否都到達D？到達後如何疊加？」若說能量消失，追問：「其他屏幕位置的亮度有何變化？」<hr><strong>答案要素（05 題卡C4 原文）：</strong>在惠更斯觀點下，窄縫可近似為次波源；同一束相干單色光照明，使兩狹縫的出射波同頻率且相位差固定。在同偏振的討論下，同相到達使時間平均光強較大；反相到達使光強減小，觀察處等振幅時理想光強為零。暗紋不是沒有光波到達。<br><strong>常見迷思與錯誤（05 題卡C4 原文）：</strong>把暗紋說成沒有光到達；把水波模擬當成光的實驗證據；把波前圓弧當作可見光路；混淆瞬時振動與屏幕時間平均光強度。</div>
+          
+        </details></div><details class="self-rubric"><summary>作答後自評：成功規準</summary><form class="rubric-form" onsubmit="return false"><div class="rubric">
+            <h4>成功規準（05 題卡C4 原文；選一個最接近的答案自評）</h4>
+            <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">達成</span><span>能完整連結惠更斯原理、兩個相干次波源、相位關係、干涉結果與屏幕亮度，並區分真實證據與模型。</span></label>
             <label class="lv"><input type="radio" name="rubric" value="2"><span class="lv-name">發展中</span><span>能寫出同相亮、反相暗，但未說明次波源由來、光強度或證據地位。</span></label>
             <label class="lv"><input type="radio" name="rubric" value="1"><span class="lv-name">待支持</span><span>把亮暗解釋成狹縫影像、遮擋或有無光到達，或把模型圖當作實拍。</span></label>
-          </div>
-        </details>
+          </div></form></details>
       </section>
     </div>
   </div>
@@ -293,13 +316,17 @@
     <button class="btn ghost" type="button" data-iod-export="csv">下載 CSV</button>
     <button class="btn ghost" type="button" data-iod-export="json">下載 JSON</button>
     <button class="btn danger" type="button" data-iod-clear>清除本機資料</button>
-    　匯出欄位含活動 ACT01、題號 Q4；初稿欄位前綴 d_、修訂 r_、觀察 o_；JSON 另含每筆修訂歷程。共用設備完成後請清除。保管人、期限與刪除方式由授課教師確認（08）。</p>
+    　匯出欄位含活動 ACT01、題號 Q4；初稿欄位前綴 d_、修訂 r_、觀察 o_；JSON 另含每筆修訂歷程。共用設備完成後請清除。由授課教師確認保管人、保存期限與刪除方式。<span class="t-only">（08）</span></p>
 
   <!-- ===================== 活動三 ===================== -->
-  <h2 id="a3">活動三　調整縫距、波長、屏距，條紋怎麼變？（Q5–Q6）<span class="sect-time">45–50 分・07A 光的干涉模擬</span></h2>
+  <h2 id="a3">活動三　調整縫距、波長、屏距，條紋怎麼變？（Q5–Q6）<span class="sect-time">45-50 分<span class="t-only">・07A 光的干涉模擬</span></span></h2>
+  <h3><span class="id-chip t-only">03 活動04</span>比較與統整（15分鐘）</h3>
+  <p>連結前一節水波干涉經驗，整理光的雙狹縫干涉，說清楚兩種現象的共同規則與差異。</p>
+  <p class="small">回看第1節水波紀錄，以及本節Q2的觀察與Q4的解釋。使用既有紀錄作答；區分真實觀察與模型，不新增公式。<span class="t-only">（03 活動04「使用材料與操作」原文）</span></p>
+  <div class="editor-note">(1) 本頁活動三的標題與「調整縫距、波長、屏距」的模擬預測／觀察為整合者依 07A 光的干涉模擬所加；03 活動04 只有 Q5–Q6，且 03 明載「不新增公式」。<br>(2) 02 教案「範圍與限制」為「定性說明；不推公式或掃描參數」，05 內容範圍亦寫「不要求條紋間距、膜厚公式推導、參數掃描」；本頁此段（Δy＝λL/d、改變 d、λ、L）與之矛盾，為整合者保留的進階補充，未刪除亦未統一。<br>(3) 本頁將 45-50 分（5 分鐘，02）標於此處；03 活動04 為 15 分鐘，見上方時間矛盾說明。</div>
   <div class="pstep"><span class="sn">1 預測</span><small>先猜每個參數改變時，條紋間距怎麼變；送出後鎖定</small></div>
   <section class="qcard" id="card-sp" data-qid="SIM" data-act="S2-04">
-    <div class="q-head"><span class="q-no">預測</span><span class="q-goal">只改變一個參數，其他不動</span></div>
+    <div class="q-head"><span class="q-no">預測</span><span class="badge-draft"></span><span class="q-goal">只改變一個參數，其他不動</span></div>
     <div class="grid">
       <label>縫距 d 變大，相鄰亮紋間距會： <select class="sel" name="sp_d" data-req><option value="">選擇</option><option>變大（變疏）</option><option>變小（變密）</option><option>不變</option></select></label>
       <label>波長 λ 變長，相鄰亮紋間距會： <select class="sel" name="sp_lam" data-req><option value="">選擇</option><option>變大（變疏）</option><option>變小（變密）</option><option>不變</option></select></label>
@@ -312,7 +339,7 @@
 
   <div class="pstep s2"><span class="sn">2 觀察</span><small>操作模擬，再記錄你看到的</small></div>
   <div class="gate" data-gate="sp">
-    <div class="gate-msg"><strong>先送出上面的預測。</strong>送出鎖定後才會開啟模擬（02 教案：先預測再操作）。</div>
+    <div class="gate-msg"><strong>先送出上面的預測。</strong>送出鎖定後才會開啟模擬。<span class="t-only">（02 教案：先預測再操作）</span></div>
     <div class="gate-body">
       <figure class="asset" style="text-align:left">
         <div class="simgrid">
@@ -330,11 +357,11 @@
             <p class="small">畫面範圍內約 <span id="v-n">11</span> 個條紋間距。</p>
           </div>
         </div>
-        <figcaption>光的干涉模擬（站內自製 canvas，離線可用，取代原清單依賴外部 CDN 的版本）。理想雙縫、小角度、忽略單縫包絡與偏振；白光以各波長疊加。<span class="asset-tag">07A-光的干涉模擬</span>
-          <br><span class="badge-add"></span>Δy＝λL/d 為進階補充：01 與 05 的範圍是定性說明、不要求推導或計算；此處只用來讓你看見「間距如何隨三個參數改變」。適用條件：單色光、兩縫等寬且同相照明、屏距 L 遠大於縫距 d（小角度近似，亮紋位置 y≈mλL/d，m＝0、±1、±2…）；白光時各色間距不同，只有中央亮紋是白色。</figcaption>
+        <figcaption>光的干涉模擬<span class="t-only">（站內自製 canvas，離線可用，取代原清單依賴外部 CDN 的版本）</span>。理想雙縫、小角度、忽略單縫包絡與偏振；白光以各波長疊加。<span class="asset-tag">07A-光的干涉模擬</span>
+          <br><span class="badge-add"></span><span class="t-only">Δy＝λL/d 為進階補充：01 與 05 的範圍是定性說明、不要求推導或計算；</span>此處只用來讓你看見「間距如何隨三個參數改變」。適用條件：單色光、兩縫等寬且同相照明、屏距 L 遠大於縫距 d（小角度近似，亮紋位置 y≈mλL/d，m＝0、±1、±2…）；白光時各色間距不同，只有中央亮紋是白色。</figcaption>
       </figure>
       <section class="qcard" id="card-so" data-qid="SIM" data-act="S2-04">
-        <div class="q-head"><span class="q-no">觀察記錄</span><span class="q-goal">以你實際操作看到的為準</span></div>
+        <div class="q-head"><span class="q-no">觀察記錄</span><span class="badge-draft"></span><span class="q-goal">以你實際操作看到的為準</span></div>
         <div class="grid">
           <label>d 變大時，間距： <select class="sel" name="so_d"><option value="">選擇</option><option>變大（變疏）</option><option>變小（變密）</option><option>不變</option></select></label>
           <label>λ 變長時，間距： <select class="sel" name="so_lam"><option value="">選擇</option><option>變大（變疏）</option><option>變小（變密）</option><option>不變</option></select></label>
@@ -342,9 +369,9 @@
         </div>
         <div class="saved" aria-live="polite"></div>
         <div class="hints" data-ladder>
-          <details class="L1"><summary>L1 提示：回到觀察</summary><div><span class="badge-add"></span>一次只動一個滑桿，其他都不動；看畫面上相鄰亮紋的距離與 Δy 的數字。</div></details>
-          <details class="L2"><summary>L2 提示：指出關鍵</summary><div><span class="badge-add"></span>條紋出現在兩縫到屏幕的「路徑差」剛好差整數個波長的地方。想一想：縫距、波長改變時，路徑差跟著怎麼變？</div></details>
-          <details class="L3"><summary>L3 提示：部分作法</summary><div><span class="badge-add"></span>把 λ 拉到最長再拉到最短，各記一次 Δy；再只改 d。把三次結果寫在觀察記錄裡再比較。</div></details>
+          <details class="L1"><summary>L1 回到觀察</summary><div><span class="badge-add"></span>一次只動一個滑桿，其他都不動；看畫面上相鄰亮紋的距離與 Δy 的數字。</div></details>
+          <details class="L2"><summary>L2 指出關鍵</summary><div><span class="badge-add"></span>條紋出現在兩縫到屏幕的「路徑差」剛好差整數個波長的地方。想一想：縫距、波長改變時，路徑差跟著怎麼變？</div></details>
+          <details class="L3"><summary>L3 部分作法</summary><div><span class="badge-add"></span>把 λ 拉到最長再拉到最短，各記一次 Δy；再只改 d。把三次結果寫在觀察記錄裡再比較。</div></details>
         </div>
       </section>
     </div>
@@ -352,53 +379,56 @@
 
   <div class="pstep s3"><span class="sn">3 解釋</span><small>Q5 比較水波與光；Q6 完整解釋亮暗紋</small></div>
   <section class="qcard" id="card-q5" data-qid="Q5" data-act="S2-04">
-    <div class="q-head"><span class="q-no">Q5</span><span class="q-goal">對應目標2・03 學習單 Q5（Q5 無對應題卡）</span></div>
-    <p class="q-stem">比較水波干涉與光的雙狹縫干涉，各寫一項可觀察的量，再寫一項共同規則。（可回看第1節水波紀錄）</p>
+    <div class="q-head"><span class="q-no">Q5</span><span class="id-chip">U1-S2-Q5</span><span class="q-goal t-only">03 學習單 Q5（05 的 7 題無對應題卡；02 的目標2 證據欄未列 Q5）</span></div>
+    <p class="q-stem">Q5　比較水波干涉與光的雙狹縫干涉，各寫一項可觀察的量，再寫一項共同規則。</p>
     <label for="q5_water">水波可觀察：</label><input type="text" id="q5_water" name="q5_water">
     <label for="q5_light">光的雙狹縫可觀察：</label><input type="text" id="q5_light" name="q5_light">
     <label for="q5_common">共同規則：</label><input type="text" id="q5_common" name="q5_common">
     <div class="saved" aria-live="polite"></div>
-    <div class="hints" data-ladder><details class="L1"><summary>L1 提示：釐清想法</summary><div>兩種活動各自「直接看到」的是什麼？（03 學習單教師提示：水波可看水面起伏；屏幕呈現時間平均的光強分布。）</div></details></div>
+    <div class="hints" data-ladder><details class="L1"><summary>L1 釐清想法</summary><div>兩種活動各自直接看到的是什麼？<span class="t-only">（03 活動04「常見錯誤與引導」原文：若把水面瞬時位移直接當成光強，追問此句）</span></div></details></div>
+    <div class="t-only answer-key"><strong>教師專用　Q5 參考答案與判讀（03 活動04 原文）：</strong>水波可看水面起伏；屏幕呈現時間平均的光強分布。共同規則為波的疊加與建設性／破壞性干涉。</div>
   </section>
   <section class="qcard" id="card-q6" data-qid="Q6" data-act="S2-04">
-    <div class="q-head"><span class="q-no">Q6</span><span class="q-goal">對應目標2、4・05 題卡第4題</span></div>
-    <p class="q-stem">請用 4–5 句解釋雙狹縫亮暗紋。依序說明：兩個次波源 → 光波疊加 → 亮紋 → 暗紋 → 與 Q2 觀察的連結。</p>
-    <textarea id="q6_text" name="q6_text" style="min-height:9em" placeholder="1 兩個次波源…　2 光波疊加…　3 亮紋…　4 暗紋…　5 與 Q2 的連結…"></textarea>
+    <div class="q-head"><span class="q-no">Q6</span><span class="id-chip">U1-S2-Q6</span><span class="id-chip">C4</span><span class="q-goal"><span class="id-chip">LO2</span><span class="id-chip">LO4</span></span></div>
+    <p class="q-stem">Q6　請用4–5句解釋雙狹縫亮暗紋。依序說明：兩個次波源 → 光波疊加 → 亮紋 → 暗紋 → 與Q2觀察的連結。</p>
+    <textarea id="q6_text" name="q6_text" style="min-height:9em" aria-label="Q6 作答"></textarea>
     <div class="saved" aria-live="polite"></div>
-    <div class="hints" data-ladder><details class="L1"><summary>L1 提示：連結說明</summary><div>若只有名詞列表，請用「因為……所以……」連起相位、疊加與亮暗。（03 學習單教師提示）</div></details></div>
+    <div class="hints" data-ladder><details class="L1"><summary>L1 連結說明</summary><div>請用『因為……所以……』連起相位、疊加與亮暗。<span class="t-only">（03 活動04「常見錯誤與引導」原文：若Q6只有名詞列表，追問此句）</span></div></details></div>
   </section>
 
   <div class="pstep s4"><span class="sn">4 修正</span><small>原預測、觀察並排，再修正想法</small></div>
   <div id="cmpC"></div>
   <section class="qcard" id="card-q6r" data-qid="Q6" data-act="S2-04">
-    <div class="q-head"><span class="q-no">Q6-修正</span><span class="q-goal">對照預測與 Q6 初稿</span></div>
+    <div class="q-head"><span class="q-no">Q6-修正</span><span class="id-chip">U1-S2-Q6</span><span class="badge-draft"></span><span class="q-goal">對照預測與 Q6 初稿</span></div>
     <label for="q6_revise">我修正的想法（哪個預測與觀察不同？Q6 要不要補上「與觀察的連結」？）</label>
     <textarea id="q6_revise" name="q6_revise"></textarea>
     <div class="saved" aria-live="polite"></div>
-    <details>
-      <summary>看答案要素並自評</summary>
-      <div class="answer-key"><strong>Q6 參考（03）：</strong>兩窄縫可視為相干次波源。兩列光波在屏幕各處疊加。同相處增強形成亮紋。反相處減弱，等振幅時可完全相消形成暗紋。這可解釋 Q2 的明暗分布；若 Q2 僅用模型，應註明尚待實際觀察支持。<br><strong>Q5 參考：</strong>水波可看水面起伏；屏幕呈現時間平均的光強分布。共同規則為波的疊加與建設性／破壞性干涉。<br><strong>05 題卡第4題要素：</strong>窄縫可近似為次波源；同一束相干單色光使兩縫出射波頻率相同、相位差固定；同相到達使時間平均光強較大、反相到達使光強減小，觀察處等振幅時理想為零；暗紋不是沒有光波到達。</div>
-      <div class="rubric">
-        <h4>自評規準（05 題卡第4題）</h4>
-        <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">達成</span><span>完整連結惠更斯原理、兩個相干次波源、相位關係、干涉結果與屏幕亮度，並區分真實證據與模型。</span></label>
+    <div class="t-only"><details>
+      <summary>教師專用：參考答案與答案要素</summary>
+      <div class="answer-key"><strong>Q6 參考（03 活動04 原文）：</strong>兩窄縫可視為相干次波源。兩列光波在屏幕各處疊加。同相處增強形成亮紋。反相處減弱，等振幅時可完全相消形成暗紋。這可解釋Q2的明暗分布；若Q2僅模型，應註明尚待實際觀察支持。<br><strong>Q5 參考（03 活動04 原文）：</strong>水波可看水面起伏；屏幕呈現時間平均的光強分布。共同規則為波的疊加與建設性／破壞性干涉。<br><strong>答案要素（05 題卡C4 原文）：</strong>在惠更斯觀點下，窄縫可近似為次波源；同一束相干單色光照明，使兩狹縫的出射波同頻率且相位差固定。在同偏振的討論下，同相到達使時間平均光強較大；反相到達使光強減小，觀察處等振幅時理想光強為零。暗紋不是沒有光波到達。</div>
+      
+    </details></div><details class="self-rubric"><summary>作答後自評：成功規準</summary><form class="rubric-form" onsubmit="return false"><div class="rubric">
+        <h4>成功規準（05 題卡C4 原文；選一個最接近的答案自評）</h4>
+        <label class="lv"><input type="radio" name="rubric" value="3"><span class="lv-name">達成</span><span>能完整連結惠更斯原理、兩個相干次波源、相位關係、干涉結果與屏幕亮度，並區分真實證據與模型。</span></label>
         <label class="lv"><input type="radio" name="rubric" value="2"><span class="lv-name">發展中</span><span>能寫出同相亮、反相暗，但未說明次波源由來、光強度或證據地位。</span></label>
         <label class="lv"><input type="radio" name="rubric" value="1"><span class="lv-name">待支持</span><span>把亮暗解釋成狹縫影像、遮擋或有無光到達，或把模型圖當作實拍。</span></label>
-      </div>
-    </details>
+      </div></form></details>
   </section>
 
   <h2 id="misc">常見迷思速查（本節）</h2>
   <div class="tbl-wrap"><table class="tbl">
-    <tr><th>學生想法（10）</th><th>引導方式（不給答案）</th><th>在本頁哪裡出現</th></tr>
-    <tr><td>「D 點是暗的，所以沒有光到達。」</td><td>先看兩狹縫到 D 的路徑，再比較到達時的振動關係。</td><td>活動二 ② 的 L1→L3；AI 追問規則</td></tr>
-    <tr><td>「照片裡的光沿圓弧前進。」（模型當成實拍）</td><td>並列實拍與波前圖，請學生標示來源及各圖能說明的事。</td><td>活動一 Q3-解釋 的 L1→L3；素材 07A-2-09 小測驗</td></tr>
+    <tr><th>迷思</th><th>學生表現<span class="t-only">（10）</span></th><th>引導方式<span class="t-only">（10）</span></th><th>改善判準<span class="t-only">（10）</span></th><th>在本頁哪裡出現</th></tr>
+    <tr><td><span class="id-chip">M3</span><a class="mlink" href="misconceptions.html#m3">迷思M3</a><br><small>暗紋等於無光</small></td><td>「D點是暗的，所以沒有光到達。」</td><td>先看兩狹縫到D的路徑，再比較到達時的振動關係。</td><td>能連結兩路到達、反相疊加與暗紋。</td><td><a href="#card-q4d">Q4 初稿</a>的 L1→L3；AI 追問規則</td></tr>
+    <tr><td><span class="id-chip">M4</span><a class="mlink" href="misconceptions.html#m4">迷思M4</a><br><small>模型當成實拍</small></td><td>「照片裡的光沿圓弧前進。」</td><td>並列實拍與波前圖，請學生標示來源及各圖能說明的事。</td><td>能區分亮度證據與模型線條。</td><td><a href="#card-q3a">Q3-解釋</a>的 L1→L3；Q2 資料來源標示；<a href="#sub-quiz">素材 07A-2-09 小測驗</a></td></tr>
   </table></div>
-  <p class="small muted">判準：能連結兩路到達、反相疊加與暗紋；能區分亮度證據與模型線條。學生語句為情境示範，非實測紀錄（10）。</p>
+  <p class="small muted">學生語句為情境示範，非實測紀錄。</p>
+  <div class="t-only small"><strong>本頁題卡與迷思對照（供迷思速查回連）：</strong>M3：<code>card-q4d</code>（Q4 初稿；解釋文字含「沒有光到達」「能量消失」或未提相位疊加時，作答欄 <code>mis</code>＝M3）。M4：<code>card-q3a</code>（Q3-解釋提到圓弧／光路時 <code>mis</code>＝M4）、<code>card-q2</code>（有寫特徵卻未勾資料來源，或特徵含波面圓弧時 <code>mis</code>＝M4）、<code>sub-quiz</code>（素材 07A-2-09 歸類答錯，qid＝GAL）、<code>card-q4d</code>（解釋把圓弧當光路時同時記 M4）。</div>
 
-  <h2 id="assets">素材庫（07A 第2節 10 件）<span class="sect-time">完成活動後再回看較佳</span></h2>
+  <h2 id="assets">素材庫<span class="t-only">（07A 第2節 10 件）</span><span class="sect-time">完成活動後再回看較佳</span></h2>
   <details>
     <summary>展開素材庫：圖片素材以站內自繪 SVG 替代，原檔名與授權照列</summary>
-    <p class="small muted">原清單的照片為外部檔案，本站無實體圖檔；標有「站內自繪」者為示意，不等同原圖，請以來源頁為準。07A 原清單未編序號，此處序號為整合者暫編。</p>
+    <p class="small muted">標有「站內自繪」者為示意，不等同原圖，請以來源頁為準。</p>
+    <p class="small add-block"><span class="badge-add"></span>原清單的照片為外部檔案，本站無實體圖檔。07A 原清單未編序號，此處序號為整合者暫編。</p>
     <div class="gal" id="gal"></div>
   </details>
 

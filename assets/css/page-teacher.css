@@ -74,3 +74,10 @@ tr.hide{display:none}
 
 @media(max-width:800px){.ttabs{top:0;position:static}.ttabs button[role=tab]{flex:1 1 45%}.devlist{grid-template-columns:1fr}td.lk{min-width:150px}}
 @media print{.ttabs,.subtoc,.filters{display:none}.tabpanel[hidden]{display:block!important}.tabpanel{page-break-before:always}body.print-acc .tabpanel:not(#tab-accept){display:none!important}}
+
+/* 分頁 9–11：矛盾清單、編號對照、草擬待確認 */
+tr.on>td{background:#eef8f1}
+.numtbl td,.mistbl td,#t-contra td{font-size:.86rem;vertical-align:top}
+#t-contra td:nth-child(2){min-width:170px}
+.numtbl .id-chip{white-space:nowrap}
+.tabpanel h4{margin:1.2em 0 .4em}

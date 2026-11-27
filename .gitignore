@@ -13,3 +13,10 @@ iod_*.csv
 iod_*.json
 screenshots/
 test-output/
+
+# 後端本機資料與環境變數（含學生作答，勿提交）
+.data/
+.env
+.env.local
+__pycache__/
+.vercel/

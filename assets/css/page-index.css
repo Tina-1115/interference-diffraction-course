@@ -18,3 +18,4 @@
 .steps-list li{counter-increment:s;position:relative;padding:6px 10px 6px 42px;margin:6px 0;background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r)}
 .steps-list li::before{content:counter(s);position:absolute;left:10px;top:7px;width:24px;height:24px;border-radius:50%;background:var(--c-primary);color:#fff;text-align:center;line-height:24px;font-weight:700;font-size:.85rem}
 .store-box{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.csv-cols{columns:2;column-gap:20px;margin:4px 0}.csv-cols li{break-inside:avoid}.csv-cols code{font-size:.85em}
