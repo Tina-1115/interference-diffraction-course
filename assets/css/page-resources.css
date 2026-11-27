@@ -11,3 +11,8 @@
 .prog-line{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
 .prog-line .pl{background:var(--c-tag);border:1px solid var(--c-line);border-radius:8px;padding:2px 10px;font-size:.9rem}
 .prog-line .cur{background:var(--c-primary);color:#fff;border-color:var(--c-primary)}
+/* 課本版面：延伸閱讀卡片 */
+.res.tb-extend{background:var(--tb-note-bg,#eef1f4);border:0;border-left:5px solid #64748b;border-radius:12px;padding:.7rem 1rem}
+.res.tb-extend h4{color:var(--tb-note-ink,#334155)}
+.res.tb-extend h4::before{content:"延伸閱讀";display:inline-block;font-size:.75rem;font-weight:800;background:#64748b;color:#fff;border-radius:999px;padding:0 .7em;margin-right:.6em;vertical-align:.1em}
+.stage>h2{margin-top:1.6rem}

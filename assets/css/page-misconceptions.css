@@ -19,3 +19,10 @@
 .appear a.ap-q .id-chip{margin:0 .15em;color:var(--c-primary)}
 .draft-hints{margin:8px 0}
 .mis .id-chip{font-size:.8rem;margin:0 .5em 0 0}
+/* 課本版面：附錄「迷思速查」 */
+section.mis{background:#fff;border-radius:14px}
+section.mis>h3{color:var(--tb-misc-ink,#8a2631)}
+.appear.tb-margin-note{margin:.4rem 0 .9rem;display:flex}
+.appear.tb-margin-note>.tb-label{margin-bottom:0}
+.hints.tb-think{margin-top:1.5rem}
+.hints.tb-think details{background:var(--tb-paper,#fbfaf6)}

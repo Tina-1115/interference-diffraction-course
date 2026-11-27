@@ -81,3 +81,5 @@ tr.on>td{background:#eef8f1}
 #t-contra td:nth-child(2){min-width:170px}
 .numtbl .id-chip{white-space:nowrap}
 .tabpanel h4{margin:1.2em 0 .4em}
+/* 課本版面：頁首 */
+.tb-section-head{margin-top:.2rem}

@@ -8,9 +8,9 @@
   var PAGES = [
     { id: 'index', href: 'index.html', title: '學習地圖', group: 'main' },
     { id: 'pretest', href: 'pretest.html', title: '前測', group: 'main' },
-    { id: 'unit1', href: 'unit1.html', title: '第1節 波的疊加', group: 'main' },
-    { id: 'unit2', href: 'unit2.html', title: '第2節 雙狹縫干涉', group: 'main' },
-    { id: 'unit3', href: 'unit3.html', title: '第3節 繞射與應用', group: 'main' },
+    { id: 'unit1', href: 'unit1.html', title: '1-1 波的疊加', group: 'main' },
+    { id: 'unit2', href: 'unit2.html', title: '1-2 雙狹縫干涉', group: 'main' },
+    { id: 'unit3', href: 'unit3.html', title: '1-3 繞射與應用', group: 'main' },
     { id: 'posttest', href: 'posttest.html', title: '後測', group: 'main' },
     { id: 'resources', href: 'resources.html', title: '延伸學習', group: 'main' },
     { id: 'misconceptions', href: 'misconceptions.html', title: '迷思速查', group: 'aux' },
@@ -252,14 +252,12 @@
   /* ---------- 頂列（麵包屑）＋固定目錄側欄 ---------- */
   var GROUPS = [
     { label: '開始', ids: ['index', 'pretest'] },
-    { label: '第1節', ids: ['unit1'] },
-    { label: '第2節', ids: ['unit2'] },
-    { label: '第3節', ids: ['unit3'] },
+    { label: '第1章 干涉與繞射', ids: ['unit1', 'unit2', 'unit3'] },
     { label: '評量與延伸', ids: ['posttest', 'resources'] },
     { label: '輔助', ids: ['misconceptions', 'assessment', 'teacher', 'dashboard'] }
   ];
   function groupOf(id) { var g = GROUPS.filter(function (x) { return x.ids.indexOf(id) >= 0; })[0]; return g ? g.label : ''; }
-  function shortTitle(p) { return p.title.replace(/^第\d節\s*/, ''); }
+  function shortTitle(p) { return p.title; }
   function uiGet(k, d) { var v = store.get('ui:' + k); return v == null ? d : v; }
   var root = document.documentElement;
   function isDesktop() { return window.matchMedia('(min-width:1024px)').matches; }

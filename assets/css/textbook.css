@@ -1,0 +1,175 @@
+/* 教科書版面（整站共用，接在 site.css 之後、各頁 page-*.css 之前載入）
+   規格依據：textbook_spec.md（公開課本慣例＋臺灣國中課本版面觀察）。只改版面、編號與標示，不新增教材文字。
+   結構：1 變數 → 2 基礎排版 → 3 頁面骨架（章首／目次／小節） → 4 內文元件 → 5 邊欄註記 → 6 活動與評量 → 7 導覽與側欄 → 8 深色模式 → 9 列印 */
+
+/* ========== 1. 變數 ========== */
+:root{
+  --tb-ch:#b8560b; --tb-ch-tint:#fdf1e3; --tb-ch-ink:#7a3a05;   /* 第1章主色（橘）；--tb-ch 白字底對比 ≥ 4.5:1 */
+  --tb-term:#1d5fa8;
+  --tb-paper:#fbfaf6; --tb-rule:#d8d2c4; --tb-ink:#1f2933; --tb-ink-soft:#52606d;
+  --tb-note-bg:#eef1f4; --tb-note-ink:#334155;
+  --tb-think-bd:#6f8aa3; --tb-think-ink:#274560;
+  --tb-warn-bg:#fff4c2; --tb-warn-ink:#6b4e00;
+  --tb-misc-bg:#fde8ea; --tb-misc-ink:#8a2631;
+  --tb-course-bg:#fde8ea; --tb-course-ink:#8a2631;
+  --tb-measure:40rem; --tb-margin:15rem; --tb-gap:2rem;
+  --tb-fs:1.0625rem; --tb-lh:1.9;
+  --tb-sec:"";                      /* 圖表編號的節號前綴，由 body[data-page] 設定 */
+  --c-bg:var(--tb-paper);
+  --font:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body[data-page="unit1"]{--tb-sec:"1-1"} body[data-page="unit2"]{--tb-sec:"1-2"} body[data-page="unit3"]{--tb-sec:"1-3"}
+@counter-style tb-circled{system:fixed;symbols:"①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩";fallback:decimal}
+
+/* ========== 2. 基礎排版 ========== */
+body{font-size:var(--tb-fs);line-height:var(--tb-lh);background:var(--tb-paper);color:var(--tb-ink)}
+main{max-width:58rem;counter-reset:tbfig tbtab}
+main>p,.tb-body p{max-width:var(--tb-measure)}
+main p{text-align:justify;text-justify:inter-character}
+main>p:not(.small):not(.muted):not(.bridge-in):not(.bridge-out),.tb-body>p{text-indent:2em}
+main td p,main li p,main .small,main .muted,main figcaption,main .q-stem,main .tb-activity p,main .tb-think p,main .tb-margin-note p{text-indent:0}
+strong.tb-term,.tb-term{color:var(--tb-term);font-weight:800}
+
+/* 標題階層：章名 h1、小節 h2、內小標 h3 */
+h1{border-bottom:0;padding:.1em 0 .1em .75rem;border-left:12px solid var(--tb-ch);letter-spacing:.04em;font-size:2rem;line-height:1.3}
+h2{background:none;border-left:0;border-radius:0;padding:.2em 0 .25em;border-bottom:3px solid var(--tb-ch);color:var(--tb-ch-ink);font-size:1.5rem}
+h3{color:var(--tb-ch-ink);font-size:1.18rem}
+h2 .tb-secno,.tb-secno{display:inline-block;background:var(--tb-ch);color:#fff;font-weight:800;border-radius:10px;padding:0 .6em;margin-right:.5em;font-size:.85em;letter-spacing:.03em;vertical-align:.06em}
+.tb-subhead{counter-increment:tbsub}
+.tb-subhead::before{content:counter(tbsub,tb-circled);display:inline-block;background:var(--tb-ch);color:#fff;border-radius:8px;min-width:1.5em;text-align:center;margin-right:.45em;font-weight:800;font-size:.9em}
+h2{counter-reset:tbsub}
+
+/* ========== 3. 頁面骨架：章首、目次、小節 ========== */
+.tb-chapter-head{display:grid;grid-template-columns:auto 1fr;gap:0 1.2rem;align-items:start;background:linear-gradient(135deg,var(--tb-ch-tint),#fff 70%);border:1px solid var(--tb-rule);border-left:14px solid var(--tb-ch);border-radius:18px;padding:1.4rem 1.6rem;margin:0 0 1.6rem;box-shadow:0 2px 10px rgba(80,50,10,.08)}
+.tb-chapter-head .tb-chno{grid-row:1/span 3;display:flex;align-items:center;justify-content:center;width:4.2rem;height:4.2rem;background:var(--tb-ch);color:#fff;font-size:2.6rem;font-weight:900;border-radius:16px;line-height:1}
+.tb-chapter-head h1{border:0;padding:0;margin:.1em 0 .3em;font-size:2.1rem}
+.tb-chapter-head .tb-intro{margin:.4em 0;max-width:var(--tb-measure)}
+.tb-chapter-head__inquiry,.tb-inquiry{position:relative;border:1.5px solid var(--tb-think-bd);border-radius:12px;padding:1rem 1rem .7rem;margin:1.1rem 0 .4rem;background:#fff;color:var(--tb-think-ink)}
+.tb-chapter-head__inquiry::before,.tb-inquiry::before{content:"探究提問";position:absolute;top:-.8em;left:.9rem;background:var(--tb-paper);padding:0 .5em;font-weight:800;color:var(--tb-think-ink)}
+.tb-secs{list-style:none;margin:.4rem 0 .6rem;padding:0;display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-weight:700}
+.tb-secs a{text-decoration:none;color:var(--tb-ch-ink)} .tb-secs a:hover{text-decoration:underline}
+.tb-secs .tb-secno{font-size:.8em}
+
+.tb-toc{border:1px solid var(--tb-rule);border-radius:16px;background:#fff;padding:1rem 1.3rem 1.1rem;margin:1.4rem 0}
+.tb-toc>h2{border:0;margin:.1em 0 .6em;font-size:1.25rem;display:inline-block;border:2px solid var(--tb-ch);border-radius:12px;padding:.1em .9em}
+.tb-toc ol{list-style:none;margin:0;padding:0}
+.tb-toc li{display:flex;align-items:baseline;gap:.5rem;padding:.28rem 0;border-bottom:1px dotted var(--tb-rule)}
+.tb-toc li:last-child{border-bottom:0}
+.tb-toc .tb-secno{flex:none;min-width:3.2em;text-align:center}
+.tb-toc a{text-decoration:none;font-weight:700;color:var(--tb-ink)} .tb-toc a:hover{color:var(--tb-ch-ink);text-decoration:underline}
+.tb-toc .tb-toc-sub{font-weight:400;font-size:.9rem;color:var(--tb-ink-soft)}
+.tb-toc-group{font-weight:800;color:var(--tb-ch-ink);margin:.7rem 0 .2rem}
+
+.tb-section-head{display:flex;align-items:center;gap:.7rem;margin:0 0 1rem;padding:.5rem 0;border-bottom:3px solid var(--tb-ch)}
+.tb-section-head .tb-secno{font-size:1.25rem;padding:.1em .7em;margin:0}
+.tb-section-head h1,.tb-section-head h2{border:0;padding:0;margin:0;font-size:1.7rem;color:var(--tb-ink)}
+.tb-pagehead{display:none}
+
+/* ========== 4. 內文元件：學習目標、圖表、名詞、提醒 ========== */
+.tb-objectives{border:1.5px solid var(--tb-ch);border-radius:14px;background:#fff;padding:.9rem 1.2rem .8rem;margin:1.2rem 0;position:relative}
+.tb-objectives>h2,.tb-objectives>h3,.tb-objectives>.tb-label{position:absolute;top:-.85em;left:1rem;background:var(--tb-ch);color:#fff;border:0;margin:0;padding:.05em .8em;border-radius:999px;font-size:.95rem}
+.tb-objectives ul,.tb-objectives ol{margin:.5rem 0 0;padding-left:1.4rem}
+.tb-objectives li{margin:.25rem 0}
+
+figure.asset,figure.tb-figure{background:#fff;border:1px solid var(--tb-rule);border-radius:10px;box-shadow:none;margin:1.3rem 0}
+figure.asset figcaption::before,figure.tb-figure .tb-figcap::before,figure.tb-figure figcaption::before{counter-increment:tbfig;content:"▲ 圖 " var(--tb-sec) "-" counter(tbfig) "　";font-weight:800;color:var(--tb-ch-ink)}
+figure[data-fig-own] figcaption::before,figure[data-fig-own] .tb-figcap::before{content:"▲ ";counter-increment:none}
+figure.asset figcaption,figure.tb-figure figcaption{text-align:left;font-size:.92rem;color:var(--tb-ink-soft);margin-top:.5rem}
+.tb-table,table.tbl{border-collapse:collapse}
+table.tbl caption,.tb-table caption{caption-side:top;text-align:left;font-weight:800;color:var(--tb-ch-ink);padding:.3em 0}
+table.tbl caption::before,.tb-table caption::before{counter-increment:tbtab;content:"表 " var(--tb-sec) "-" counter(tbtab) "　"}
+table.tbl th,.tb-table th{background:var(--tb-ch-tint);color:var(--tb-ch-ink)}
+
+.tb-caution{position:relative;background:var(--tb-warn-bg);color:var(--tb-warn-ink);border:0;border-radius:4px;padding:.7rem 1rem .7rem 2.6rem;margin:1rem 0;box-shadow:2px 3px 0 rgba(0,0,0,.08);transform:rotate(-.25deg)}
+.tb-caution::before{content:"⚠ 注意";position:absolute;left:.7rem;top:.6rem;font-weight:800;writing-mode:horizontal-tb;font-size:.78rem;line-height:1.1;width:1.5rem;white-space:normal;word-break:break-all}
+
+/* 既有提示元件在課本版面中的樣貌 */
+.bridge-in,.bridge-out{background:var(--tb-ch-tint);border-left:5px solid var(--tb-ch);color:var(--tb-ink)}
+.bridge-in::before,.bridge-out::before{color:var(--tb-ch-ink)}
+.bridge-out{background:#eef3f8;border-left-color:var(--tb-think-bd)}
+.callout{background:#fff;border-color:var(--tb-rule)}
+
+/* ========== 5. 邊欄註記（寬螢幕在右側邊欄，窄螢幕為內嵌色塊） ========== */
+.tb-margin-note{display:block;border-radius:12px;background:var(--tb-note-bg);color:var(--tb-note-ink);padding:.7rem .9rem .6rem;margin:1rem 0;font-size:.92rem;line-height:1.7}
+.tb-margin-note>.tb-label,.tb-margin-note>summary{display:inline-block;font-weight:800;font-size:.8rem;background:#64748b;color:#fff;border-radius:999px;padding:0 .75em;margin-bottom:.35rem;cursor:default}
+.tb-margin-note>summary{cursor:pointer}
+.tb-margin-note--course,.tb-margin-note--misc{background:var(--tb-misc-bg);color:var(--tb-misc-ink)}
+.tb-margin-note--course>.tb-label,.tb-margin-note--misc>.tb-label,.tb-margin-note--course>summary,.tb-margin-note--misc>summary{background:#b4414e}
+.tb-margin-note--warn{background:var(--tb-warn-bg);color:var(--tb-warn-ink)}
+.tb-margin-note--warn>.tb-label,.tb-margin-note--warn>summary{background:#8a6400}
+.tb-margin-note p{margin:.3em 0;text-align:left}
+@media (min-width:1200px){
+  .tb-body{position:relative;max-width:var(--tb-measure)}
+  .tb-body>.tb-margin-note{float:right;clear:right;width:var(--tb-margin);margin:.2rem calc(-1*(var(--tb-margin) + var(--tb-gap))) 1rem var(--tb-gap)}
+}
+
+.tb-think{position:relative;border:1.5px solid var(--tb-think-bd);border-radius:12px;background:#fff;padding:1rem 1rem .7rem;margin:1.4rem 0 1rem;color:var(--tb-ink)}
+.tb-think>.tb-label,.tb-think>legend,.tb-think>summary{position:absolute;top:-.8em;left:.9rem;background:var(--tb-paper);color:var(--tb-think-ink);font-weight:800;padding:0 .5em}
+.tb-think>summary{position:static;display:inline-block;margin:-1.75rem 0 .4rem;cursor:pointer}
+
+/* ========== 6. 探究活動、自我評量、延伸閱讀、摘要 ========== */
+.tb-activity{border:2px solid var(--tb-ch);border-radius:16px;background:#fff;padding:0 1.2rem 1rem;margin:1.8rem 0;overflow:hidden}
+.tb-activity>.tb-activity__title,.tb-activity__title{display:flex;align-items:center;gap:.7rem;background:var(--tb-ch);color:#fff;margin:0 -1.2rem 1rem;padding:.55rem 1.2rem;font-size:1.15rem;font-weight:800;border:0;border-radius:0}
+.tb-activity__title .tb-secno{background:#fff;color:var(--tb-ch-ink);margin:0}
+.tb-activity__purpose,.tb-activity__materials,.tb-activity__discuss{position:relative;border:1.5px solid var(--tb-think-bd);border-radius:10px;padding:.8rem .9rem .6rem;margin:1.1rem 0 .6rem}
+.tb-activity__materials{border-style:dashed}
+.tb-activity__purpose::before{content:"目的"} .tb-activity__materials::before{content:"器材"} .tb-activity__discuss::before{content:"問題與討論"}
+.tb-activity__purpose::before,.tb-activity__materials::before,.tb-activity__discuss::before{position:absolute;top:-.8em;left:.8rem;background:#fff;padding:0 .5em;font-weight:800;color:var(--tb-think-ink)}
+.tb-activity__steps{list-style:none;counter-reset:tbstep;margin:.8rem 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.8rem}
+.tb-activity__steps>li{counter-increment:tbstep;position:relative;border:1px solid var(--tb-rule);border-radius:10px;padding:.7rem .8rem .7rem 2.6rem;background:var(--tb-paper)}
+.tb-activity__steps>li::before{content:counter(tbstep);position:absolute;left:.6rem;top:.65rem;width:1.6rem;height:1.6rem;border-radius:7px;background:var(--tb-ch);color:#fff;font-weight:800;text-align:center;line-height:1.6rem}
+
+.tb-review{position:relative;border:1.5px solid var(--tb-think-bd);border-radius:14px;background:#fff;padding:1.2rem 1.2rem .8rem;margin:1.6rem 0}
+.tb-review>.tb-label,.tb-review>h2:first-child,.tb-review>legend{position:absolute;top:-.85em;left:1rem;background:var(--tb-paper);color:var(--tb-think-ink);font-weight:800;border:0;padding:0 .6em;margin:0;font-size:1.05rem}
+.tb-extend{background:var(--tb-note-bg);border-radius:12px;padding:.6rem 1rem;margin:1.2rem 0}
+.tb-extend>summary{cursor:pointer;font-weight:800;color:var(--tb-note-ink)}
+.tb-summary{border-top:6px solid var(--tb-ch);background:#fff;border-radius:0 0 14px 14px;padding:.9rem 1.3rem 1rem;margin:1.8rem 0;font-size:.97rem}
+.tb-summary>h2,.tb-summary>.tb-label{display:inline-block;background:var(--tb-ch);color:#fff;border:0;border-radius:10px;padding:.05em .8em;margin:-1.6rem 0 .6rem;font-size:1.05rem}
+@media (min-width:900px){.tb-summary .tb-cols{column-count:2;column-gap:2rem}}
+
+/* ========== 7. 導覽與側欄（目次風格） ========== */
+.site-nav{background:#fff;border-bottom:3px solid var(--tb-ch)}
+.side{background:#fffdf8;border-right:1px solid var(--tb-rule)}
+.side .s-group{color:var(--tb-ch-ink);font-weight:800;border-bottom:2px solid var(--tb-ch);padding-bottom:.15rem}
+.side .side-logo{background:var(--tb-ch)}
+.side .s-item.cur>.s-link{border-left:5px solid var(--tb-ch);background:var(--tb-ch-tint)}
+.pager a{background:#fff;border-color:var(--tb-rule)}
+.tb-nav{display:none} /* 與 site.js 的上一步／下一步重複，改由 pager 呈現（它同時負責完成度記錄） */
+
+/* ========== 8. 深色模式 ========== */
+:root[data-theme="dark"]{--tb-ch:#e08a3c;--tb-ch-tint:#33261a;--tb-ch-ink:#f1b878;--tb-term:#8cc0f5;--tb-paper:#14181d;--tb-rule:#3a424c;--tb-ink:#e6eaf0;--tb-ink-soft:#aab4c1;--tb-note-bg:#222831;--tb-note-ink:#cfd8e3;--tb-think-bd:#6f8aa3;--tb-think-ink:#bcd3ea;--tb-warn-bg:#3c3210;--tb-warn-ink:#f1dc8c;--tb-misc-bg:#3b1f24;--tb-misc-ink:#f2b7bf;--tb-course-bg:#3b1f24;--tb-course-ink:#f2b7bf}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tb-ch:#e08a3c;--tb-ch-tint:#33261a;--tb-ch-ink:#f1b878;--tb-term:#8cc0f5;--tb-paper:#14181d;--tb-rule:#3a424c;--tb-ink:#e6eaf0;--tb-ink-soft:#aab4c1;--tb-note-bg:#222831;--tb-note-ink:#cfd8e3;--tb-think-bd:#6f8aa3;--tb-think-ink:#bcd3ea;--tb-warn-bg:#3c3210;--tb-warn-ink:#f1dc8c;--tb-misc-bg:#3b1f24;--tb-misc-ink:#f2b7bf;--tb-course-bg:#3b1f24;--tb-course-ink:#f2b7bf}}
+:root[data-theme="dark"] .tb-chapter-head,:root[data-theme="dark"] .tb-toc,:root[data-theme="dark"] .tb-objectives,:root[data-theme="dark"] .tb-activity,:root[data-theme="dark"] .tb-review,:root[data-theme="dark"] .tb-think,:root[data-theme="dark"] .tb-summary,:root[data-theme="dark"] figure.asset,:root[data-theme="dark"] figure.tb-figure,:root[data-theme="dark"] .site-nav,:root[data-theme="dark"] .side{background:#1a2027}
+:root[data-theme="dark"] .tb-chapter-head{background:linear-gradient(135deg,#33261a,#1a2027 70%)}
+:root[data-theme="dark"] .tb-activity__steps>li{background:#14181d}
+:root[data-theme="dark"] .tb-chapter-head__inquiry,:root[data-theme="dark"] .tb-inquiry{background:#1a2027}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .tb-chapter-head,:root:not([data-theme="light"]) .tb-toc,:root:not([data-theme="light"]) .tb-objectives,:root:not([data-theme="light"]) .tb-activity,:root:not([data-theme="light"]) .tb-review,:root:not([data-theme="light"]) .tb-think,:root:not([data-theme="light"]) .tb-summary,:root:not([data-theme="light"]) figure.asset,:root:not([data-theme="light"]) figure.tb-figure,:root:not([data-theme="light"]) .site-nav,:root:not([data-theme="light"]) .side{background:#1a2027}
+  :root:not([data-theme="light"]) .tb-chapter-head{background:linear-gradient(135deg,#33261a,#1a2027 70%)}
+  :root:not([data-theme="light"]) .tb-activity__steps>li{background:#14181d}
+  :root:not([data-theme="light"]) .tb-chapter-head__inquiry,:root:not([data-theme="light"]) .tb-inquiry{background:#1a2027}
+}
+
+/* ========== 窄螢幕 ========== */
+@media (max-width:720px){
+  main p{text-align:left}
+  .tb-chapter-head{grid-template-columns:1fr;border-left-width:10px;padding:1rem}
+  .tb-chapter-head .tb-chno{grid-row:auto;width:3.2rem;height:3.2rem;font-size:2rem;margin-bottom:.4rem}
+  h1{font-size:1.6rem} .tb-chapter-head h1{font-size:1.6rem}
+  .tb-activity{padding:0 .9rem .8rem} .tb-activity__title{margin:0 -.9rem 1rem;padding:.5rem .9rem}
+  .tb-activity__steps{grid-template-columns:1fr}
+}
+
+/* ========== 9. 列印 ========== */
+@media print{
+  @page{size:A4;margin:18mm 16mm 20mm}
+  body{font-size:11pt;color:#000;background:#fff}
+  .site-nav,.side,.side-backdrop,.to-top,.tm-btn,.pager,.tb-nav,.toast{display:none !important}
+  main{max-width:none;padding:0} html.has-side body{padding-left:0 !important}
+  .tb-margin-note{float:none !important;margin:.6rem 0 !important;border:1px solid #888;background:none !important;color:#000 !important}
+  .tb-figure,figure.asset,.tb-activity,.tb-think,.tb-review,.tb-margin-note,.qcard{break-inside:avoid}
+  .tb-chapter-head,.tb-summary{break-before:page}
+  .tb-chapter-head:first-child{break-before:auto}
+  details{display:block} details>*{display:block}
+  a[href]::after{content:""}
+}

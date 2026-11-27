@@ -19,3 +19,13 @@
 .steps-list li::before{content:counter(s);position:absolute;left:10px;top:7px;width:24px;height:24px;border-radius:50%;background:var(--c-primary);color:#fff;text-align:center;line-height:24px;font-weight:700;font-size:.85rem}
 .store-box{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .csv-cols{columns:2;column-gap:20px;margin:4px 0}.csv-cols li{break-inside:avoid}.csv-cols code{font-size:.85em}
+/* 課本版面：章首、學習目標、目次 */
+.tb-chapter-head .tb-chapter-head__inquiry{grid-column:2}
+.tb-secs .tb-secno{display:inline-block}
+.lo-list{list-style:none;padding:0;margin:.4rem 0 0}
+.lo-list li{margin:.35rem 0;padding-left:0}
+.lo-list .id-chip{margin-right:.4em}
+.tb-toc .tb-toc-group{margin-top:.9rem}
+.tb-toc li>a:first-child:not(.tb-secno){flex:none}
+.tb-toc li .tb-toc-sub{margin-left:auto}
+.hero{background:transparent;border:0;border-top:1px dashed var(--tb-rule,#d8d2c4);border-radius:0;padding:10px 0;margin:12px 0}

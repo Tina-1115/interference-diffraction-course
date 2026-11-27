@@ -80,3 +80,15 @@ details.lite>summary{cursor:pointer;font-weight:600;padding:5px 0}
 a.mlink{display:inline-block;font-size:.78rem;font-weight:700;line-height:1.6;padding:0 .6em;margin:0 .15em;border:1px solid var(--c-line);border-radius:999px;background:var(--c-tag);color:var(--c-primary);text-decoration:none;vertical-align:middle}
 a.mlink:hover,a.mlink:focus-visible{background:var(--c-primary-soft);text-decoration:underline}
 .hs-title .mlink{margin-left:.4em}
+
+/* 課本版面（TB1） */
+.tb-activity__title{counter-reset:none;font-size:1.15rem;color:#fff;background:var(--tb-ch);border-bottom:0}
+.tb-activity .poe-panel,.tb-activity .qcard{box-shadow:none}
+.tb-body .key{border-left-color:var(--tb-ch)}
+.tb-body .key b{color:var(--tb-ch-ink)}
+.tb-body .key b.tb-term{color:var(--tb-term)}
+.tb-margin-note .tb-label{margin-right:.4em}
+.tb-think .hints details{margin:.3rem 0}
+.ref.tb-margin-note{margin:.4rem 0 0;padding:.35rem .6rem;font-size:.82rem}
+.tb-nav a{flex:1;text-decoration:none;border:1px solid var(--tb-rule);border-radius:12px;background:#fff;padding:.7rem 1rem;font-weight:700;color:var(--tb-ch-ink)}
+.tb-nav__next{text-align:right}

@@ -60,3 +60,14 @@ details.ext>summary{cursor:pointer;font-weight:700;padding:6px 0}
 .mis-fb[hidden]{display:none}
 a.mlink{display:inline-block;background:#fdecea;color:#7a1f16;border:1px solid #e3b0aa;border-radius:999px;padding:0 .7em;font-size:.82rem;text-decoration:none;margin:0 .2em}
 a.mlink:hover{background:#f9d6d1}
+
+/* 課本版面（TB3）：活動框內的題卡去外框、提示 details 的 tb-think 樣式微調 */
+.tb-activity>.qcard{border:0;border-top:0;box-shadow:none;background:none;padding:0;margin:0}
+.tb-activity>.qcard.is-done::after{top:.6rem}
+.tb-activity>.tb-activity__title .u3-time{margin-left:auto}
+.hints details.tb-think{padding:.3rem .9rem;margin:.6rem 0;background:#fff}
+.hints details.tb-think>summary{position:static;display:block;margin:0;padding:.3rem 0;background:none;color:var(--tb-think-ink)}
+.hints details.tb-think[open]>summary{margin-bottom:.3rem}
+.tb-review>#quiz-list>.qcard{margin:1rem 0}
+figure.tb-figure .mech{margin:.4rem 0}
+.tb-section-head+.bridge-in{margin-top:0}

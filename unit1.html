@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第1節　波的疊加與水波干涉｜干涉與繞射線上教材</title>
+<title>1-1 波的疊加與水波干涉｜干涉與繞射線上教材</title>
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/textbook.css">
 <link rel="stylesheet" href="assets/css/page-unit1.css">
 <script defer src="assets/js/site.js"></script>
 <script defer src="assets/js/page-unit1.js"></script>
@@ -12,6 +13,7 @@
 <body data-page="unit1" data-prev="pretest.html" data-next="unit2.html">
 <a class="skip" href="#main">跳到主要內容</a>
 <main id="main">
+  <header class="tb-section-head"><span class="tb-secno">1-1</span><h1>波的疊加與水波干涉</h1></header>
   <div class="u1-hero" aria-hidden="false">
     <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="封面主視覺示意：兩組同心圓水波相互重疊。" preserveAspectRatio="xMidYMid slice">
 <defs><linearGradient id="cvg" x1="0" x2="1"><stop offset="0" stop-color="#164880"/><stop offset="1" stop-color="#1f5fa8"/></linearGradient></defs>
@@ -36,7 +38,6 @@
 </svg>
   </div>
   <p class="small muted t-only">封面主視覺示意 <span class="asset-tag t-only">C-2</span>（站內自繪，以兩組同心水波示意；不作概念證據）</p>
-  <h1>第1節　波的疊加與水波干涉</h1>
   <p class="bridge-in">前測讓你看到自己的起點（有人認為波相遇會「撞開」、位移為零就是「沒有波」）。這一節從最基本的「波相遇」開始，用<b>預測 → 觀察 → 解釋 → 修正</b>四步，親手檢驗這些想法。</p>
 
   <div class="tags" aria-label="本節學習目標與知識節點">
@@ -46,7 +47,7 @@
     <span class="tag">定性說明；不推公式或掃描參數</span>
   </div>
 
-  <h2>本節學習節奏（50 分鐘）</h2>
+  <h3 class="tb-subhead">本節學習節奏（50 分鐘）</h3>
   <p><span class="t-only">依教案第1節時間流程安排。</span>每個活動都照「預測（送出後鎖定）→ 觀察 → 解釋 → 修正（原預測與修訂並排）」進行，點卡片可跳到該活動。</p>
   <div class="rhythm">
     <a href="#act-a"><b>0–22 分　活動一：繩波的疊加</b>先畫脈衝，再看重疊與通過。問：相消後波消失嗎？<br>學習單 Q1預測、Q2畫圖；Q3用疊加解釋</a>
@@ -58,19 +59,22 @@
   <div class="editor-note"><b>文件間矛盾（Q2 的形式）：</b>02 第1節學生活動寫「Q1預測、Q2畫圖」，10 的 L2／L3 提示也對照「Q2三階段作圖」，05 第1題的預期證據含「學生的合成波預測圖與修訂圖」；本頁為網頁互動，Q1 以選擇＋理由作答，Q2 以動畫與模擬的讀數記錄，沒有手繪畫圖。原文已保留於上方節奏與提示，未統一。</div>
   <div class="editor-note"><b>文件間矛盾（水波畫面）：</b>02 第1節教材欄寫「3D及俯視」，05 第2題預期證據含「3D水面與俯視圖的對照」；本頁僅有站內自繪 2D 俯視模型（S1-1），沒有 3D 畫面。</div>
 
-  <h2>先讀：節點 01 的核心想法</h2>
+  <h3 class="tb-subhead">先讀：節點 01 的核心想法</h3>
+  <div class="tb-body">
   <div class="key"><b>① 疊加：</b>兩列繩波脈衝相遇時，會暫時在同一段繩上重疊。在理想線性介質中，該處的合位移等於兩列波各自造成的位移相加。相遇結束後，兩列脈衝仍各自沿原方向傳播。</div>
-  <div class="key"><b>② 建設性與破壞性：</b>對同一位置的兩列同頻率週期波而言，若振動步調相同，合振幅最大，稱為<b>完全建設性干涉</b>；若振幅相等且振動步調恰好相反，合振幅為零，稱為<b>完全破壞性干涉</b>。</div>
+  <div class="key"><b>② 建設性與破壞性：</b>對同一位置的兩列同頻率週期波而言，若振動步調相同，合振幅最大，稱為<b class="tb-term">完全建設性干涉</b>；若振幅相等且振動步調恰好相反，合振幅為零，稱為<b class="tb-term">完全破壞性干涉</b>。</div>
   <div class="key"><b>③ 位移 ≠ 振幅：</b>位移是某一時刻偏離平衡位置的程度；振幅則是週期振動中偏離平衡位置的最大程度。某一刻位移為零，不能據此認定振幅為零。</div>
   <div class="key"><b>④ 穩定干涉：</b>兩個位置固定、振動關係固定的水波源，可形成位置穩定的干涉分布。完全相消還要求兩列波到達該處時振幅相等。局部振幅為零，不代表兩列波永久消失。</div>
-  <div class="key"><span class="badge-add"></span><b>⑤ 距離差（水波活動用）：</b>兩個<b>同相</b>波源（頻率相同、相位關係固定）的波到達某點時是同相或反相，取決於該點到兩波源的<b>距離差</b>（路徑差）：距離差為 0、λ、2λ…（整數個波長）時同相到達，振幅最大（腹線）；距離差為 λ/2、3λ/2…（半個波長的奇數倍）時反相到達，振幅最小（節線）。</div>
-  <div class="warn-box"><b>成立條件與易混淆處：</b>疊加採理想線性近似。穩定干涉須有固定的波源相位關係；完全相消須在觀察處等振幅、反相。應寫「<b>位移相消</b>」，避免把它說成總能量消失。</div>
+  <div class="key"><span class="badge-add"></span><b>⑤ 距離差（水波活動用）：</b>兩個<b class="tb-term">同相</b>波源（頻率相同、相位關係固定）的波到達某點時是同相或反相，取決於該點到兩波源的<b class="tb-term">距離差</b>（路徑差）：距離差為 0、λ、2λ…（整數個波長）時同相到達，振幅最大（腹線）；距離差為 λ/2、3λ/2…（半個波長的奇數倍）時反相到達，振幅最小（節線）。</div>
+  <div class="tb-margin-note tb-margin-note--warn"><span class="tb-label">注意</span><b>成立條件與易混淆處：</b>疊加採理想線性近似。穩定干涉須有固定的波源相位關係；完全相消須在觀察處等振幅、反相。應寫「<b class="tb-term">位移相消</b>」，避免把它說成總能量消失。</div>
   <p class="small muted t-only">資料來源：01 核心教材文本，節點01（參考 OpenStax University Physics Vol. 1 §16.5，原文件註記 2026-09-04 查核）。</p>
+  </div>
 
   <!-- ===================== 活動一 ===================== -->
-  <h2 id="act-a">活動一（0–22 分）　繩波的疊加：重疊時是什麼形狀？通過後呢？</h2>
+  <section class="tb-activity" id="act-1-1">
+  <h2 class="tb-activity__title" id="act-a"><span class="tb-secno">活動 1-1</span>（0–22 分）　繩波的疊加：重疊時是什麼形狀？通過後呢？</h2>
   <p>先看「相遇前」的題圖，不要急著開動畫。依第一步送出預測後，下方的觀察素材才會出現。</p>
-  <figure class="asset">
+  <figure class="asset tb-figure" data-fig-own>
     <svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="繩波相遇前題圖：同向案例中兩個向上脈衝分別位於左右兩側相向傳播；反向案例中左側向上、右側向下的等大脈衝相向傳播；中央標示觀察點P。" font-family="PingFang TC, Noto Sans TC, Microsoft JhengHei, sans-serif">
 <rect width="800" height="330" fill="#fff"/>
 <text x="40" y="28" font-size="19" font-weight="700" fill="#000">案例一：同向（A 向上、B 向上）</text>
@@ -157,7 +161,7 @@
         <p class="small muted">動畫為腳本示範時長（36 秒、無配樂）；旁白同時作字幕。「教學定格」只是讓你讀數，波並沒有停止。重疊後請連續看到兩脈衝通過，不要在相消處停下就下結論。</p>
       </div>
       <details class="lite t-only"><summary>查看 07B 分鏡腳本（鏡號、時間、畫面、動作、備註）</summary>
-        <div class="tbl-wrap"><table class="tbl"><thead><tr><th>鏡號／時間</th><th>畫面內容</th><th>旁白與字幕</th><th>動作與轉場</th><th>備註</th></tr></thead><tbody>
+        <div class="tbl-wrap"><table class="tbl"><caption>07B 分鏡腳本（鏡號、時間、畫面、動作、備註）</caption><thead><tr><th>鏡號／時間</th><th>畫面內容</th><th>旁白與字幕</th><th>動作與轉場</th><th>備註</th></tr></thead><tbody>
         <tr><td>01<br>0–6 秒</td><td>A、B 兩個向上脈衝分置左右。分波在上、合成繩形在下，標平衡位置。</td><td>「在理想線性介質中，兩個相同脈衝正相向傳播。」</td><td>先定格標示，再同步向中央移動。箭頭僅表示傳播方向。</td><td>單峰脈衝；統一座標尺度。</td></tr>
         <tr><td>02<br>6–14 秒</td><td>呈現完全重疊；P 點顯示＋1、＋1，合成＋2。</td><td>「同一位置的位移相加。同向重疊時，這裡的合成位移變大。」</td><td>抵達中央後定格 2 秒；配合旁白依序顯示三個數值。</td><td>相對單位；字幕與數值同步。</td></tr>
         <tr><td>03<br>14–20 秒</td><td>恢復移動，A 到右側、B 到左側，維持原形狀與方向。</td><td>「通過之後，兩個脈衝仍各自向原方向傳播。」</td><td>不中斷追蹤 A、B 標籤；固定視角。</td><td>保留標籤，不交換分波身分。</td></tr>
@@ -201,7 +205,7 @@
           <figure><canvas id="snap2"></canvas><figcaption>通過後（t＝10 秒）</figcaption></figure>
         </div>
         <details class="lite"><summary>⑤ 程式固定的參數（學生不能改）</summary>
-          <div class="tbl-wrap"><table class="tbl fixed-tbl"><thead><tr><th>參數</th><th>權限</th><th>預設值與單位</th><th>範圍與步進</th><th>作用與限制</th></tr></thead><tbody>
+          <div class="tbl-wrap"><table class="tbl fixed-tbl"><caption>程式固定的參數（學生不能改）</caption><thead><tr><th>參數</th><th>權限</th><th>預設值與單位</th><th>範圍與步進</th><th>作用與限制</th></tr></thead><tbody>
           <tr><td>脈衝高度 A、B</td><td>學生可調</td><td>＋1（相對單位）</td><td>−1.5～＋1.5，步進 0.1</td><td>含正負號；調整後回到起始畫面。</td></tr>
           <tr><td>波形與寬度</td><td>程式固定</td><td>同形單峰，全寬為畫面 20%</td><td>固定值</td><td>兩波等寬；不提供學生控制項。</td></tr>
           <tr><td>波速</td><td>程式固定</td><td>每秒 5% 畫面寬度</td><td>固定值</td><td>A向右、B向左等速；不提供學生控制項。</td></tr>
@@ -234,7 +238,7 @@
     <div class="poe-panel locked" data-step="3">
       <h4>③ 解釋（Q3）<span class="id-chip">U1-S1-Q3</span>　<span class="lockmark">解釋已通過檢核</span></h4>
       <p class="q-stem"><span class="badge-draft"></span>用「同一位置、同一時刻的位移相加」解釋你剛才看到的兩個案例，並說明通過後的狀態。</p>
-      <figure class="asset">
+      <figure class="asset tb-figure" data-fig-own>
         <svg id="fig-compare" viewBox="0 0 2400 1200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="同向與反向脈衝完全重疊比較圖。上排為分波A、B，下排為完全重疊當下的合成繩形；P點同向為＋1＋1＝＋2，反向為＋1－1＝0。" font-family="PingFang TC, Noto Sans TC, Microsoft JhengHei, sans-serif">
 <rect width="2400" height="1200" fill="#fff"/>
 <text x="1200" y="64" font-size="56" font-weight="700" text-anchor="middle" fill="#000">兩種完全重疊的比較</text>
@@ -313,15 +317,15 @@
 
       <div class="hints-set" data-mis="track" hidden>
         <div class="hs-title">提示：波相遇會「反彈／合併／消失」？<span class="t-only">（10 學習困難引導，一次一層）</span> <a class="mlink" href="misconceptions.html#m1">迷思M1</a></div>
-        <div class="hints">
-          <details class="L1"><summary>L1 釐清想法</summary><div>你預測脈衝會反彈，是根據什麼想法？ <span class="ref">對照材料：Q1預測與理由</span></div></details>
-          <details class="L2"><summary>L2 回看證據</summary><div>追蹤同一脈衝的相遇前、重疊與通過後；它的傳播方向有改變嗎？ <span class="ref">對照材料：繩波模擬<br>Q2三階段作圖</span></div></details>
-          <details class="L3"><summary>L3 連結說明</summary><div>依Q2的圖，你會如何修訂「相遇後會反彈」？ <span class="ref">對照材料：Q1初稿<br>Q2觀察紀錄</span></div></details>
+        <div class="hints tb-think"><span class="tb-label">想一想</span>
+          <details class="L1"><summary>L1 釐清想法</summary><div>你預測脈衝會反彈，是根據什麼想法？ <span class="ref tb-margin-note tb-margin-note--misc">對照材料：Q1預測與理由</span></div></details>
+          <details class="L2"><summary>L2 回看證據</summary><div>追蹤同一脈衝的相遇前、重疊與通過後；它的傳播方向有改變嗎？ <span class="ref tb-margin-note tb-margin-note--misc">對照材料：繩波模擬<br>Q2三階段作圖</span></div></details>
+          <details class="L3"><summary>L3 連結說明</summary><div>依Q2的圖，你會如何修訂「相遇後會反彈」？ <span class="ref tb-margin-note tb-margin-note--misc">對照材料：Q1初稿<br>Q2觀察紀錄</span></div></details>
         </div>
       </div>
       <div class="hints-set" data-mis="sum" hidden>
         <div class="hs-title">提示：合成位移怎麼決定？ <span class="badge-add"></span><span class="t-only">依 05 迷思「只寫相加卻未指明同一位置與同一時刻」編寫，非 10 原有三層</span></div>
-        <div class="hints">
+        <div class="hints tb-think"><span class="tb-label">想一想</span>
           <details class="L1"><summary>L1 釐清想法</summary><div>在完全重疊的那一刻、P 點這個位置，兩個脈衝「各自」造成多少位移？你的預測用了這兩個數字嗎？</div></details>
           <details class="L2"><summary>L2 回看證據</summary><div>回到模擬，把 P 點的 A 位移與 B 位移讀出來，再看合成值與這兩個數字有什麼關係。</div></details>
           <details class="L3"><summary>L3 連結說明</summary><div>分別算 (＋1)＋(＋1) 與 (＋1)＋(－1)，和你記錄的 P 點合成值比一比；再寫「在＿位置、＿時刻，合成位移等於各分波位移的代數和」。</div></details>
@@ -351,7 +355,7 @@
     <div class="saved" aria-live="polite"></div>
   </section>
 
-  <h3>論證題卡（第1題）：把答案寫完整</h3>
+  <h3 class="tb-subhead">論證題卡（第1題）：把答案寫完整</h3>
   <section class="qcard" id="card-T1" data-qid="T1" data-act="ACT-1A">
     <div class="q-head"><span class="q-no">題卡 1</span><span class="id-chip">C1</span><span class="q-goal">概念建構與迷思診斷（師生共用）｜對應目標：能以同一位置、同一時刻的位移代數和判斷合成結果，並說明兩波通過後的狀態</span></div>
     <p class="q-stem">兩列波在同一位置相遇時，合成位移如何決定？兩列波通過彼此後又會發生什麼？請用同向與等大反向兩個案例說明。</p>
@@ -359,7 +363,7 @@
     <label for="t1a">我的回答：</label>
     <textarea id="t1a" name="answer" placeholder="寫下你的說明，記得交代「同一位置、同一時刻」與「通過後」。"></textarea>
     <div class="saved" aria-live="polite"></div>
-    <div class="hints">
+    <div class="hints tb-think"><span class="tb-label">想一想</span>
       <details class="L1"><summary>L1 提示：回看你寫的句子</summary><div>你有沒有說清楚是「哪個位置、哪個時刻」的位移相加？ <span class="badge-add"></span> <a class="mlink" href="misconceptions.html#m1">迷思M1</a> <a class="mlink" href="misconceptions.html#m2">迷思M2</a></div></details>
       <details class="L2"><summary>L2 提示：兩個案例各說一次</summary><div>同向時合成位移比單一脈衝大，等大反向時可為零；這些都只發生在重疊當下。 <span class="badge-add"></span></div></details>
       <details class="L3"><summary>L3 提示：補上通過後</summary><div>在句尾補一句：重疊結束後，兩個脈衝仍沿原方向傳播（理想線性介質）。這一句最常被漏掉。 <span class="badge-add"></span></div></details>
@@ -379,11 +383,13 @@
   </section>
 
   <p class="bridge-in" style="margin-top:22px">活動一你已確認：同一位置的位移相加，通過後各走各的。接著把它用在水面上，兩個波源同時發出圓形水波，會發生什麼事？</p>
+  </section>
 
   <!-- ===================== 活動二 ===================== -->
-  <h2 id="act-b">活動二（22–42 分）　水波干涉：哪裡起伏大、哪裡幾乎不動？</h2>
+  <section class="tb-activity" id="act-1-2">
+  <h2 class="tb-activity__title" id="act-b"><span class="tb-secno">活動 1-2</span>（22–42 分）　水波干涉：哪裡起伏大、哪裡幾乎不動？</h2>
   <p>兩個同相的點波源在水面產生圓形波。先看題圖，預測 A、B 兩點「一段時間內」的起伏。</p>
-  <figure class="asset">
+  <figure class="asset tb-figure" data-fig-own>
     <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="雙點波源題圖：兩個同相波源S1、S2，水面上有A、B兩點；左下角標示一個波長λ的長度。" font-family="PingFang TC, Noto Sans TC, Microsoft JhengHei, sans-serif">
 <rect width="600" height="340" fill="#f4f8fc" stroke="#9fb3c8"/>
 <circle cx="220" cy="60" r="40" fill="none" stroke="#9fc0e0" stroke-width="1"/>
@@ -507,15 +513,15 @@
 
       <div class="hints-set" data-mis="disp" hidden>
         <div class="hs-title">提示：位移等於振幅？ <span class="badge-add"></span><span class="t-only">（10 速查表「位移等於振幅」的引導方式展開成三層）</span> <a class="mlink" href="misconceptions.html#m2">迷思M2</a></div>
-        <div class="hints">
+        <div class="hints tb-think"><span class="tb-label">想一想</span>
           <details class="L1"><summary>L1 釐清想法</summary><div>「這一刻是零，所以振幅是零」：你看的是哪一個時刻？只看那一刻夠嗎？ <span class="badge-add"></span></div></details>
-          <details class="L2"><summary>L2 回看證據</summary><div>固定同一位置，觀察完整週期：看上方時間紀錄圖，那一點的曲線有沒有經過位移為 0？它整段起伏到多大？ <span class="ref">對照材料：水波模型的 A、B 位移紀錄</span></div></details>
+          <details class="L2"><summary>L2 回看證據</summary><div>固定同一位置，觀察完整週期：看上方時間紀錄圖，那一點的曲線有沒有經過位移為 0？它整段起伏到多大？ <span class="ref tb-margin-note tb-margin-note--misc">對照材料：水波模型的 A、B 位移紀錄</span></div></details>
           <details class="L3"><summary>L3 連結說明</summary><div>比較瞬時位移與最大位移；能以完整週期的最大位移判斷振幅<span class="t-only">（10 的改善判準）</span>。請用紀錄圖讀出 A、B 的最大位移再回答。</div></details>
         </div>
       </div>
       <div class="hints-set" data-mis="snap" hidden>
         <div class="hs-title">提示：亮處一定是腹線嗎？ <span class="badge-add"></span><span class="t-only">依 02 提問與 05 迷思「以亮色等同腹線、只看單張截圖」編寫，非 10 原有三層</span> <a class="mlink" href="misconceptions.html#m2">迷思M2</a></div>
-        <div class="hints">
+        <div class="hints tb-think"><span class="tb-label">想一想</span>
           <details class="L1"><summary>L1 釐清想法</summary><div>你是從哪一張圖、哪一個瞬間判斷「亮處是腹線」？換一個瞬間，那裡還亮嗎？</div></details>
           <details class="L2"><summary>L2 回看證據</summary><div>在水波模型選定同一點，看它一段時間內位移如何起伏；顏色只代表「那一刻」的位移，不是振幅。切換到「振幅分布」比較。</div></details>
           <details class="L3"><summary>L3 連結說明</summary><div>比較 A、B 兩點整段紀錄的最大位移，再判斷哪一點在腹線、哪一點在節線；用距離差（同相波源：等距→同相到達，差半個波長→反相到達）說明為什麼位置固定。</div></details>
@@ -544,12 +550,14 @@
     </div>
     <div class="saved" aria-live="polite"></div>
   </section>
+  </section>
 
   <!-- ===================== 統整 ===================== -->
-  <h2 id="wrap">統整與反思（42–50 分）　命名腹線與節線，說出你改變了什麼</h2>
-  <div class="key"><span class="badge-add"></span><b>命名：</b>振幅最大的位置連成<b>腹線</b>，振幅最小（理想上為零）的位置連成<b>節線</b>。<span class="t-only">這些線的位置固定，<b>不是向外移動的波前</b>；判讀要看一段時間的起伏，不能只看單一時刻的顏色或光影。完全相消須在觀察處等振幅；真實水槽中節線常是「接近不動」。（依 05 第2題答案要素整理，作答前不給學生看。）</span></div>
+  <section class="tb-activity" id="act-1-3">
+  <h2 class="tb-activity__title" id="wrap"><span class="tb-secno">活動 1-3</span>統整與反思（42–50 分）　命名腹線與節線，說出你改變了什麼</h2>
+  <div class="key"><span class="badge-add"></span><b>命名：</b>振幅最大的位置連成<b class="tb-term">腹線</b>，振幅最小（理想上為零）的位置連成<b class="tb-term">節線</b>。<span class="t-only">這些線的位置固定，<b>不是向外移動的波前</b>；判讀要看一段時間的起伏，不能只看單一時刻的顏色或光影。完全相消須在觀察處等振幅；真實水槽中節線常是「接近不動」。（依 05 第2題答案要素整理，作答前不給學生看。）</span></div>
 
-  <h3>論證題卡（第2題，學習單 Q7 水波 CER）</h3>
+  <h3 class="tb-subhead">論證題卡（第2題，學習單 Q7 水波 CER）</h3>
   <div class="editor-note"><b>題號對應為整合者推定：</b>05 的題卡 C1–C2 與 02／03 的學習單題號是不同編碼，原文件沒有明載對應。本頁依 02（Q7 寫水波 CER）與 05（第1節第2張題卡為水波解釋）把 C2 對應 U1-S1-Q7；C1 對應活動一的 Q3 解釋，但 02 與 05 都未標題號。</div>
   <section class="qcard" id="card-T2" data-qid="T2" data-act="ACT-1C">
     <div class="q-head"><span class="q-no">題卡 2</span><span class="id-chip">C2</span><span class="id-chip">U1-S1-Q7</span><span class="q-goal">現象解釋與證據判讀（師生共用）｜對應目標：能依一段時間的起伏紀錄辨認腹線與節線，並解釋其位置穩定的原因</span></div>
@@ -559,7 +567,7 @@
     <label for="t2e">證據（引用你的 A、B 紀錄）：</label><textarea id="t2e" name="evidence" style="min-height:3em"></textarea>
     <label for="t2r">推理（為什麼位置固定）：</label><textarea id="t2r" name="reasoning" style="min-height:3em"></textarea>
     <div class="saved" aria-live="polite"></div>
-    <div class="hints">
+    <div class="hints tb-think"><span class="tb-label">想一想</span>
       <details class="L1"><summary>L1 提示：證據是紀錄，不是顏色</summary><div>你的證據引用的是「一段時間的起伏」還是「某一瞬間的畫面」？ <span class="badge-add"></span> <a class="mlink" href="misconceptions.html#m2">迷思M2</a></div></details>
       <details class="L2"><summary>L2 提示：為什麼位置固定</summary><div>兩個波源頻率相同、相位關係固定，所以到達固定位置的相位差保持穩定。 <span class="badge-add"></span></div></details>
       <details class="L3"><summary>L3 提示：連成因果鏈</summary><div>固定到達關係 → 位移疊加（同相到達增大、反相到達減小）→ 振幅最大或最小的位置連成線狀分布；這些線不是向外移動的波前。 <span class="badge-add"></span></div></details>
@@ -578,28 +586,32 @@
     </details>
   </section>
 
-  <h3>反思（Q8）</h3>
+  <h3 class="tb-subhead">反思（Q8）</h3>
   <section class="qcard" id="card-Q8" data-qid="Q8" data-act="ACT-1C">
     <div class="q-head"><span class="q-no">Q8</span><span class="id-chip">U1-S1-Q8</span><span class="q-goal">想法改變（學習單第1節）</span></div>
     <p class="q-stem"><span class="badge-draft"></span>這一節哪一項觀察讓你改變了原本的想法？改變了什麼？（若沒有改變，也請說明是哪項觀察支持了你原本的想法。）</p>
     <textarea name="change" aria-label="Q8 想法改變"></textarea>
     <div class="saved" aria-live="polite"></div>
   </section>
+  </section>
 
-  <h2>遇到困難時：對應的迷思速查</h2>
+  <h3 class="tb-subhead">遇到困難時：對應的迷思速查</h3>
   <p>本節涉及的迷思：「波像物體碰撞」<a class="mlink" href="misconceptions.html#m1">迷思M1</a>、「位移等於振幅」<a class="mlink" href="misconceptions.html#m2">迷思M2</a>。完整的 L1→L3 提示與其他迷思見 <a href="misconceptions.html">迷思速查</a>。</p>
   <div class="add-block"><span class="badge-add"></span>10 學習困難文件中，第1節只有「波相遇會反彈」有完整三層提示；「位移等於振幅」僅有速查列，三層為整合者依該列展開；「腹線／亮處」與「合成位移怎麼決定」兩組提示依 02、05 編寫，皆已標示。</div>
 
-  <h2>橋接到第2節：今天學到的規則，怎麼用在雙狹縫？</h2>
+  <h3 class="tb-subhead">橋接到第2節：今天學到的規則，怎麼用在雙狹縫？</h3>
+  <div class="tb-body">
   <div class="bridge-use"><div><b>水波</b>：兩個同相、同頻率的點波源</div><span>→ 類比 →</span><div><b>光</b>：雙狹縫可視為兩個相干（同調）的次波源</div></div>
-  <div class="bridge-use"><div>到達某點的兩列波<b>同相</b>：位移同號相加，振幅大（腹線）</div><span>→</span><div>到達屏幕某處的兩列光波同相：亮紋</div></div>
+  <div class="bridge-use"><div>到達某點的兩列波<b class="tb-term">同相</b>：位移同號相加，振幅大（腹線）</div><span>→</span><div>到達屏幕某處的兩列光波同相：亮紋</div></div>
   <div class="bridge-use"><div>到達某點的兩列波<b>反相且等振幅</b>：位移相消，近乎不動（節線）</div><span>→</span><div>反相：暗紋（理想下光強為零；不是「沒有光到達」）</div></div>
   <div class="bridge-use"><div>判斷要看一段時間的起伏，不能只看某一瞬間</div><span>→</span><div>屏幕呈現時間平均的亮度，亮暗是穩定分布</div></div>
-  <div class="warn-box"><b>類比有限制：</b>水波可以直接看到位移起伏；光在屏幕上能觀察到的是亮度分布。水波模擬不是光的實驗證據，光的證據要回到真實屏幕觀察（第2節）。</div>
+  <div class="tb-margin-note tb-margin-note--warn"><span class="tb-label">注意</span><b>類比有限制：</b>水波可以直接看到位移起伏；光在屏幕上能觀察到的是亮度分布。水波模擬不是光的實驗證據，光的證據要回到真實屏幕觀察（第2節）。</div>
+  </div>
   <div class="add-block"><span class="badge-add"></span>上面的對應表是整合者為銜接第2節所作的整理（內容依 01 節點02、03 與 02 的「由水波類比遷移至光」），不是原文件的獨立段落。</div>
 
   <p><button class="btn" type="button" data-iod-complete>我完成本頁了</button></p>
   <p class="bridge-out">水波的腹線與節線，下一節要連到光：雙狹縫為什麼會在屏幕上出現亮暗紋？先預測，再看真實屏幕。</p>
+  <nav class="tb-nav" aria-label="章節導覽"><a class="tb-nav__prev" href="pretest.html">← 上一節：前測</a><a class="tb-nav__next" href="unit2.html">下一節：1-2 雙狹縫干涉 →</a></nav>
 </main>
 <footer class="site-footer">干涉與繞射（雙狹縫）線上教材｜資料僅存於本機瀏覽器，不收集個資</footer>
 </body>

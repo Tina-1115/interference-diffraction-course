@@ -11,3 +11,5 @@ tr.dim{opacity:.25}
 .gbar button[aria-pressed="true"]{background:var(--c-accent);color:#fff;border-color:var(--c-accent)}
 tr.hl td{background:#fff4e8}
 td .id-chip{white-space:nowrap}
+/* 課本版面：頁首 */
+.tb-section-head{margin-top:.2rem}

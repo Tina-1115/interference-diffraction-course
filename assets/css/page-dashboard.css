@@ -29,3 +29,5 @@
 .editor-note-inline{display:none}
 html.teacher-mode .editor-note-inline{display:inline}
 @media (max-width:640px){.drow{grid-template-columns:1fr}.drow .num{text-align:left}}
+/* 課本版面：頁首 */
+.tb-section-head{margin-top:.2rem}

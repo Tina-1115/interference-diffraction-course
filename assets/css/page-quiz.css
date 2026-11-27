@@ -58,3 +58,6 @@ a.mlink{display:inline-block;font-weight:700;text-decoration:underline;border:1p
 a.mlink:hover,a.mlink:focus{background:#fdecea}
 .quiz-item .q-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
 .quiz-item label.opt .id-chip{margin-left:.5em}
+/* 課本版面：前測／後測自我評量框 */
+.tb-review .quiz-item{background:var(--tb-paper,#fbfaf6)}
+.tb-review .quiz-actions{margin-bottom:.6rem}
